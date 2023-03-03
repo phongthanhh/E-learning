@@ -31,6 +31,7 @@ module.exports = {
     'react/destructuring-assignment': 0,
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',
-    'linebreak-style': 0
+    'linebreak-style': 0,
+    'no-magic-numbers': ['error', { ignore: [0, 1] }]
   }
 }
