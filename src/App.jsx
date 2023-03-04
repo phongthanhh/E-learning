@@ -1,5 +1,5 @@
+import { REACT_LOGO } from 'assets'
 import React, { useState } from 'react'
-import reactLogo from './assets/react.svg'
 import './App.css'
 
 function App() {
@@ -12,10 +12,10 @@ function App() {
           <img src="/vite.svg" className="logo" alt="Vite logo" />
         </a>
         <a href="https://reactjs.org" target="_blank" rel="noreferrer">
-          <img src={reactLogo} className="logo react" alt="React logo" />
+          <img src={REACT_LOGO} className="logo react" alt="React logo" />
         </a>
       </div>
-      <h1>Vite + Reactaaa</h1>
+      <h1>Vite + React</h1>
       <div className="card">
         <button type="button" onClick={() => setCount((prevCount) => prevCount + 1)}>
           count is
