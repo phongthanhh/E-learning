@@ -18,6 +18,13 @@ module.exports = {
   plugins: [
     'react'
   ],
+  settings: {
+    'import/resolver': {
+      node: {
+        paths: ['src']
+      }
+    }
+  },
   rules: {
     semi: ['error', 'never'],
     'comma-dangle': ['error', 'never'],

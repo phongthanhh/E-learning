@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --open",
     "build": "vite build",
     "preview": "vite preview",
     "lint": "eslint --ext .js,.jsx ./src",
@@ -32,6 +32,7 @@
     "eslint-plugin-react-hooks": "^4.3.0",
     "husky": "^8.0.3",
     "lint-staged": "^13.1.2",
-    "vite": "^4.1.0"
+    "vite": "^4.1.0",
+    "vite-jsconfig-paths": "^2.0.1"
   }
 }
