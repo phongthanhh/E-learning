@@ -4,6 +4,7 @@ import { Home } from 'pages'
 import React from 'react'
 import { Router, Switch } from 'react-router'
 import { ToastContainer } from 'react-toastify'
+import { GlobalStyles } from './globalStyles'
 import './App.css'
 
 export const history = createBrowserHistory()
@@ -11,6 +12,7 @@ export const history = createBrowserHistory()
 function App() {
   return (
     <Router history={history}>
+      <GlobalStyles />
       <ToastContainer
         position="top-right"
         autoClose={5000}
