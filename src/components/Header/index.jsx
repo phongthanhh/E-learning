@@ -40,11 +40,11 @@ function Header() {
             </ul>
           </li>
           <li>
-            <NavLink className="menu__name" to="/">Khóa học</NavLink>
+            <NavLink className="menu__name" to={ROUTES_NAME.COURSE}>Khóa học</NavLink>
           </li>
-          <li><NavLink className="menu__name" to="/">Blog</NavLink></li>
-          <li><NavLink className="menu__name" to="/">Sự kiện</NavLink></li>
-          <li><NavLink className="menu__name" to="/">Thông tin</NavLink></li>
+          <li><NavLink className="menu__name" to={ROUTES_NAME.BLOG}>Blog</NavLink></li>
+          <li><NavLink className="menu__name" to={ROUTES_NAME.EVENT}>Sự kiện</NavLink></li>
+          <li><NavLink className="menu__name" to={ROUTES_NAME.INFO}>Thông tin</NavLink></li>
         </ul>
       </div>
       <div className="header__showIcon">

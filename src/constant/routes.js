@@ -1,4 +1,8 @@
 export const ROUTES_NAME = {
   HOME: '/home',
-  CATEGORY: '/category'
+  CATEGORY: '/category',
+  COURSE: '/course',
+  BLOG: '/blog',
+  EVENT: '/event',
+  INFO: '/info'
 }
