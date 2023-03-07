@@ -1,10 +1,12 @@
 export const COLORS = {
-  colorGlobal: '#41b294',
-  colorPrimary: '#f6ba35',
-  colorWhite: '#fff',
-  colorText: '#252525',
-  colorTextCard: '#8c8c8c',
-  colorBg: '#f0f8ff',
-  colorLight: '#80e27e',
-  colorDark: '#087f23'
+  global: '#41b294',
+  primary: '#f6ba35',
+  white: '#fff',
+  text: '#252525',
+  textCard: '#8c8c8c',
+  bg: '#f0f8ff',
+  light: '#80e27e',
+  dark: '#087f23',
+  bgbox: '#63c0a8',
+  bgbox2: '#5c8295'
 }

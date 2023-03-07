@@ -42,15 +42,15 @@ export const StyleHeader = styled.div`
         a{
           font-size: 15px;
           font-weight: 600;
-          color: ${COLORS.colorText};
+          color: ${COLORS.text};
           text-transform: uppercase;
           transition: all .3s;
         }
         &:hover{
-          color: ${COLORS.colorGlobal};
+          color: ${COLORS.global};
         }
         &:hover .menu__name{
-          color: ${COLORS.colorGlobal};
+          color: ${COLORS.global};
         }
       }
       .courseCate{
