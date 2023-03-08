@@ -3,6 +3,7 @@ import {
 } from 'assets'
 import React from 'react'
 import InfoCourseBox from './InfoCourseBox'
+import NumberCount from './NumberCount'
 import { StyledHome } from './styled'
 
 function Home() {
@@ -39,6 +40,7 @@ function Home() {
         </div>
         <InfoCourseBox />
       </StyledHome>
+      <NumberCount />
     </div>
   )
 }

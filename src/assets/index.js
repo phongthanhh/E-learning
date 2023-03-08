@@ -9,8 +9,13 @@ import CLOUNDS from './img/clouds.png'
 import MESSAGE_SLIDER from './img/message_slider.png'
 import CODE_SLIDER from './img/code_slider.png'
 import ASTRONAUT from './img/astronaut.png'
+import HOUR_GLASS from './img/hourglass.png'
+import STUDENTS from './img/students.png'
+import TEACHER from './img/teacher.png'
+import TIMETABLE from './img/timetable.png'
 
 export {
   REACT_LOGO, LOGO, SEARCHICON, BGABOUT, PAPER_PLANE,
-  SLIDER2, CLOUNDS, MESSAGE_SLIDER, CODE_SLIDER, ASTRONAUT
+  SLIDER2, CLOUNDS, MESSAGE_SLIDER, CODE_SLIDER, ASTRONAUT,
+  HOUR_GLASS, STUDENTS, TEACHER, TIMETABLE
 }
