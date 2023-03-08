@@ -1,1 +1,2 @@
-export * from './infoCourseBox'
+export * from './infoCourseBoxData'
+export * from './instrutorData'

@@ -3,6 +3,7 @@ import {
 } from 'assets'
 import React from 'react'
 import InfoCourseBox from './InfoCourseBox'
+import Instrutor from './Instrutor'
 import NumberCount from './NumberCount'
 import { StyledHome } from './styled'
 
@@ -11,7 +12,7 @@ function Home() {
     <div>
       <StyledHome>
         <div className="row homeSlider">
-          <div className="col-6 homeSlider__slogan">
+          <div className="col-lg-6 homeSlider__slogan">
             <div className="slogan__container">
               <div>
                 <img className="sliderPlaneImg" src={PAPER_PLANE} alt="" />
@@ -25,7 +26,7 @@ function Home() {
               <button style={{ padding: '10px 20px' }} type="button" className="btn__global">Bắt đâu nào</button>
             </div>
           </div>
-          <div className="col-6">
+          <div className="col-lg-6">
             <div className="homeSlider__right">
               <div>
                 <img src={SLIDER2} className="slider__mainImg" alt="" />
@@ -41,6 +42,7 @@ function Home() {
         <InfoCourseBox />
       </StyledHome>
       <NumberCount />
+      <Instrutor />
     </div>
   )
 }

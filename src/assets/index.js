@@ -13,9 +13,16 @@ import HOUR_GLASS from './img/hourglass.png'
 import STUDENTS from './img/students.png'
 import TEACHER from './img/teacher.png'
 import TIMETABLE from './img/timetable.png'
+import INSTRUTOR from './img/instrutor.jpg'
+import INSTRUTOR2 from './img/instrutor2.jpg'
+import INSTRUTOR3 from './img/instrutor3.jpg'
+import INSTRUTOR4 from './img/instrutor4.jpg'
+import INSTRUTOR5 from './img/instrutor5.jpg'
+import INSTRUTOR6 from './img/instrutor6.jpg'
 
 export {
   REACT_LOGO, LOGO, SEARCHICON, BGABOUT, PAPER_PLANE,
   SLIDER2, CLOUNDS, MESSAGE_SLIDER, CODE_SLIDER, ASTRONAUT,
-  HOUR_GLASS, STUDENTS, TEACHER, TIMETABLE
+  HOUR_GLASS, STUDENTS, TEACHER, TIMETABLE, INSTRUTOR, INSTRUTOR2
+  , INSTRUTOR3, INSTRUTOR4, INSTRUTOR5, INSTRUTOR6
 }

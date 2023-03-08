@@ -3,8 +3,8 @@ import React from 'react'
 import { Router } from 'react-router'
 import AppRoutes from 'routes'
 import { Toast } from 'components'
-import { GlobalStyles } from './globalStyles'
 import './App.css'
+import { GlobalStyles } from 'assets/style/globalStyles'
 
 export const history = createBrowserHistory()
 

@@ -44,6 +44,9 @@ export const StyledHome = styled.div`
     flex-wrap: wrap;
     margin-right: -15px;
     margin-left: -15px;
+    @media (max-width: 1024px) {
+      flex-direction: column-reverse;
+  }
     &__slogan{
       display: flex;
       position: relative;
