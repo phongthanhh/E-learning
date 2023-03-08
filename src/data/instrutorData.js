@@ -6,7 +6,7 @@ export const DATA_INSTRUTOR = [
   {
     id: 1,
     name: 'Big DadMoon',
-    textReview: 'Chuyên gia lĩnh vực lập trình',
+    textReview: 'Chuyên gia lĩnh vực lập trình AI',
     img: INSTRUTOR
   },
   {

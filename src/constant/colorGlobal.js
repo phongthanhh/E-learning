@@ -10,5 +10,6 @@ export const COLORS = {
   bgbox: '#63c0a8',
   bgbox2: '#5c8295',
   boxShadowCard: '0 0 10px 6px rgb(0 0 0 / 13%)',
-  bgReview: '#ed85ab'
+  bgReview: '#ed85ab',
+  bgForm: '#f5f5f5'
 }
