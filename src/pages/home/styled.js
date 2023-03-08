@@ -46,7 +46,7 @@ export const StyledHome = styled.div`
     margin-left: -15px;
     @media (max-width: 1024px) {
       flex-direction: column-reverse;
-  }
+    }
     &__slogan{
       display: flex;
       position: relative;

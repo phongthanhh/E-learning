@@ -10,6 +10,9 @@ padding: 50px 0;
   color: ${COLORS.white};
   grid-gap: 20px;
   gap: 20px;
+  @media (max-width: 1024px) {
+    grid-template-columns:none;
+  }
   .info__item{
     position: relative;
     overflow: hidden;

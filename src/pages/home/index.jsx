@@ -5,6 +5,7 @@ import React from 'react'
 import InfoCourseBox from './InfoCourseBox'
 import Instrutor from './Instrutor'
 import NumberCount from './NumberCount'
+import ReviewStudents from './ReviewStudents'
 import { StyledHome } from './styled'
 
 function Home() {
@@ -43,6 +44,7 @@ function Home() {
       </StyledHome>
       <NumberCount />
       <Instrutor />
+      <ReviewStudents />
     </div>
   )
 }

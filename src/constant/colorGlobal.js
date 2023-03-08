@@ -9,5 +9,6 @@ export const COLORS = {
   dark: '#087f23',
   bgbox: '#63c0a8',
   bgbox2: '#5c8295',
-  boxShadowCard: '0 0 10px 6px rgb(0 0 0 / 13%)'
+  boxShadowCard: '0 0 10px 6px rgb(0 0 0 / 13%)',
+  bgReview: '#ed85ab'
 }
