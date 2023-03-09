@@ -1,5 +1,5 @@
-import { COLORS } from 'constant'
 import styled from 'styled-components'
+import { COLORS } from 'themes'
 
 export const StyledReview = styled.div`
   padding: 20px 50px;

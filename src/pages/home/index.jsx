@@ -1,6 +1,7 @@
 import {
   CLOUNDS, CODE_SLIDER, MESSAGE_SLIDER, PAPER_PLANE, SLIDER2
 } from 'assets'
+import { CardGlobal } from 'components'
 import React from 'react'
 import InfoCourseBox from './InfoCourseBox'
 import Instrutor from './Instrutor'
@@ -45,6 +46,7 @@ function Home() {
       <NumberCount />
       <Instrutor />
       <ReviewStudents />
+      <CardGlobal />
     </div>
   )
 }

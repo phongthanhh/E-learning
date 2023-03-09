@@ -1,5 +1,5 @@
-import { COLORS } from 'constant'
 import { createGlobalStyle } from 'styled-components'
+import { COLORS } from 'themes'
 
 export const GlobalStyles = createGlobalStyle`
 .triangleTopRight{
@@ -31,5 +31,12 @@ export const GlobalStyles = createGlobalStyle`
   color: ${COLORS.white};
   font-size: 15px;
   cursor: pointer;
+  &:hover{
+    transform:scale(.97);
+  }
+}
+a{
+  text-decoration: none !important;
+  color: none;
 }
 `

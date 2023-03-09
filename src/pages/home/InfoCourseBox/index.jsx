@@ -1,7 +1,7 @@
 import { CheckOutlined } from '@ant-design/icons'
-import { COLORS } from 'constant'
 import { DATA__INFOBOX } from 'data'
 import React from 'react'
+import { COLORS } from 'themes'
 import { StyledInfoBox } from './styled'
 
 function InfoCourseBox() {

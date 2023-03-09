@@ -5,7 +5,7 @@
 
 
 a {
-  text-decoration: inherit;
+  text-decoration: none;
 }
 
 ul{
@@ -26,17 +26,4 @@ a, h1, h2, h3, h4, h5, h6, li, p, ul {
 h1,h2,h3,h4,h5,h6 {
   line-height: 1.2;
   font-weight: 600;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
 }

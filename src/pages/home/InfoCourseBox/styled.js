@@ -1,6 +1,6 @@
 import { ASTRONAUT } from 'assets'
-import { COLORS } from 'constant'
 import styled from 'styled-components'
+import { COLORS } from 'themes'
 
 export const StyledInfoBox = styled.div`
 padding: 50px 0;

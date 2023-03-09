@@ -1,5 +1,5 @@
-import { COLORS } from 'constant'
 import styled from 'styled-components'
+import { COLORS } from 'themes'
 
 export const StyledFooter = styled.div`
   padding: 10px;

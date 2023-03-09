@@ -1,6 +1,6 @@
 import { SEARCHICON } from 'assets'
-import { COLORS } from 'constant'
 import styled from 'styled-components'
+import { COLORS } from 'themes'
 
 export const StyleHeader = styled.div`
   z-index: 999;

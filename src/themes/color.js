@@ -2,6 +2,8 @@ export const COLORS = {
   global: '#41b294',
   primary: '#f6ba35',
   white: '#fff',
+  lightRed: '#f06f68',
+  lightBlue: '#65c9ff',
   text: '#252525',
   textCard: '#8c8c8c',
   bg: '#f0f8ff',

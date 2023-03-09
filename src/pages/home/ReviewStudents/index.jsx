@@ -1,6 +1,6 @@
 import { AVATAR_REVIEW } from 'assets'
-import { COLORS } from 'constant'
 import React from 'react'
+import { COLORS } from 'themes'
 import { StyledReview } from './styled'
 
 function ReviewStudents() {
