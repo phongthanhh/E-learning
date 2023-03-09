@@ -1,3 +1,4 @@
+/* eslint-disable no-magic-numbers */
 import React from 'react'
 import LocalOfferIcon from '@mui/icons-material/LocalOffer'
 import SignalCellularAltIcon from '@mui/icons-material/SignalCellularAlt'
@@ -8,13 +9,14 @@ import { AVATAR_CARD, AVATAR_CARD2 } from 'assets'
 import { COLORS, FONT_SIZE } from 'themes'
 import { StyledCardGlobal } from './styled'
 
-function Cardlobal() {
+function Cardlobal({ course }) {
+  console.log(course)
   return (
     <StyledCardGlobal>
-      <img className="card__img" src="https://www.hdwallpapers.net/previews/gta-5-characters-459.jpg" alt="" />
-      <span className="card__stiker">abc</span>
+      <img className="card__img" src={course.hinhAnh} alt="" />
+      <span className="card__stiker">{course.tenKhoaHoc.length > 27 ? `${course.tenKhoaHoc.substring(0, 27)}...` : course.tenKhoaHoc }</span>
       <div className="card__body">
-        <h6 className="card__body__title">Lập trình hiện đang là xu hướng trên toàn thế giới...</h6>
+        <h6 className="card__body__title">{course.moTa.length > 70 ? `${course.moTa.substring(0, 70)}...` : course.moTa}</h6>
         <div className="card__icon">
           <span>
             <AccessTimeOutlinedIcon className="card__icon__span" style={{ color: COLORS.primary }} />
@@ -35,7 +37,12 @@ function Cardlobal() {
           <div className="footer__img">
             <img src={AVATAR_CARD} alt="avatarCard" className="w-100" />
           </div>
-          <span className="ml-2 color__card__title">Elon Musk</span>
+          <span
+            style={{ fontSize: FONT_SIZE.sub }}
+            className="ml-2 color__card__title"
+          >
+            {course.nguoiTao.hoTen !== null ? course.nguoiTao.hoTen : 'Ẩn danh'}
+          </span>
         </div>
         <div>
           <p style={{ color: COLORS.textCard, textDecorationLine: 'line-through', fontSize: FONT_SIZE.sub }}>
@@ -53,7 +60,12 @@ function Cardlobal() {
       <div className="card__sub">
         <div className="sub__head">
           <img src={AVATAR_CARD2} className="sub__head__img" alt="" />
-          <span className="ml-2 color__card__title">Elun Musk Ricard</span>
+          <span
+            className="ml-2 color__card__title"
+            style={{ fontSize: FONT_SIZE.sub }}
+          >
+            {course.nguoiTao.hoTen !== null ? course.nguoiTao.hoTen : 'Ẩn danh'}
+          </span>
         </div>
         <h6 className="py-3">BOOTCAMP - LẬP TRÌNH FULL STACK TỪ ZERO ĐẾN CÓ VIỆC</h6>
         <p className="py-2 pb-3 color__card__title">

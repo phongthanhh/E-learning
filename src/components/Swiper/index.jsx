@@ -1,23 +1,26 @@
-import { autoParamSwiper } from 'constant'
-import React from 'react'
+/* eslint-disable no-unused-vars */
+import { CardGlobal } from 'components'
+import { attributeSwiper } from 'constant'
+import React, { useMemo } from 'react'
 import { Autoplay, Navigation, Pagination } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
+import { StyledSwiper } from './styled'
 
-function SwiperCarosel() {
+function SwiperCarosel({ listCourse }) {
+  const renderSlider = useMemo(() => listCourse?.map((course) => (
+    <SwiperSlide>
+      <CardGlobal course={course} />
+    </SwiperSlide>
+  )), [listCourse])
   return (
-    <div>
+    <StyledSwiper>
       <Swiper
         modules={[Autoplay, Pagination, Navigation]}
-        {...autoParamSwiper}
+        {...attributeSwiper}
       >
-        <SwiperSlide>
-          1
-        </SwiperSlide>
-        <SwiperSlide>
-          2
-        </SwiperSlide>
+        {renderSlider}
       </Swiper>
-    </div>
+    </StyledSwiper>
   )
 }
 

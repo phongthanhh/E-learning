@@ -1,1 +1,1 @@
-export * from './categoryType'
+export * from './courseTypes'

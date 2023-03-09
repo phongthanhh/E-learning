@@ -1,10 +1,12 @@
+import { PopularCourse, ReferCourse } from 'components'
 import React from 'react'
 import { StyledCourseHome } from './styled'
 
 function CourseHome() {
   return (
     <StyledCourseHome>
-      CourseHome
+      <PopularCourse />
+      <ReferCourse />
     </StyledCourseHome>
   )
 }

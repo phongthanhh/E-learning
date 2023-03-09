@@ -1,18 +1,13 @@
 import { BarsOutlined } from '@ant-design/icons'
 import { LOGO } from 'assets'
 import { ROUTES_NAME } from 'constant'
-import React, { useEffect, useMemo } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import React, { useMemo } from 'react'
+import { useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
-import { getCategoryAction } from 'stores'
 import { StyleHeader } from './styled'
 
 function Header() {
   const { categoryArr } = useSelector((state) => state.courseReducer)
-  const dispatch = useDispatch()
-  useEffect(() => {
-    dispatch(getCategoryAction())
-  }, [])
 
   const renderCategory = useMemo(() => categoryArr?.map(((item) => (
     <li key={item.maDanhMuc}>

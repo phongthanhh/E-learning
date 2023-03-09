@@ -3,7 +3,6 @@ import { COLORS, FONT_SIZE } from 'themes'
 
 export const StyledCardGlobal = styled.div`
   cursor: pointer;
-  margin-left: 50px;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -34,6 +33,9 @@ export const StyledCardGlobal = styled.div`
     flex: 1 1 auto;
     min-height: 1px;
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     &__title{
       padding-bottom: 10px;
       font-size: ${FONT_SIZE.md};

@@ -1,8 +1,10 @@
 import {
   CLOUNDS, CODE_SLIDER, MESSAGE_SLIDER, PAPER_PLANE, SLIDER2
 } from 'assets'
-import { CardGlobal } from 'components'
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import { getCategoryAction, getListCourseAction } from 'stores'
+import CourseHome from './CourseHome'
 import InfoCourseBox from './InfoCourseBox'
 import Instrutor from './Instrutor'
 import NumberCount from './NumberCount'
@@ -10,8 +12,15 @@ import ReviewStudents from './ReviewStudents'
 import { StyledHome } from './styled'
 
 function Home() {
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(getCategoryAction())
+    dispatch(getListCourseAction())
+  }, [])
+
   return (
-    <div>
+    <div className="">
       <StyledHome>
         <div className="row homeSlider">
           <div className="col-lg-6 homeSlider__slogan">
@@ -42,11 +51,11 @@ function Home() {
           </div>
         </div>
         <InfoCourseBox />
+        <CourseHome />
       </StyledHome>
       <NumberCount />
       <Instrutor />
       <ReviewStudents />
-      <CardGlobal />
     </div>
   )
 }
