@@ -10,7 +10,6 @@ import { COLORS, FONT_SIZE } from 'themes'
 import { StyledCardGlobal } from './styled'
 
 function Cardlobal({ course }) {
-  console.log(course)
   return (
     <StyledCardGlobal>
       <img className="card__img" src={course.hinhAnh} alt="" />

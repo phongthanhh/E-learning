@@ -4,5 +4,6 @@ export const ROUTES_NAME = {
   COURSE: '/course',
   BLOG: '/blog',
   EVENT: '/event',
-  INFO: '/info'
+  INFO: '/info',
+  DETAIL: '/detail'
 }
