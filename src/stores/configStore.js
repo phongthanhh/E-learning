@@ -1,9 +1,9 @@
 import { combineReducers, createStore, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
-import { categoryReducer } from './reducers'
+import { courseReducer } from './reducers'
 
 const rootReducer = combineReducers({
-  categoryReducer
+  courseReducer
 })
 
 export const store = createStore(rootReducer, applyMiddleware(thunk))

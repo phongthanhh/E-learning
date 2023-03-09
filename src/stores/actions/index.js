@@ -1,1 +1,1 @@
-export * from './categoryAction'
+export * from './courseAction'

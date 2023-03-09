@@ -8,7 +8,7 @@ import { getCategoryAction } from 'stores'
 import { StyleHeader } from './styled'
 
 function Header() {
-  const { categoryArr } = useSelector((state) => state.categoryReducer)
+  const { categoryArr } = useSelector((state) => state.courseReducer)
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(getCategoryAction())

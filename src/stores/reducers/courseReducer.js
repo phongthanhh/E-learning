@@ -4,7 +4,7 @@ const initialState = {
   categoryArr: []
 }
 
-export const categoryReducer = (state = initialState, { type, payload }) => {
+export const courseReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case SET_CATEGORY:
       return { ...state, categoryArr: payload }

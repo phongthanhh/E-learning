@@ -1,1 +1,1 @@
-export * from './categoryReducer'
+export * from './courseReducer'

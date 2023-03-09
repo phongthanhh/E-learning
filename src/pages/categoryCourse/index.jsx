@@ -1,7 +1,6 @@
 import React from 'react'
 
-function CategoryCourse(props) {
-  console.log(props)
+function CategoryCourse() {
   return (
     <div>
       CategoryCourse
