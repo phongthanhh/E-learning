@@ -14,6 +14,9 @@ export const StyleHeader = styled.div`
   .header__left{
     display: flex;
     align-items: center;
+    &__img{
+      width:250px
+    }
     .searchForm{
       outline: none;
       border: none;

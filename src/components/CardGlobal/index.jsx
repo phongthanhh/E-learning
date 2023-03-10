@@ -7,11 +7,13 @@ import AccessTimeOutlinedIcon from '@mui/icons-material/AccessTimeOutlined'
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined'
 import { AVATAR_CARD, AVATAR_CARD2 } from 'assets'
 import { COLORS, FONT_SIZE } from 'themes'
+import { history } from 'App'
+import { ROUTES_NAME } from 'constant'
 import { StyledCardGlobal } from './styled'
 
 function Cardlobal({ course }) {
   return (
-    <StyledCardGlobal>
+    <StyledCardGlobal onClick={() => history.push(`${ROUTES_NAME.DETAIL}/${course.maKhoaHoc}`)}>
       <img className="card__img" src={course.hinhAnh} alt="" />
       <span className="card__stiker">{course.tenKhoaHoc.length > 27 ? `${course.tenKhoaHoc.substring(0, 27)}...` : course.tenKhoaHoc }</span>
       <div className="card__body">
@@ -90,8 +92,7 @@ function Cardlobal({ course }) {
         <div className="sub__button d-flex justify-content-between">
           <button
             type="button"
-            className="btn__global btnSubCard"
-            style={{ padding: '15px', background: COLORS.global, flexBasis: '77%' }}
+            className="btn__global btn__SubCard"
           >
             Xem chi tiết
           </button>

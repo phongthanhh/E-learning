@@ -18,8 +18,8 @@ function Header() {
   return (
     <StyleHeader>
       <div className="header__left">
-        <NavLink to="/home">
-          <img src={LOGO} alt="logo" width={250} />
+        <NavLink to={ROUTES_NAME.HOME}>
+          <img className="header__left__img" src={LOGO} alt="logo" />
         </NavLink>
         <form>
           <input type="text" className="searchForm ml-4" placeholder="Tìm kiếm" />

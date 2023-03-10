@@ -1,5 +1,5 @@
 import { createGlobalStyle } from 'styled-components'
-import { COLORS } from 'themes'
+import { COLORS, FONT_SIZE } from 'themes'
 
 export const GlobalStyles = createGlobalStyle`
 .triangleTopRight{
@@ -37,6 +37,12 @@ export const GlobalStyles = createGlobalStyle`
 }
 a{
   text-decoration: none !important;
-  color: none;
+  color: ${COLORS.text};
+}
+body{
+  color: ${COLORS.text};
+  @media (max-width: 768px) {
+    font-size: ${FONT_SIZE.sub};
+  }
 }
 `

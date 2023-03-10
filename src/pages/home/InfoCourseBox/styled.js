@@ -3,16 +3,13 @@ import styled from 'styled-components'
 import { COLORS } from 'themes'
 
 export const StyledInfoBox = styled.div`
-padding: 50px 0;
-.info__container{
+  padding: 50px 0;
+  .info__container{
   display: grid;
   grid-template-columns: repeat(3,1fr);
   color: ${COLORS.white};
   grid-gap: 20px;
   gap: 20px;
-  @media (max-width: 1024px) {
-    grid-template-columns:none;
-  }
   .info__item{
     position: relative;
     overflow: hidden;
@@ -55,5 +52,10 @@ padding: 50px 0;
     background-size: 50%;
     background-repeat: no-repeat;
   }
-}
+  }
+  @media (max-width: 1024px) {
+    .info__container{
+      grid-template-columns:none;
+    }
+  }
 `

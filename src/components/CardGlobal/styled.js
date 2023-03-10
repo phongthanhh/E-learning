@@ -143,6 +143,11 @@ export const StyledCardGlobal = styled.div`
       }
     }
     .sub__button{
+      .btn__SubCard{
+        padding: 15px;
+        background: ${COLORS.global};
+        flex-basis: 77%;
+      }
       &__cart{
         display: flex;
         justify-content: center;

@@ -11,7 +11,7 @@ function Instrutor() {
     <SwiperSlide>
       <CardIns data={item} />
     </SwiperSlide>
-  )), [DATA_INSTRUTOR])
+  )), [])
   return (
     <StyledInstrutor className="mt-5">
       <h6>Giảng viên hàng đầu</h6>

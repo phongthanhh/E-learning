@@ -7,6 +7,10 @@ export const StyledNumber = styled.div`
   .boxnumber{
     width: 100%;
     text-align: center;
+    &__img{
+      width: 80px;
+      height: 80px;
+    }
     &__number{
       font-size: 50px;
       color: ${COLORS.global};

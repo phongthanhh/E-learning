@@ -1,5 +1,5 @@
 import { toast } from 'react-toastify'
-import { getCategoryService, getListCourseService } from 'services'
+import { getCategoryService, getDetailCourseService, getListCourseService } from 'services'
 import { SET_CATEGORY, SET_LIST_COURSE } from 'stores/types'
 
 export const getCategoryAction = () => async (dispatch) => {
@@ -21,6 +21,15 @@ export const getListCourseAction = () => async (dispatch) => {
       type: SET_LIST_COURSE,
       payload: result.data
     })
+  } catch (error) {
+    toast.error(error.response?.data.content)
+  }
+}
+
+export const getDetailCourseAction = (courseCode) => async () => {
+  try {
+    const result = await getDetailCourseService(courseCode)
+    console.log(result.data)
   } catch (error) {
     toast.error(error.response?.data.content)
   }

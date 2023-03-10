@@ -1,9 +1,15 @@
 import { SwiperCarosel } from 'components'
-import React from 'react'
-import { useSelector } from 'react-redux'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { getListCourseAction } from 'stores'
 import { StyledReferCourse } from './styled'
 
 function ReferCourse() {
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(getListCourseAction())
+  }, [])
+
   const { listCourse } = useSelector((state) => state.courseReducer)
   return (
     <StyledReferCourse className="mt-5">
