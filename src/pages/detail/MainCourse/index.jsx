@@ -5,10 +5,12 @@ import React, { memo } from 'react'
 import SchoolIcon from '@mui/icons-material/School'
 import CheckIcon from '@mui/icons-material/Check'
 import { COURSE__LEARN__DATA } from 'data'
+import { useSelector } from 'react-redux'
 import ContentCourse from '../ContentCourse'
 import { StyledMainCourse } from './styled'
 
-function MainCourse({ detailCourse }) {
+function MainCourse() {
+  const { detailCourse } = useSelector((state) => state.courseReducer)
   const renderCourseLearn = () => COURSE__LEARN__DATA.map((course) => (
     <div className="col-6">
       <ul>

@@ -1,2 +1,3 @@
 export const SET_CATEGORY = 'SET_CATEGORY'
 export const SET_LIST_COURSE = 'SET_LIST_COURSE'
+export const SET_DETAIL_COURSE = 'SET_DETAIL_COURSE'

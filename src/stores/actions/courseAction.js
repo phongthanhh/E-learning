@@ -1,6 +1,7 @@
+/* eslint-disable no-unused-vars */
 import { toast } from 'react-toastify'
 import { getCategoryService, getDetailCourseService, getListCourseService } from 'services'
-import { SET_CATEGORY, SET_LIST_COURSE } from 'stores/types'
+import { SET_CATEGORY, SET_DETAIL_COURSE, SET_LIST_COURSE } from 'stores/types'
 
 export const getCategoryAction = () => async (dispatch) => {
   try {
@@ -26,10 +27,13 @@ export const getListCourseAction = () => async (dispatch) => {
   }
 }
 
-export const getDetailCourseAction = (courseCode) => async () => {
+export const getDetailCourseAction = (courseCode) => async (dispatch) => {
   try {
     const result = await getDetailCourseService(courseCode)
-    console.log(result.data)
+    dispatch({
+      type: SET_DETAIL_COURSE,
+      payload: result.data
+    })
   } catch (error) {
     toast.error(error.response?.data.content)
   }

@@ -1,20 +1,17 @@
+/* eslint-disable no-unused-vars */
 import { ReferCourse } from 'components'
-import React, { memo, useEffect, useState } from 'react'
-import { getDetailCourseService } from 'services'
+import React, { memo, useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import { getDetailCourseAction } from 'stores'
 import MainCourse from './MainCourse'
 import SidebarCourse from './SidebarCourse'
 import { StyledDetail } from './styled'
 
 function Detail(props) {
   const { id } = props.match.params
-
-  const [detailCourse, setDetailCourse] = useState(null)
+  const dispatch = useDispatch()
   useEffect(() => {
-    const fetchData = async () => {
-      const data = await getDetailCourseService(id)
-      if (data) setDetailCourse(data.data)
-    }
-    fetchData()
+    dispatch(getDetailCourseAction(id))
   }, [id])
 
   return (
@@ -26,10 +23,10 @@ function Detail(props) {
       <div className="detailcontainer">
         <div className="row detailcontainer__content">
           <div className="col-lg-8 col-md-7">
-            <MainCourse detailCourse={detailCourse} />
+            <MainCourse />
           </div>
           <div className="col-lg-4 col-md-5">
-            <SidebarCourse detailCourse={detailCourse} />
+            <SidebarCourse />
           </div>
         </div>
       </div>

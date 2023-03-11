@@ -5,9 +5,11 @@ import AccessTimeIcon from '@mui/icons-material/AccessTime'
 import MenuBookIcon from '@mui/icons-material/MenuBook'
 import VideoLibraryIcon from '@mui/icons-material/VideoLibrary'
 import SignalCellularAltIcon from '@mui/icons-material/SignalCellularAlt'
+import { useSelector } from 'react-redux'
 import { StyledSidebar } from './styled'
 
-function SidebarCourse({ detailCourse }) {
+function SidebarCourse() {
+  const { detailCourse } = useSelector((state) => state.courseReducer)
   return (
     <StyledSidebar>
       <img className="sidebar__img" src={detailCourse !== null ? detailCourse.hinhAnh : ''} alt="" />
