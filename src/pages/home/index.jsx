@@ -3,7 +3,7 @@ import {
 } from 'assets'
 import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { getCategoryAction, getListCourseAction } from 'stores'
+import { getCategoryAction } from 'stores'
 import CourseHome from './CourseHome'
 import InfoCourseBox from './InfoCourseBox'
 import Instrutor from './Instrutor'
@@ -16,7 +16,6 @@ function Home() {
 
   useEffect(() => {
     dispatch(getCategoryAction())
-    dispatch(getListCourseAction())
   }, [])
 
   return (

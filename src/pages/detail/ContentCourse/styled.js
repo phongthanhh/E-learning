@@ -8,6 +8,7 @@ export const StyledContentCourse = styled.div`
   }
   .courseitem{
     &__content{
+      padding: 20px 0;
       .section__course{
         justify-content: space-between;
         display: flex;

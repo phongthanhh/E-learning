@@ -1,5 +1,5 @@
 import { ReferCourse } from 'components'
-import React, { useEffect, useState } from 'react'
+import React, { memo, useEffect, useState } from 'react'
 import { getDetailCourseService } from 'services'
 import MainCourse from './MainCourse'
 import SidebarCourse from './SidebarCourse'
@@ -8,14 +8,14 @@ import { StyledDetail } from './styled'
 function Detail(props) {
   const { id } = props.match.params
 
-  const [detailCourse, setDetailCourse] = useState({})
+  const [detailCourse, setDetailCourse] = useState(null)
   useEffect(() => {
     const fetchData = async () => {
       const data = await getDetailCourseService(id)
       if (data) setDetailCourse(data.data)
     }
     fetchData()
-  }, [])
+  }, [id])
 
   return (
     <StyledDetail>
@@ -29,7 +29,7 @@ function Detail(props) {
             <MainCourse detailCourse={detailCourse} />
           </div>
           <div className="col-lg-4 col-md-5">
-            <SidebarCourse />
+            <SidebarCourse detailCourse={detailCourse} />
           </div>
         </div>
       </div>
@@ -40,4 +40,4 @@ function Detail(props) {
   )
 }
 
-export default Detail
+export default memo(Detail)

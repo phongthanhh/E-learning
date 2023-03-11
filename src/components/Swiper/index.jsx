@@ -9,7 +9,7 @@ import { StyledSwiper } from './styled'
 function SwiperCarosel({ listCourse }) {
   const renderSlider = useMemo(() => listCourse?.map((course) => (
     <SwiperSlide>
-      <CardGlobal course={course} />
+      <CardGlobal key={course.maKhoaHoc} course={course} />
     </SwiperSlide>
   )), [listCourse])
   return (

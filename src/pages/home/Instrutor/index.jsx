@@ -9,7 +9,7 @@ import { StyledInstrutor } from './styled'
 function Instrutor() {
   const renderSlider = useMemo(() => DATA_INSTRUTOR.map((item) => (
     <SwiperSlide>
-      <CardIns data={item} />
+      <CardIns key={item.id} data={item} />
     </SwiperSlide>
   )), [])
   return (

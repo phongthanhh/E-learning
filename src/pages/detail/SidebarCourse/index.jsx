@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import SchoolIcon from '@mui/icons-material/School'
 import BoltIcon from '@mui/icons-material/Bolt'
 import AccessTimeIcon from '@mui/icons-material/AccessTime'
@@ -7,10 +7,10 @@ import VideoLibraryIcon from '@mui/icons-material/VideoLibrary'
 import SignalCellularAltIcon from '@mui/icons-material/SignalCellularAlt'
 import { StyledSidebar } from './styled'
 
-function SidebarCourse() {
+function SidebarCourse({ detailCourse }) {
   return (
     <StyledSidebar>
-      <img className="sidebar__img" src="https://thuvienanime.com/wp-content/uploads/2021/09/nang-luc-cua-tieu-viem.jpeg" alt="" />
+      <img className="sidebar__img" src={detailCourse !== null ? detailCourse.hinhAnh : ''} alt="" />
       <div className="sidebar__price">
         <p>
           <BoltIcon className="sidebar__price__icon" />
@@ -23,7 +23,12 @@ function SidebarCourse() {
           <li>
             <p>
               Ghi danh:
-              <span> 10 học viên</span>
+              <span>
+                {' '}
+                {detailCourse !== null ? detailCourse.soLuongHocVien : ''}
+                {' '}
+                học viên
+              </span>
             </p>
             <SchoolIcon className="sidebar__detail__icon" />
           </li>
@@ -57,11 +62,11 @@ function SidebarCourse() {
           </li>
         </ul>
         <div className="sidebar__discount">
-          <input type="text" />
+          <input type="text" placeholder="Nhập mã" />
         </div>
       </div>
     </StyledSidebar>
   )
 }
 
-export default SidebarCourse
+export default memo(SidebarCourse)
