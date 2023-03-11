@@ -35,6 +35,12 @@ export const GlobalStyles = createGlobalStyle`
     transform:scale(.97);
   }
 }
+.titleCourse{
+  padding: 50px;
+  text-transform: uppercase;
+  background-color: ${COLORS.lightYellow};
+  color: ${COLORS.white};
+}
 a{
   text-decoration: none !important;
   color: ${COLORS.text};

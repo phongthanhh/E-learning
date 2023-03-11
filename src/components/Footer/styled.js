@@ -79,6 +79,9 @@ export const StyledFooter = styled.div`
     justify-content: space-between;
     padding: 5px 50px;
     border-top: 1px solid #d0d0d0;
+    @media (max-width:576px) {
+      flex-direction: column;
+    }
     .iconSize{
       width: 30px;
       height: 30px;

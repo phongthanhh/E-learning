@@ -16,6 +16,7 @@ export const StyledCardGlobal = styled.div`
   border: 1px solid rgba(0,0,0,.125);
   box-shadow: 0 0 10px 4px rgb(0 0 0 / 20%);
   .card__img{
+    width: 100%;
     height: 185px;
     min-height: 185px;
     transition: all .5s;
