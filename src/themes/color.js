@@ -18,5 +18,7 @@ export const COLORS = {
   boxShadowCard: '0 0 10px 6px rgb(0 0 0 / 13%)',
   boxShadowSidebar: '1px 1px 10px 4px #dadada',
   bodergrey: '#f2f1f1',
-  borderGray: '#d0d0d0'
+  borderGray: '#d0d0d0',
+  borderLightGrey: '#e4e4e4'
+
 }

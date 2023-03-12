@@ -8,8 +8,8 @@ import { StyledInstrutor } from './styled'
 
 function Instrutor() {
   const renderSlider = useMemo(() => DATA_INSTRUTOR.map((item) => (
-    <SwiperSlide>
-      <CardIns key={item.id} data={item} />
+    <SwiperSlide key={item.id}>
+      <CardIns data={item} />
     </SwiperSlide>
   )), [])
   return (

@@ -1,4 +1,5 @@
 import { BarsOutlined } from '@ant-design/icons'
+import { history } from 'App'
 import { LOGO } from 'assets'
 import { ROUTES_NAME } from 'constant'
 import React, { useMemo } from 'react'
@@ -43,7 +44,7 @@ function Header() {
         </ul>
       </div>
       <div className="header__showIcon">
-        <button type="button" className="btn__global">
+        <button onClick={() => history.push(ROUTES_NAME.LOGIN)} type="button" className="btn__global">
           Đăng nhập
         </button>
       </div>

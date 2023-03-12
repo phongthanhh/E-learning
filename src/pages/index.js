@@ -6,7 +6,8 @@ import Event from './event'
 import Info from './info'
 import NumberCount from './home/NumberCount'
 import Detail from './detail'
+import Login from './login'
 
 export {
-  Home, Course, CategoryCourse, Blog, Event, Info, NumberCount, Detail
+  Home, Course, CategoryCourse, Blog, Event, Info, NumberCount, Detail, Login
 }

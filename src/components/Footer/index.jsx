@@ -103,7 +103,7 @@ function Footer() {
 
             <div className="p-2 col-md-4">
               <h3 className="textFooterTitle">Đăng kí tư vấn</h3>
-              <form action>
+              <form action="true">
                 <input className="formFooter" type="text" placeholder="Họ và tên" />
                 <input className="formFooter" type="text" placeholder="Email" />
                 <input className="formFooter" type="text" placeholder="Số điện thoại" />

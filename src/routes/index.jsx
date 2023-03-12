@@ -2,7 +2,7 @@ import React from 'react'
 import { Switch } from 'react-router'
 import { HomeLayout } from 'layouts'
 import {
-  Blog, CategoryCourse, Course, Detail, Event, Home, Info
+  Blog, CategoryCourse, Course, Detail, Event, Home, Info, Login
 } from 'pages'
 import { ROUTES_NAME } from 'constant'
 
@@ -16,6 +16,8 @@ function AppRoutes() {
       <HomeLayout path={ROUTES_NAME.BLOG} exact component={Blog} />
       <HomeLayout path={ROUTES_NAME.EVENT} exact component={Event} />
       <HomeLayout path={ROUTES_NAME.INFO} exact component={Info} />
+
+      <Login path={ROUTES_NAME.LOGIN} exact component={Login} />
 
       <HomeLayout path="/" exact component={Home} />
     </Switch>
