@@ -61,6 +61,7 @@ export const StyledLogin = styled.div`
       height: 100%;
       width: 200%;
       left: -100%;
+      transition: transform .6s ease-in-out;
       .overlay__panel{
         position: absolute;
         top: 0;
@@ -72,7 +73,8 @@ export const StyledLogin = styled.div`
         height: 100%;
         width: 50%;
         text-align: center;
-        p{
+        transition: transform .6s ease-in-out;
+        &__text{
           font-size: 14px;
           font-weight: 100;
           line-height: 20px;
@@ -98,10 +100,12 @@ export const StyledLogin = styled.div`
       }
       .overlay__left{
           transform: translateX(-20%);
+          transition: transform .6s ease-in-out
       }
       .overlay__right {
           right: 0;
           transform: translateX(0);
+          transition: transform .6s ease-in-out
       }
     }
   }
@@ -112,6 +116,9 @@ export const StyledLogin = styled.div`
       transform: translateX(50%);
       .overlay__left{
         transform: translateX(0);
+      }
+      .overlay__right{
+        transform: translateX(20%);
       }
     }
     }
