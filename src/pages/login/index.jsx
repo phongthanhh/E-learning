@@ -1,11 +1,17 @@
-/* eslint-disable no-unused-vars */
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
 import { StyledLogin } from './styled'
 import SignInForm from './SignInForm'
 import SignUpForm from './SignUpForm'
 
 function Login() {
+  const { activeLoginPage } = useSelector((state) => state.userReducer)
   const [isActive, setIsActive] = useState(false)
+
+  useEffect(() => {
+    setIsActive(activeLoginPage)
+  }, [activeLoginPage])
+
   return (
     <StyledLogin className="container-fluid">
       <div className={`container loginContainer ${isActive ? 'right__panel__active' : null}`}>

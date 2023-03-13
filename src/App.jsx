@@ -10,8 +10,8 @@ export const history = createBrowserHistory()
 function App() {
   return (
     <Router history={history}>
-      <GlobalStyles />
       <Toast />
+      <GlobalStyles />
       <AppRoutes />
     </Router>
   )
