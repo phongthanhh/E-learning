@@ -1,4 +1,4 @@
-import { ACTICE_LOGIN_PAGE } from 'stores/types'
+import { ACTIVE_LOGIN_PAGE } from 'stores/types'
 
 const initialState = {
   activeLoginPage: null
@@ -6,7 +6,7 @@ const initialState = {
 
 export const userReducer = (state = initialState, { type }) => {
   switch (type) {
-    case ACTICE_LOGIN_PAGE:
+    case ACTIVE_LOGIN_PAGE:
       return { ...state, activeLoginPage: false }
     default:
       return state
