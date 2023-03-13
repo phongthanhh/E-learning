@@ -10,6 +10,11 @@ import 'antd/dist/reset.css'
 
 import 'swiper/swiper.css'
 
+import 'bootstrap/dist/css/bootstrap.css'
+
+// Toastify
+import 'react-toastify/dist/ReactToastify.css'
+
 import App from './App'
 import './index.css'
 
