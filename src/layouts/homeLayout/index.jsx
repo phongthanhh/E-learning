@@ -8,7 +8,7 @@ function HomeLayout(props) {
       path={props.path}
       render={(propsRoute) => (
         <>
-          <Header {...propsRoute} />
+          <Header />
           <props.component {...propsRoute} />
           <Footer />
         </>
