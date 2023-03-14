@@ -89,4 +89,87 @@ export const StyleHeader = styled.div`
       }
     }
   }
+  .header__showIcon{
+    
+    .user__info{
+      display: flex;
+      align-items: center;
+      .user__logged{
+      display: flex;
+      align-items: center;
+      &__img{
+        position: relative;
+        width: 55px;
+        height: 55px;
+        background: #ebebec;
+        border-radius: 50%;
+        cursor: pointer;
+        position: relative;
+        .MuiAvatar-root{
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+          width: 45px;
+          height: 45px;
+        }
+      }
+      &__name{
+        padding-left: 10px;
+        color: ${COLORS.global};
+      }
+    }
+    .dropdown{
+      &__select{
+        background: ${COLORS.bgButtonSL};
+        margin-left: 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        &__icon{
+          width: 1.2em;
+          height: 1.2em;
+          color: ${COLORS.global};
+          transition: all .3s linear;
+        }
+      }
+      &__list{
+        width: 200px;
+        position: absolute;
+        right: 0;
+        top:45px;
+        border-radius: 4px;
+        padding: 10px 5px;
+        font-size: 14px;
+        font-weight: 600;
+        background: ${COLORS.white};
+        border: 1px solid ${COLORS.global};
+        li{
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          border-radius: 4px;
+          padding: 8px 6px;
+          list-style: none;
+          cursor: pointer;
+          span{
+            .dropdown__list__icon{
+              width: .9em;
+              height: .9em;
+              color: ${COLORS.global};
+              transition: all .5s;
+              margin-right: 5px;
+              vertical-align: -4px;
+            }
+          }
+          &:hover{
+            .dropdown__list__icon{
+            transform: scale(1.2);
+            }
+          }
+        }
+      }
+    }
+    }
+   
+  }
 `

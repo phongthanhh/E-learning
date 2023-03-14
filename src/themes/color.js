@@ -14,6 +14,7 @@ export const COLORS = {
   bgbox2: '#5c8295',
   bgReview: '#ed85ab',
   bgForm: '#f5f5f5',
+  bgButtonSL: '#ebebec',
   bgCourseDetail: 'hsla(0,0%,86.3%,0.1411764705882353)',
   boxShadowCard: '0 0 10px 6px rgb(0 0 0 / 13%)',
   boxShadowSidebar: '1px 1px 10px 4px #dadada',
