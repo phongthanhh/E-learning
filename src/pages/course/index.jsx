@@ -26,6 +26,7 @@ function Course() {
     }
     fetchData()
   }, [page])
+
   const renderListCourse = useMemo(() => listCourse?.items.map((course) => (
     <div className="col-xl-3 col-lg-4 col-md-6 mt-4  courseListPage__content__item">
       <CardCourse course={course} />

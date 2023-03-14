@@ -6,7 +6,7 @@ import { StyledContentCourse } from './styled'
 
 function ContentCourse() {
   const renderCourseContent = () => CONTENT__COURSE__DATA.map((course) => (
-    <div className="courseitem">
+    <div className="courseitem" key={course.id}>
       <div className="courseitem__content">
         <div className="section__course">
           <span className="section__course__title">{course.title}</span>
@@ -15,7 +15,7 @@ function ContentCourse() {
         <p className="courseitem__content__lesson">Bài học</p>
         <div className="lesson">
           {course.lesson.map((item) => (
-            <div className="lesson__content">
+            <div className="lesson__content" key={item.id}>
               <span className="lesson__content__title">
                 <PlayCircleIcon className="lesson__content__title__icon" />
                 {item.lessonTitle}

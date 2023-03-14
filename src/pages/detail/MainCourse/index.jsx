@@ -1,4 +1,3 @@
-/* eslint-disable no-irregular-whitespace */
 import { Rating } from '@mui/material'
 import { INSTRUTOR } from 'assets'
 import React, { memo } from 'react'
@@ -12,10 +11,10 @@ import { StyledMainCourse } from './styled'
 function MainCourse() {
   const { detailCourse } = useSelector((state) => state.courseReducer)
   const renderCourseLearn = () => COURSE__LEARN__DATA.map((course) => (
-    <div className="col-6">
+    <div className="col-6" key={course.id}>
       <ul>
         {course.listCourse.map((item) => (
-          <li className="boxcourse__learn__li">
+          <li className="boxcourse__learn__li" key={item}>
             <span>
               <CheckIcon className="boxcourse__learn__li__icon" />
               {item}
