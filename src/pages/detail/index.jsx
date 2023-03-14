@@ -12,7 +12,7 @@ function Detail(props) {
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(getDetailCourseAction(id))
-  }, [id])
+  }, [id, dispatch])
 
   return (
     <StyledDetail>

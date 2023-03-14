@@ -6,7 +6,6 @@ import { StyledCategory } from './styled'
 function CategoryCourse(props) {
   const { name } = props.match.params
   const [listCourseCate, setListCourseCate] = useState()
-  console.log(listCourseCate)
   useEffect(() => {
     const fetchData = async () => {
       const data = await getListCourseCateService(name)
