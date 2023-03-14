@@ -9,7 +9,7 @@ function PopularCourse() {
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(getListCourseAction())
-  }, [])
+  }, [dispatch])
 
   const { listCourse } = useSelector((state) => state.courseReducer)
   const newListCourse = useMemo(() => listCourse.filter((item) => item.luotXem > 99), [listCourse])

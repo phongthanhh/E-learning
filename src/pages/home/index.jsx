@@ -16,7 +16,7 @@ function Home() {
 
   useEffect(() => {
     dispatch(getCategoryAction())
-  }, [])
+  }, [dispatch])
 
   return (
     <div className="">

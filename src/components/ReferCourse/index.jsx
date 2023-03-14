@@ -8,7 +8,7 @@ function ReferCourse() {
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(getListCourseAction())
-  }, [])
+  }, [dispatch])
 
   const { listCourse } = useSelector((state) => state.courseReducer)
   return (
