@@ -1,5 +1,6 @@
 // SVG
 import REACT_LOGO from './icons/react.svg'
+// IMAGE
 import LOGO from './img/logo.png'
 import SEARCHICON from './img/searchIcon.png'
 import BGABOUT from './img/bgAbout.png'
@@ -24,11 +25,13 @@ import AVATAR_CARD from './img/avatarCard.png'
 import AVATAR_CARD2 from './img/avatarCard2.png'
 import BG_LOGIN from './img/bgLogin.png'
 import BG_OVERLAY from './img/bgOverlay.png'
+import blackGuySmile from './img/blackGuySmile.jpg'
 
 export {
   REACT_LOGO, LOGO, SEARCHICON, BGABOUT, PAPER_PLANE,
   SLIDER2, CLOUNDS, MESSAGE_SLIDER, CODE_SLIDER, ASTRONAUT,
   HOUR_GLASS, STUDENTS, TEACHER, TIMETABLE, INSTRUTOR, INSTRUTOR2
-  , INSTRUTOR3, INSTRUTOR4, INSTRUTOR5, INSTRUTOR6, AVATAR_REVIEW, AVATAR_CARD, AVATAR_CARD2, BG_LOGIN, BG_OVERLAY
+  , INSTRUTOR3, INSTRUTOR4, INSTRUTOR5, INSTRUTOR6, AVATAR_REVIEW, AVATAR_CARD, AVATAR_CARD2, BG_LOGIN, BG_OVERLAY,
+  blackGuySmile
 
 }

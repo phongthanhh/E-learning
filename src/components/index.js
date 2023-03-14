@@ -5,8 +5,10 @@ import CardGlobal from './CardGlobal'
 import SwiperCarosel from './Swiper'
 import ReferCourse from './ReferCourse'
 import PopularCourse from './PopularCourse'
+import ErrorBoundary from './ErrorBoundary'
 
 export * from './FormControl'
 export {
-  Header, Footer, Toast, CardGlobal, SwiperCarosel, ReferCourse, PopularCourse
+  Header, Footer, Toast, CardGlobal, SwiperCarosel, ReferCourse, PopularCourse,
+  ErrorBoundary
 }

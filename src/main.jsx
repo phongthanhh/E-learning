@@ -15,11 +15,12 @@ import 'bootstrap/dist/css/bootstrap.css'
 // Toastify
 import 'react-toastify/dist/ReactToastify.css'
 
+import { ErrorBoundary } from 'components'
 import App from './App'
 import './index.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <Provider store={store}>
-    <App />
+    <ErrorBoundary><App /></ErrorBoundary>
   </Provider>
 )
