@@ -3,7 +3,9 @@ import { Avatar } from '@mui/material'
 import { history } from 'App'
 import { LOGO } from 'assets'
 import { ROUTES_NAME, USER_LOGIN } from 'constant'
-import React, { useMemo, useState } from 'react'
+import React, {
+  useMemo, useState, useEffect, useRef
+} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import InfoIcon from '@mui/icons-material/Info'
@@ -11,13 +13,34 @@ import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings'
 import ExitToAppIcon from '@mui/icons-material/ExitToApp'
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
 import { SIGN_OUT } from 'stores'
+import Swal from 'sweetalert2'
 import { StyleHeader } from './styled'
 
 function Header() {
   const dispatch = useDispatch()
-  const [showDrop, setShowDrop] = useState(false)
   const { categoryArr } = useSelector((state) => state.courseReducer)
   const { userLogin } = useSelector((state) => state.userReducer)
+  const [showDrop, setShowDrop] = useState(false)
+
+  const reShow = useRef()
+  const useOnClickOutside = (ref, handler) => {
+    useEffect(() => {
+      const listener = (event) => {
+        if (!ref.current || ref.current.contains(event.target)) {
+          return
+        }
+        handler(event)
+      }
+      document.addEventListener('mousedown', listener)
+      document.addEventListener('touchstart', listener)
+      return () => {
+        document.removeEventListener('mousedown', listener)
+        document.removeEventListener('touchstart', listener)
+      }
+    }, [ref, handler])
+  }
+
+  useOnClickOutside(reShow, () => setShowDrop(false))
 
   const renderCategory = useMemo(() => categoryArr?.map(((item) => (
     <li key={item.maDanhMuc}>
@@ -61,7 +84,7 @@ function Header() {
               </div>
               <span className="user__logged__name">{userLogin?.hoTen}</span>
             </div>
-            <div className="dropdown">
+            <div className="dropdown" ref={reShow}>
               <div
                 aria-hidden="true"
                 className="dropdown__select"
@@ -77,7 +100,13 @@ function Header() {
               </div>
               <div className="dropdown__list" style={showDrop ? { opacity: 1, visibility: 'visible' } : { opacity: 0, visibility: 'hidden' }}>
                 <ul>
-                  <li aria-hidden="true" onClick={() => history.push(ROUTES_NAME.INFO)}>
+                  <li
+                    aria-hidden="true"
+                    onClick={() => {
+                      history.push(ROUTES_NAME.INFO)
+                      setShowDrop(false)
+                    }}
+                  >
                     <span>
                       <InfoIcon className="dropdown__list__icon" />
                       Thông tin tài khoản
@@ -92,8 +121,20 @@ function Header() {
                   <li
                     aria-hidden="true"
                     onClick={() => {
-                      localStorage.removeItem(USER_LOGIN)
-                      dispatch({ type: SIGN_OUT })
+                      Swal.fire({
+                        title: 'Bạn có muốn đăng xuất?',
+                        icon: 'question',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Đăng xuất',
+                        cancelButtonText: 'Hủy'
+                      }).then((result) => {
+                        if (result.isConfirmed) {
+                          localStorage.removeItem(USER_LOGIN)
+                          dispatch({ type: SIGN_OUT })
+                        }
+                      })
                     }}
                   >
                     <span>
