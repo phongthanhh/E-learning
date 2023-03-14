@@ -1,8 +1,8 @@
 import { createBrowserHistory } from 'history'
-import React from 'react'
+import React, { Suspense } from 'react'
 import { Router } from 'react-router'
 import AppRoutes from 'routes'
-import { Toast } from 'components'
+import { Loading, Toast } from 'components'
 import { GlobalStyles } from 'assets/style/globalStyles'
 
 export const history = createBrowserHistory()
@@ -12,7 +12,9 @@ function App() {
     <Router history={history}>
       <Toast />
       <GlobalStyles />
-      <AppRoutes />
+      <Suspense fallback={<Loading />}>
+        <AppRoutes />
+      </Suspense>
     </Router>
   )
 }

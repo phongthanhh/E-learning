@@ -1,10 +1,16 @@
-import React from 'react'
+import React, { lazy } from 'react'
 import { Switch } from 'react-router'
 import { HomeLayout } from 'layouts'
-import {
-  Blog, CategoryCourse, Course, Detail, Event, Home, Info, Login
-} from 'pages'
 import { ROUTES_NAME } from 'constant'
+
+const Home = lazy(() => import('../pages/home'))
+const CategoryCourse = lazy(() => import('../pages/categoryCourse'))
+const Detail = lazy(() => import('../pages/detail'))
+const Course = lazy(() => import('../pages/course'))
+const Blog = lazy(() => import('../pages/blog'))
+const Event = lazy(() => import('../pages/event'))
+const Info = lazy(() => import('../pages/info'))
+const Login = lazy(() => import('../pages/login'))
 
 function AppRoutes() {
   return (

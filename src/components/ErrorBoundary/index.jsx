@@ -4,10 +4,6 @@ import React from 'react'
 import styled from 'styled-components'
 
 const StyledImage = styled(Image)`
-  /* position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%); */
   width: 100vw !important;
   height: 100vh !important;
 `
@@ -33,7 +29,7 @@ class ErrorBoundary extends React.Component {
     if (this.state.hasError) {
       // You can render any custom fallback UI
       return (
-        <StyledImage src={blackGuySmile} alt="backGuySmile" />
+        <StyledImage src={blackGuySmile} alt="blackGuySmile" />
       )
     }
 
