@@ -9,6 +9,7 @@ export const COLORS = {
   dark: '#087f23',
   text: '#252525',
   textCard: '#8c8c8c',
+  lightgrey: '#455560',
   bg: '#f0f8ff',
   bgbox: '#63c0a8',
   bgbox2: '#5c8295',

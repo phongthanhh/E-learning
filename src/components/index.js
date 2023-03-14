@@ -8,7 +8,6 @@ import SlideCourses from './SlideCourses'
 import Image from './Image'
 
 export * from './FormControl'
-export * from './SwalAlert'
 export {
   Header, Footer, Toast, CardCourse,
   ErrorBoundary, Loading, SlideCourses, Image
