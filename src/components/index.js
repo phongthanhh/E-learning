@@ -5,9 +5,11 @@ import CardCourse from './CardCourse'
 import ErrorBoundary from './ErrorBoundary'
 import Loading from './Loading'
 import SlideCourses from './SlideCourses'
+import Image from './Image'
 
 export * from './FormControl'
 export {
   Header, Footer, Toast, CardCourse,
-  ErrorBoundary, Loading, SlideCourses
+  ErrorBoundary, Loading, SlideCourses, Image
+
 }

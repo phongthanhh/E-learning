@@ -11,6 +11,7 @@ import { COLORS, FONT_SIZE } from 'themes'
 import { history } from 'App'
 import { ROUTES_NAME } from 'constant'
 import { Tooltip } from '@mui/material'
+import { Image } from 'components'
 import { StyledContainer } from './styled'
 import TooltipCourse from './TooltipCourse'
 
@@ -21,7 +22,7 @@ function CardCourse({ course }) {
       placement="right"
     >
       <StyledContainer onClick={() => history.push(`${ROUTES_NAME.DETAIL}/${course.maKhoaHoc}`)}>
-        <img className="card__img" src={course.hinhAnh} alt="" />
+        <Image className="card__img" height="185px" src={course.hinhAnh} alt="courseImage" />
         <span className="card__sticker">{course.tenKhoaHoc.length > 27 ? `${course.tenKhoaHoc.substring(0, 27)}...` : course.tenKhoaHoc }</span>
         <div className="card__body">
           <h6 className="card__body__title">{course.moTa.length > 70 ? `${course.moTa.substring(0, 70)}...` : course.moTa}</h6>
