@@ -5,9 +5,10 @@ import BusinessCenterIcon from '@mui/icons-material/BusinessCenter'
 import PlayCircleIcon from '@mui/icons-material/PlayCircle'
 import MenuBookIcon from '@mui/icons-material/MenuBook'
 import AcUnitIcon from '@mui/icons-material/AcUnit'
-import { getPaniListCourseService } from 'services'
+import { getCoursesWithPaginationService } from 'services'
 import { CardCourse } from 'components'
 import Pagination from '@mui/material/Pagination'
+import { GROUP_ID, PAGE_SIZE } from 'constant'
 import { StyledCourse } from './styled'
 
 function Course() {
@@ -18,7 +19,9 @@ function Course() {
   const [listCourse, setListCourse] = useState(null)
   useEffect(() => {
     const fetchData = async () => {
-      const data = await getPaniListCourseService(page)
+      const data = await getCoursesWithPaginationService({
+        queries: { page, pageSize: PAGE_SIZE, MaNhom: GROUP_ID }
+      })
       if (data) setListCourse(data.data)
     }
     fetchData()
