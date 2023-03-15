@@ -8,17 +8,15 @@ export const StyledContainer = styled.div`
   flex-direction: column;
   transition: all 0.5s;
   width: 280px;
-  min-width: 280px;
   min-height: 370px;
   word-wrap: break-word;
   background-color: ${COLORS.white};
   background-clip: border-box;
   border: 1px solid rgba(0, 0, 0, 0.125);
   box-shadow: 0 0 10px 4px rgb(0 0 0 / 20%);
+  overflow:hidden;
+
   .card__img {
-    width: 100%;
-    height: 185px;
-    min-height: 185px;
     transition: all 0.5s;
   }
   .card__sticker {
@@ -174,7 +172,7 @@ export const StyledContainer = styled.div`
   }
   &:hover {
     .card__img {
-      filter: brightness(70%);
+      transform: scale(1.1);
     }
     .card__sub {
       visibility: visible;
