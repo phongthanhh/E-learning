@@ -1,7 +1,8 @@
-import React, { lazy } from 'react'
+import React, { lazy, useEffect } from 'react'
 import { Switch } from 'react-router'
 import { HomeLayout } from 'layouts'
 import { ROUTES_NAME } from 'constant'
+import { useLocation } from 'react-router-dom'
 
 const Home = lazy(() => import('../pages/home'))
 const CategoryCourse = lazy(() => import('../pages/categoryCourse'))
@@ -13,6 +14,12 @@ const Info = lazy(() => import('../pages/info'))
 const Login = lazy(() => import('../pages/login'))
 
 function AppRoutes() {
+  const { pathname } = useLocation()
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
+  }, [pathname])
+
   return (
     <Switch>
       <HomeLayout path={ROUTES_NAME.HOME} exact component={Home} />
