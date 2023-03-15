@@ -1,18 +1,26 @@
-/* eslint-disable no-unused-vars */
-import { ReferCourse } from 'components'
+import { SlideCourses } from 'components'
 import React, { memo, useEffect } from 'react'
-import { useDispatch } from 'react-redux'
-import { getDetailCourseAction } from 'stores'
+import { useDispatch, useSelector } from 'react-redux'
+import { getDetailCourseAction, getListCourseAction } from 'stores'
 import MainCourse from './MainCourse'
 import SidebarCourse from './SidebarCourse'
 import { StyledDetail } from './styled'
 
 function Detail(props) {
   const { id } = props.match.params
+
+  // Use hooks
   const dispatch = useDispatch()
+  const { listCourse } = useSelector((state) => state.courseReducer)
+  // End use hooks
+
   useEffect(() => {
     dispatch(getDetailCourseAction(id))
   }, [id, dispatch])
+
+  useEffect(() => {
+    dispatch(getListCourseAction())
+  }, [dispatch])
 
   return (
     <StyledDetail>
@@ -31,7 +39,7 @@ function Detail(props) {
         </div>
       </div>
       <div className="refer__course">
-        <ReferCourse />
+        <SlideCourses title="Khóa học tham khảo" courses={listCourse} />
       </div>
     </StyledDetail>
   )

@@ -1,57 +1,57 @@
 import styled from 'styled-components'
 import { COLORS, FONT_SIZE } from 'themes'
 
-export const StyledCardGlobal = styled.div`
+export const StyledContainer = styled.div`
   cursor: pointer;
   position: relative;
   display: flex;
   flex-direction: column;
-  transition: all .5s;
+  transition: all 0.5s;
   width: 280px;
   min-width: 280px;
   min-height: 370px;
   word-wrap: break-word;
   background-color: ${COLORS.white};
   background-clip: border-box;
-  border: 1px solid rgba(0,0,0,.125);
+  border: 1px solid rgba(0, 0, 0, 0.125);
   box-shadow: 0 0 10px 4px rgb(0 0 0 / 20%);
-  .card__img{
+  .card__img {
     width: 100%;
     height: 185px;
     min-height: 185px;
-    transition: all .5s;
+    transition: all 0.5s;
   }
-  .card__stiker{
+  .card__sticker {
     display: inline-block;
     position: absolute;
     z-index: 10;
     top: 174px;
     padding: 0 10px;
     color: ${COLORS.white};
-    background-color:  ${COLORS.global};
+    background-color: ${COLORS.global};
   }
-  .card__body{
+  .card__body {
     flex: 1 1 auto;
     min-height: 1px;
     padding: 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    &__title{
+    &__title {
       padding-bottom: 10px;
       font-size: ${FONT_SIZE.md};
     }
   }
-  .card__footer{
+  .card__footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 5px 20px;
-    border-top: 1px solid rgba(0,0,0,.125);
-    .card__footer__title{
+    border-top: 1px solid rgba(0, 0, 0, 0.125);
+    .card__footer__title {
       display: flex;
       align-items: center;
-      .footer__img{
+      .footer__img {
         height: 40px;
         width: 40px;
         padding: 2px;
@@ -64,7 +64,7 @@ export const StyledCardGlobal = styled.div`
       }
     }
   }
-  .card__sale{
+  .card__sale {
     position: absolute;
     top: 5px;
     left: -5px;
@@ -76,7 +76,7 @@ export const StyledCardGlobal = styled.div`
     font-weight: 600;
     font-size: 13px;
     text-transform: uppercase;
-    &::before{
+    &::before {
       content: "";
       position: absolute;
       width: 0;
@@ -85,9 +85,9 @@ export const StyledCardGlobal = styled.div`
       bottom: -10px;
       border-bottom: 10px solid transparent;
       border-right: 5px solid red;
-      filter: brightness(.8);
+      filter: brightness(0.8);
     }
-    &::after{
+    &::after {
       content: "";
       position: absolute;
       width: 0;
@@ -99,86 +99,132 @@ export const StyledCardGlobal = styled.div`
       border-width: 15px 12px 15px 0;
     }
   }
-  .card__icon{
+  .card__icon {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    span{
+    span {
       color: ${COLORS.textCard};
-      .card__icon__span{
+      .card__icon__span {
         vertical-align: -3px;
         margin-right: 8px;
-        width: .8em;
-        height: .8em;
+        width: 0.8em;
+        height: 0.8em;
       }
     }
   }
-  .color__card__title{
+  .color__card__title {
     color: ${COLORS.textCard};
   }
-  .card__sub{
+  .card__sub {
     position: absolute;
-    visibility: hidden; 
-    opacity: 0; 
+    visibility: hidden;
+    opacity: 0;
     z-index: 99;
     top: -10%;
     right: -132%;
     padding: 20px;
     display: flex;
     flex-direction: column;
-    transition: all .5s;
+    transition: all 0.5s;
     width: 350px;
     min-width: 280px;
     word-wrap: break-word;
     background-color: #fff;
     background-clip: border-box;
-    border: 1px solid rgba(0,0,0,.125);
+    border: 1px solid rgba(0, 0, 0, 0.125);
     box-shadow: 0 0 10px 4px rgb(0 0 0 / 10%);
-    .sub__head{
+    .sub__head {
       padding: 10px 0;
-      &__img{
+      &__img {
         width: 50px;
         height: 50px;
         border-radius: 50%;
         object-fit: cover;
       }
     }
-    .sub__button{
-      .btn__SubCard{
+    .sub__button {
+      .btn__SubCard {
         padding: 15px;
         background: ${COLORS.global};
         flex-basis: 77%;
       }
-      &__cart{
+      &__cart {
         display: flex;
         justify-content: center;
         align-items: center;
         flex-basis: 20%;
         border: 1px solid ${COLORS.global};
-        transition: all .5s;
+        transition: all 0.5s;
         cursor: pointer;
-        &:hover{
-        transform: scale(.95);
-        .sub__button__cart__icon{
-        transform: scale(.9);
+        &:hover {
+          transform: scale(0.95);
+          .sub__button__cart__icon {
+            transform: scale(0.9);
+          }
         }
-        }
-        &__icon{
+        &__icon {
           width: 2em;
           height: 1.2em;
-          transition: all .5s;
+          transition: all 0.5s;
           color: ${COLORS.global};
         }
       }
     }
   }
-  &:hover{
-    .card__img{
-      filter: brightness(70%)
+  &:hover {
+    .card__img {
+      filter: brightness(70%);
     }
-    .card__sub{
+    .card__sub {
       visibility: visible;
       opacity: 1;
+    }
+  }
+`
+
+export const StyledTooltipCourse = styled.div`
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.5s;
+  word-wrap: break-word;
+  background-clip: border-box;
+  .sub__head {
+    padding: 10px 0;
+    &__img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+  }
+  .sub__button {
+    .btn__SubCard {
+      padding: 15px;
+      background: ${COLORS.global};
+      flex-basis: 77%;
+    }
+    &__cart {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-basis: 20%;
+      border: 1px solid ${COLORS.global};
+      transition: all 0.5s;
+      cursor: pointer;
+      &:hover {
+        transform: scale(0.95);
+        .sub__button__cart__icon {
+          transform: scale(0.9);
+        }
+      }
+      &__icon {
+        width: 2em;
+        height: 1.2em;
+        transition: all 0.5s;
+        color: ${COLORS.global};
+      }
     }
   }
 `

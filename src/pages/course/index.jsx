@@ -6,7 +6,7 @@ import PlayCircleIcon from '@mui/icons-material/PlayCircle'
 import MenuBookIcon from '@mui/icons-material/MenuBook'
 import AcUnitIcon from '@mui/icons-material/AcUnit'
 import { getPaniListCourseService } from 'services'
-import { CardGlobal } from 'components'
+import { CardCourse } from 'components'
 import Pagination from '@mui/material/Pagination'
 import { StyledCourse } from './styled'
 
@@ -25,7 +25,7 @@ function Course() {
   }, [page])
   const renderListCourse = useMemo(() => listCourse?.items.map((course) => (
     <div className="col-xl-3 col-lg-4 col-md-6 mt-4  courseListPage__content__item">
-      <CardGlobal course={course} />
+      <CardCourse course={course} />
     </div>
   )), [listCourse])
 
