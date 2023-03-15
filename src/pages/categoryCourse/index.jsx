@@ -1,4 +1,4 @@
-import { CardGlobal } from 'components'
+import { CardCourse } from 'components'
 import React, { useEffect, useMemo, useState } from 'react'
 import { getListCourseCateService } from 'services'
 import { StyledCategory } from './styled'
@@ -16,7 +16,7 @@ function CategoryCourse(props) {
 
   const renderCourseList = useMemo(() => listCourseCate?.map((course) => (
     <div className="col-xl-3 col-lg-4 col-md-6 mt-4 listCourseCate__content__item " key={course.maKhoaHoc}>
-      <CardGlobal course={course} />
+      <CardCourse course={course} />
     </div>
   )), [listCourseCate])
 
