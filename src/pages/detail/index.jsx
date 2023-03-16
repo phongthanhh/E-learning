@@ -1,4 +1,5 @@
 import { SlideCourses } from 'components'
+import { GROUP_ID } from 'constant'
 import React, { memo, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getDetailCourseAction, getListCourseAction } from 'stores'
@@ -7,7 +8,7 @@ import SidebarCourse from './SidebarCourse'
 import { StyledDetail } from './styled'
 
 function Detail(props) {
-  const { id } = props.match.params
+  const { name } = props.match.params
 
   // Use hooks
   const dispatch = useDispatch()
@@ -15,11 +16,15 @@ function Detail(props) {
   // End use hooks
 
   useEffect(() => {
-    dispatch(getDetailCourseAction(id))
-  }, [id, dispatch])
+    dispatch(getDetailCourseAction({
+      query: { maKhoaHoc: name }
+    }))
+  }, [name, dispatch])
 
   useEffect(() => {
-    dispatch(getListCourseAction())
+    dispatch(getListCourseAction({
+      query: { MaNhom: GROUP_ID }
+    }))
   }, [dispatch])
 
   return (

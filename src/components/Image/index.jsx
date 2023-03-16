@@ -5,7 +5,7 @@ function Image({
   src, width = '100%', height = '100%', ...rest
 }) {
   return (
-    <ImageAnt src={src} width={width} height={height} fallback="https://picsum.photos/200/300" preview={false} {...rest} />
+    <ImageAnt src={src} width={width} height={height} fallback="https://source.unsplash.com/random/?code" preview={false} {...rest} />
   )
 }
 

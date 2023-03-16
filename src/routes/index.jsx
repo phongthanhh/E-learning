@@ -24,7 +24,7 @@ function AppRoutes() {
     <Switch>
       <HomeLayout path={ROUTES_NAME.HOME} exact component={Home} />
       <HomeLayout path={`${ROUTES_NAME.CATEGORY}/:name`} exact component={CategoryCourse} />
-      <HomeLayout path={`${ROUTES_NAME.DETAIL}/:id`} exact component={Detail} />
+      <HomeLayout path={`${ROUTES_NAME.DETAIL}/:name`} exact component={Detail} />
       <HomeLayout path={ROUTES_NAME.COURSE} exact component={Course} />
       <HomeLayout path={ROUTES_NAME.BLOG} exact component={Blog} />
       <HomeLayout path={ROUTES_NAME.EVENT} exact component={Event} />
