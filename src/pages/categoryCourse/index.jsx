@@ -8,7 +8,7 @@ import { StyledCategory } from './styled'
 function CategoryCourse(props) {
   const { name } = props.match.params
   const dispatch = useDispatch()
-  const { listCoursebyCate } = useSelector((state) => state.courseReducer)
+  const { listCourseByCate } = useSelector((state) => state.courseReducer)
   useEffect(() => {
     dispatch(getListCourseByCateAction({
       queries: {
@@ -16,13 +16,13 @@ function CategoryCourse(props) {
         MaNhom: GROUP_ID
       }
     }))
-  }, [name])
+  }, [name, dispatch])
 
-  const renderCourseList = useMemo(() => listCoursebyCate?.map((course) => (
+  const renderCourseList = useMemo(() => listCourseByCate?.map((course) => (
     <div className="col-xl-3 col-lg-4 col-md-6 mt-4 listCourseCate__content__item " key={course.maKhoaHoc}>
       <CardCourse course={course} />
     </div>
-  )), [listCoursebyCate])
+  )), [listCourseByCate])
 
   return (
     <StyledCategory>

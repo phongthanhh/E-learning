@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 import QueryString from 'query-string'
-import { get } from './baseService'
+import { get, post } from './baseService'
 
 export const getCategoryService = () => get('api/QuanLyKhoaHoc/LayDanhMucKhoaHoc')
 
@@ -23,3 +23,5 @@ export const getListCourseByCateService = ({ queries }) => {
   const q = QueryString.stringify(queries)
   return get(`api/QuanLyKhoaHoc/LayKhoaHocTheoDanhMuc?${q}`)
 }
+
+export const cancelRegistrationService = (data) => post('api/QuanLyKhoaHoc/HuyGhiDanh', data)

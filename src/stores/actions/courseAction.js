@@ -1,10 +1,12 @@
 import { toast } from 'react-toastify'
 import {
+  cancelRegistrationService,
   getCategoryService, getCoursesWithPaginationService, getDetailCourseService, getListCourseByCateService, getListCourseService
 } from 'services'
 import {
   SET_CATEGORY, SET_DETAIL_COURSE, SET_LIST_COURSE, SET_LIST_COURSE_BY_CATE, SET_LIST_COURSE_PAGINATION
 } from 'stores/types'
+import Swal from 'sweetalert2'
 
 export const getCategoryAction = () => async (dispatch) => {
   try {
@@ -61,6 +63,19 @@ export const getListCourseByCateAction = (queries) => async (dispatch) => {
       type: SET_LIST_COURSE_BY_CATE,
       payload: result.data
     })
+  } catch (error) {
+    toast.error(error.response?.data)
+  }
+}
+
+export const cancelRegistrationAction = (data) => async () => {
+  try {
+    const result = await cancelRegistrationService(data)
+    Swal.fire(
+      `${result.data}`,
+      'Hẹn gặp lại bạn ở khóa học sau!',
+      'success'
+    )
   } catch (error) {
     toast.error(error.response?.data)
   }

@@ -23,7 +23,7 @@ function Course() {
     dispatch(getCoursesWithPaginationAction({
       queries: { page, pageSize: PAGE_SIZE, MaNhom: GROUP_ID }
     }))
-  }, [page])
+  }, [page, dispatch])
 
   const handlePageChange = (e, value) => {
     setPage(value)

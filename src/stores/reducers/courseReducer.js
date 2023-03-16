@@ -7,7 +7,7 @@ const initialState = {
   listCourse: [],
   detailCourse: null,
   listCourseWithPagination: {},
-  listCoursebyCate: []
+  listCourseByCate: []
 }
 
 export const courseReducer = (state = initialState, { type, payload }) => {
@@ -21,7 +21,7 @@ export const courseReducer = (state = initialState, { type, payload }) => {
     case SET_LIST_COURSE_PAGINATION:
       return { ...state, listCourseWithPagination: payload }
     case SET_LIST_COURSE_BY_CATE:
-      return { ...state, listCoursebyCate: payload }
+      return { ...state, listCourseByCate: payload }
     default:
       return state
   }
