@@ -1,10 +1,9 @@
 import { BarsOutlined } from '@ant-design/icons'
 import { Avatar } from '@mui/material'
 import { history } from 'App'
-import { LOGO } from 'assets'
 import { ROUTES_NAME, USER_LOGIN } from 'constant'
 import React, {
-  useMemo, useState, useEffect, useRef
+  useMemo, useState, useEffect, useRef, memo
 } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
@@ -14,7 +13,9 @@ import ExitToAppIcon from '@mui/icons-material/ExitToApp'
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
 import { SIGN_OUT } from 'stores'
 import Swal from 'sweetalert2'
+import { MENU_HEADER_DATA } from 'data'
 import { StyleHeader } from './styled'
+import SearchCourse from './SearchCourse'
 
 function Header() {
   const dispatch = useDispatch()
@@ -42,37 +43,41 @@ function Header() {
 
   useOnClickOutside(reShow, () => setShowDrop(false))
 
-  const renderCategory = useMemo(() => categoryArr?.map(((item) => (
+  const renderCategories = useMemo(() => categoryArr?.map(((item) => (
     <li key={item.maDanhMuc}>
       <NavLink to={`${ROUTES_NAME.CATEGORY}/${item.maDanhMuc}`}>{item.tenDanhMuc}</NavLink>
     </li>
   ))), [categoryArr])
 
+  const renderMenu = useMemo(() => MENU_HEADER_DATA.map((menu) => {
+    if (menu.pathname === ROUTES_NAME.ROOT) {
+      return (
+        <li className="courseCate" key={menu.pathname}>
+          <BarsOutlined className="mr-1" />
+          <NavLink className="menu__name" to={menu.pathname}>{menu.name}</NavLink>
+          <ul className="courseCateList">
+            {renderCategories}
+          </ul>
+        </li>
+      )
+    }
+    return <li key={menu.pathname}><NavLink className="menu__name" to={menu.pathname}>{menu.name}</NavLink></li>
+  }), [renderCategories])
+
   return (
     <StyleHeader>
       <div className="header__left">
         <NavLink to={ROUTES_NAME.HOME}>
-          <img className="header__left__img" src={LOGO} alt="logo" />
+          {/* <img className="header__left__img" src={LOGO} alt="logo" /> */}
         </NavLink>
-        <form>
+        {/* <form>
           <input type="text" className="searchForm ml-4" placeholder="Tìm kiếm" />
-        </form>
+        </form> */}
+        <SearchCourse />
       </div>
       <div className="header__right">
         <ul className="header__right__menu">
-          <li className="courseCate">
-            <BarsOutlined className="mr-1" />
-            <NavLink className="menu__name" to="/">Danh mục</NavLink>
-            <ul className="courseCateList">
-              {renderCategory}
-            </ul>
-          </li>
-          <li>
-            <NavLink className="menu__name" to={ROUTES_NAME.COURSE}>Khóa học</NavLink>
-          </li>
-          <li><NavLink className="menu__name" to={ROUTES_NAME.BLOG}>Blog</NavLink></li>
-          <li><NavLink className="menu__name" to={ROUTES_NAME.EVENT}>Sự kiện</NavLink></li>
-          <li><NavLink className="menu__name" to={ROUTES_NAME.INFO}>Thông tin</NavLink></li>
+          {renderMenu}
         </ul>
       </div>
       <div className="header__showIcon">
@@ -156,4 +161,4 @@ function Header() {
   )
 }
 
-export default Header
+export default memo(Header)

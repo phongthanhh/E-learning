@@ -1,4 +1,5 @@
 export const ROUTES_NAME = {
+  ROOT: '/',
   HOME: '/home',
   CATEGORY: '/category',
   COURSE: '/course',
