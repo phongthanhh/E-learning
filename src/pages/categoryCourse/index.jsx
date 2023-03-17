@@ -1,24 +1,28 @@
 import { CardCourse } from 'components'
-import React, { useEffect, useMemo, useState } from 'react'
-import { getListCourseCateService } from 'services'
+import { GROUP_ID } from 'constant'
+import React, { useEffect, useMemo } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { getListCourseByCateAction } from 'stores'
 import { StyledCategory } from './styled'
 
 function CategoryCourse(props) {
   const { name } = props.match.params
-  const [listCourseCate, setListCourseCate] = useState()
+  const dispatch = useDispatch()
+  const { listCourseByCate } = useSelector((state) => state.courseReducer)
   useEffect(() => {
-    const fetchData = async () => {
-      const data = await getListCourseCateService(name)
-      if (data) setListCourseCate(data.data)
-    }
-    fetchData()
-  }, [name])
+    dispatch(getListCourseByCateAction({
+      queries: {
+        maDanhMuc: name,
+        MaNhom: GROUP_ID
+      }
+    }))
+  }, [name, dispatch])
 
-  const renderCourseList = useMemo(() => listCourseCate?.map((course) => (
+  const renderCourseList = useMemo(() => listCourseByCate?.map((course) => (
     <div className="col-xl-3 col-lg-4 col-md-6 mt-4 listCourseCate__content__item " key={course.maKhoaHoc}>
       <CardCourse course={course} />
     </div>
-  )), [listCourseCate])
+  )), [listCourseByCate])
 
   return (
     <StyledCategory>

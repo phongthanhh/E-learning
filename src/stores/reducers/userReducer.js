@@ -1,5 +1,7 @@
 import { USER_LOGIN } from 'constant'
-import { ACTIVE_LOGIN_PAGE, LOG_IN, SIGN_OUT } from 'stores/types'
+import {
+  ACTIVE_LOGIN_PAGE, LOG_IN, SET_INFO_USER, SIGN_OUT
+} from 'stores/types'
 // Check LocalStorage
 let userLogin = null // Chưa có localStorage
 if (localStorage.getItem(USER_LOGIN)) {
@@ -9,7 +11,8 @@ if (localStorage.getItem(USER_LOGIN)) {
 
 const initialState = {
   activeLoginPage: null,
-  userLogin
+  userLogin,
+  userInfo: {}
 }
 
 export const userReducer = (state = initialState, { type, payload }) => {
@@ -20,6 +23,8 @@ export const userReducer = (state = initialState, { type, payload }) => {
       return { ...state, userLogin: payload }
     case SIGN_OUT:
       return { ...state, userLogin: null }
+    case SET_INFO_USER:
+      return { ...state, userInfo: payload }
     default:
       return state
   }

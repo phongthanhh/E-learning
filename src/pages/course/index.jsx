@@ -5,33 +5,35 @@ import BusinessCenterIcon from '@mui/icons-material/BusinessCenter'
 import PlayCircleIcon from '@mui/icons-material/PlayCircle'
 import MenuBookIcon from '@mui/icons-material/MenuBook'
 import AcUnitIcon from '@mui/icons-material/AcUnit'
-import { getCoursesWithPaginationService } from 'services'
 import { CardCourse } from 'components'
 import Pagination from '@mui/material/Pagination'
 import { GROUP_ID, PAGE_SIZE } from 'constant'
+import { getCoursesWithPaginationAction } from 'stores'
+import { useDispatch, useSelector } from 'react-redux'
 import { StyledCourse } from './styled'
 
 function Course() {
+  // Use State
   const [page, setPage] = useState(1)
+
+  // Use Hook
+  const dispatch = useDispatch()
+  const { listCourseWithPagination } = useSelector((state) => state.courseReducer)
+  useEffect(() => {
+    dispatch(getCoursesWithPaginationAction({
+      queries: { page, pageSize: PAGE_SIZE, MaNhom: GROUP_ID }
+    }))
+  }, [page, dispatch])
+
   const handlePageChange = (e, value) => {
     setPage(value)
   }
-  const [listCourse, setListCourse] = useState(null)
-  useEffect(() => {
-    const fetchData = async () => {
-      const data = await getCoursesWithPaginationService({
-        queries: { page, pageSize: PAGE_SIZE, MaNhom: GROUP_ID }
-      })
-      if (data) setListCourse(data.data)
-    }
-    fetchData()
-  }, [page])
 
-  const renderListCourse = useMemo(() => listCourse?.items.map((course) => (
-    <div className="col-xl-3 col-lg-4 col-md-6 mt-4  courseListPage__content__item">
+  const renderListCourse = useMemo(() => listCourseWithPagination.items?.map((course) => (
+    <div className="col-xl-3 col-lg-4 col-md-6 mt-4  courseListPage__content__item" key={course.maKhoaHoc}>
       <CardCourse course={course} />
     </div>
-  )), [listCourse])
+  )), [listCourseWithPagination])
 
   return (
     <StyledCourse>
@@ -97,7 +99,7 @@ function Course() {
         </div>
       </div>
       <div className="paginationPage">
-        <Pagination count={listCourse?.totalPages} variant="outlined" color="primary" onChange={handlePageChange} />
+        <Pagination count={listCourseWithPagination?.totalPages} variant="outlined" color="primary" onChange={handlePageChange} />
       </div>
     </StyledCourse>
   )

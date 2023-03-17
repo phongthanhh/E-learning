@@ -6,9 +6,9 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import { StyledSwiper } from './styled'
 
 function SlideCourses({ title, courses }) {
-  const renderCourses = useMemo(() => courses?.map((course) => (
+  const renderCourses = useMemo(() => courses?.map((course, index) => (
     <SwiperSlide key={course.maKhoaHoc}>
-      <CardCourse course={course} />
+      <CardCourse course={course} index={index} />
     </SwiperSlide>
   )), [courses])
 

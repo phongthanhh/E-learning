@@ -3,9 +3,13 @@ import { COLORS } from 'themes'
 
 export const StyledInfo = styled.div`
   padding: 40px;
+  h5{
+    font-size: 18px;
+    text-align: center;
+  }
   .info{
     padding: 20px;
-    min-height: 500px;
+    height: 500px;
     background-color: ${COLORS.white};
     box-shadow: ${COLORS.boxShadowCard};
     border-radius: 10px;
@@ -28,11 +32,33 @@ export const StyledInfo = styled.div`
       padding: 10px 0;
       text-align: center;
       img{
-        width: 100px;
-        height: 100px;
         border-radius: 50%;
         object-fit: cover;
       }
+    }
+  }
+
+  .course{
+    padding: 20px;
+    height: 500px;
+    background-color: ${COLORS.white};
+    box-shadow: ${COLORS.boxShadowCard};
+    border-radius: 10px;
+    .course__head{
+      h5{
+        padding-bottom: 1em;
+      }
+    }
+    .course__body{
+      padding: 0 10px 10px;
+      height: 400px;
+      overflow-y: auto;
+    }
+  }
+  @media (max-width: 576px) {
+    padding: 10px;
+    .course{
+      padding: 10px;
     }
   }
 `

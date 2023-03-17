@@ -1,4 +1,5 @@
 import { SlideCourses } from 'components'
+import { GROUP_ID } from 'constant'
 import React, { useEffect, useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getListCourseAction } from 'stores'
@@ -15,7 +16,9 @@ function CourseHome() {
   const popularCourses = useMemo(() => listCourse.filter((item) => item.luotXem > LIMIT_VIEWS_POPULAR_COURSE), [listCourse])
 
   useEffect(() => {
-    dispatch(getListCourseAction())
+    dispatch(getListCourseAction({
+      query: { MaNhom: GROUP_ID }
+    }))
   }, [dispatch])
 
   return (

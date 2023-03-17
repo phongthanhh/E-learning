@@ -1,43 +1,56 @@
 /* eslint-disable max-len */
-import React from 'react'
+import { Image } from 'components'
+import React, { useEffect, useMemo } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { getInfoUserAction } from 'stores'
 import CourseItem from './CourseItem'
 import { StyledInfo } from './styled'
 
 function Info() {
+  const dispatch = useDispatch()
+  const { userInfo } = useSelector((state) => state.userReducer)
+  useEffect(() => {
+    dispatch(getInfoUserAction())
+  }, [userInfo, dispatch])
+
+  const renderListCourse = useMemo(() => userInfo.chiTietKhoaHocGhiDanh?.map((course) => (
+    <CourseItem course={course} userName={userInfo.taiKhoan} key={course.maKhoaHoc} />
+  )), [userInfo])
+
   return (
     <StyledInfo>
       <div className="row">
-        <div className="col-lg-3 col-12">
+        <div className="col-lg-3 col-12 mb-4 mb-lg-0">
           <div className="info">
-            <p className="info__title">Thông tin cá nhân</p>
+            <h5>Thông tin cá nhân</h5>
             <div className="info__img">
-              <img className="info__img__img" src="https://i.pravatar.cc/300?u=63453463" alt="avatar" />
+              <Image className="info__img__img" width="100px" height="100px" src="https://i.pravatar.cc/300?u=63453463" alt="avatar" />
             </div>
             <div className="info__item">
               <p>Họ tên</p>
-              <strong>Phong Thanh</strong>
+              <strong>{userInfo?.hoTen}</strong>
             </div>
             <div className="info__item">
               <p>Email</p>
-              <strong>phongthanh12@gmail.com</strong>
+              <strong>{userInfo?.email}</strong>
             </div>
             <div className="info__item">
               <p>Số điện thoại</p>
-              <strong>0125582568</strong>
+              <strong>{userInfo?.soDT}</strong>
             </div>
             <div className="info__item">
               <p>Đối tượng</p>
-              <strong>Học viên</strong>
+              <strong>{userInfo?.maLoaiNguoiDung === 'HV' ? 'Học viên' : 'Giáo vụ'}</strong>
             </div>
           </div>
         </div>
         <div className="col-lg-9 col-12">
           <div className="course">
             <div className="course__head">
-              <h6>Khóa học của tôi</h6>
+              <h5>Khóa học của tôi</h5>
             </div>
             <div className="course__body">
-              <CourseItem />
+              {renderListCourse}
             </div>
           </div>
         </div>

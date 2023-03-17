@@ -1,0 +1,4 @@
+export const COURSE_FEE = {
+  INITIAL: 100000,
+  DISCOUNT: 50000
+}

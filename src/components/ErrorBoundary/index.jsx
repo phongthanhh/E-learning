@@ -1,5 +1,4 @@
 import { Image } from 'antd'
-import { blackGuySmile } from 'assets'
 import React from 'react'
 import styled from 'styled-components'
 
@@ -29,7 +28,7 @@ class ErrorBoundary extends React.Component {
     if (this.state.hasError) {
       // You can render any custom fallback UI
       return (
-        <StyledImage src={blackGuySmile} alt="blackGuySmile" />
+        <StyledImage src="https://source.unsplash.com/random/?dev" alt="blackGuySmile" />
       )
     }
 
