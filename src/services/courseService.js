@@ -1,12 +1,12 @@
-/* eslint-disable max-len */
+import { GROUP_ID } from 'constant'
 import QueryString from 'query-string'
 import { get, post } from './baseService'
 
 export const getCategoryService = () => get('api/QuanLyKhoaHoc/LayDanhMucKhoaHoc')
 
-export const getListCourseService = ({ query }) => {
-  const q = QueryString.stringify(query)
-  return get(`api/QuanLyKhoaHoc/LayDanhSachKhoaHoc?${q}`)
+export const getCoursesService = ({ queries = {} }) => {
+  const q = { maNhom: GROUP_ID, ...queries }
+  return get(`api/QuanLyKhoaHoc/LayDanhSachKhoaHoc?${QueryString.stringify(q)}`)
 }
 
 export const getDetailCourseService = ({ query }) => {

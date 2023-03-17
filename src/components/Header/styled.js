@@ -14,6 +14,7 @@ export const StyleHeader = styled.div`
   .header__left{
     display: flex;
     align-items: center;
+    gap: 10px;
     &__img{
       width:250px
     }
