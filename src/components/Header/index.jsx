@@ -15,6 +15,7 @@ import { SIGN_OUT } from 'stores'
 import Swal from 'sweetalert2'
 import { MENU_HEADER_DATA } from 'data'
 import { LOGO } from 'assets'
+import { transferPage } from 'utils'
 import { StyleHeader } from './styled'
 import SearchCourse from './SearchCourse'
 
@@ -23,8 +24,26 @@ function Header() {
   const { categoryArr } = useSelector((state) => state.courseReducer)
   const { userLogin } = useSelector((state) => state.userReducer)
   const [showDrop, setShowDrop] = useState(false)
-
   const reShow = useRef()
+
+  const handleSignOut = () => {
+    Swal.fire({
+      title: 'Bạn có muốn đăng xuất?',
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Đăng xuất',
+      cancelButtonText: 'Hủy'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        localStorage.removeItem(USER_LOGIN)
+        dispatch({ type: SIGN_OUT })
+        transferPage(ROUTES_NAME.HOME)
+      }
+    })
+  }
+
   const useOnClickOutside = (ref, handler) => {
     useEffect(() => {
       const listener = (event) => {
@@ -115,7 +134,7 @@ function Header() {
                       Thông tin tài khoản
                     </span>
                   </li>
-                  <li aria-hidden="true" onClick={() => history.push('/admin')}>
+                  <li aria-hidden="true" onClick={() => transferPage('/admin')}>
                     <span>
                       <AdminPanelSettingsIcon className="dropdown__list__icon" />
                       Admin
@@ -123,22 +142,7 @@ function Header() {
                   </li>
                   <li
                     aria-hidden="true"
-                    onClick={() => {
-                      Swal.fire({
-                        title: 'Bạn có muốn đăng xuất?',
-                        icon: 'question',
-                        showCancelButton: true,
-                        confirmButtonColor: '#3085d6',
-                        cancelButtonColor: '#d33',
-                        confirmButtonText: 'Đăng xuất',
-                        cancelButtonText: 'Hủy'
-                      }).then((result) => {
-                        if (result.isConfirmed) {
-                          localStorage.removeItem(USER_LOGIN)
-                          dispatch({ type: SIGN_OUT })
-                        }
-                      })
-                    }}
+                    onClick={handleSignOut}
                   >
                     <span>
                       <ExitToAppIcon className="dropdown__list__icon" />

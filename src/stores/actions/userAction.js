@@ -1,9 +1,9 @@
-import { history } from 'App'
 import { ACCESS_TOKEN, ROUTES_NAME, USER_LOGIN } from 'constant'
 import { toast } from 'react-toastify'
 import { getInfoUserService, loginService, signUpService } from 'services'
 import { ACTIVE_LOGIN_PAGE, LOG_IN, SET_INFO_USER } from 'stores/types'
 import Swal from 'sweetalert2'
+import { transferPage } from 'utils'
 
 export const signUpAction = (payload) => async (dispatch) => {
   try {
@@ -30,7 +30,7 @@ export const loginAction = (payload) => async (dispatch) => {
       type: LOG_IN,
       payload: data
     })
-    history.push(ROUTES_NAME.HOME)
+    transferPage(ROUTES_NAME.HOME)
     toast.success('Đăng nhập thành công !')
   } catch (error) {
     throw Error(error)
