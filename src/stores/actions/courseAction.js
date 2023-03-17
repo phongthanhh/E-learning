@@ -1,7 +1,7 @@
 import { toast } from 'react-toastify'
 import {
   cancelRegistrationService,
-  getCategoryService, getCoursesWithPaginationService, getDetailCourseService, getListCourseByCateService, getListCourseService
+  getCategoryService, getCoursesWithPaginationService, getDetailCourseService, getListCourseByCateService, getCoursesService
 } from 'services'
 import {
   SET_CATEGORY, SET_DETAIL_COURSE, SET_LIST_COURSE, SET_LIST_COURSE_BY_CATE, SET_LIST_COURSE_PAGINATION
@@ -20,9 +20,9 @@ export const getCategoryAction = () => async (dispatch) => {
   }
 }
 
-export const getListCourseAction = (groupId) => async (dispatch) => {
+export const getListCourseAction = (payload = {}) => async (dispatch) => {
   try {
-    const result = await getListCourseService(groupId)
+    const result = await getCoursesService(payload)
     dispatch({
       type: SET_LIST_COURSE,
       payload: result.data

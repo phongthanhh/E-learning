@@ -1,5 +1,4 @@
 import { SlideCourses } from 'components'
-import { GROUP_ID } from 'constant'
 import React, { memo, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getDetailCourseAction, getListCourseAction } from 'stores'
@@ -22,9 +21,7 @@ function Detail(props) {
   }, [name, dispatch])
 
   useEffect(() => {
-    dispatch(getListCourseAction({
-      query: { MaNhom: GROUP_ID }
-    }))
+    dispatch(getListCourseAction())
   }, [dispatch])
 
   return (
