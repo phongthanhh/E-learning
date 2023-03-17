@@ -1,7 +1,7 @@
 import { SlideCourses } from 'components'
 import React, { memo, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getDetailCourseAction, getListCourseAction } from 'stores'
+import { getDetailCourseAction, getCoursesAction } from 'stores'
 import MainCourse from './MainCourse'
 import SidebarCourse from './SidebarCourse'
 import { StyledDetail } from './styled'
@@ -11,7 +11,7 @@ function Detail(props) {
 
   // Use hooks
   const dispatch = useDispatch()
-  const { listCourse } = useSelector((state) => state.courseReducer)
+  const { courses } = useSelector((state) => state.courseReducer)
   // End use hooks
 
   useEffect(() => {
@@ -21,7 +21,7 @@ function Detail(props) {
   }, [name, dispatch])
 
   useEffect(() => {
-    dispatch(getListCourseAction())
+    dispatch(getCoursesAction())
   }, [dispatch])
 
   return (
@@ -41,7 +41,7 @@ function Detail(props) {
         </div>
       </div>
       <div className="refer__course">
-        <SlideCourses title="Khóa học tham khảo" courses={listCourse} />
+        <SlideCourses title="Khóa học tham khảo" courses={courses.data} />
       </div>
     </StyledDetail>
   )

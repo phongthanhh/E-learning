@@ -4,9 +4,10 @@ import {
   getCategoryService, getCoursesWithPaginationService, getDetailCourseService, getListCourseByCateService, getCoursesService
 } from 'services'
 import {
-  SET_CATEGORY, SET_DETAIL_COURSE, SET_LIST_COURSE, SET_LIST_COURSE_BY_CATE, SET_LIST_COURSE_PAGINATION
+  SET_CATEGORY, SET_DETAIL_COURSE, GET_COURSES, SET_LIST_COURSE_BY_CATE, SET_LIST_COURSE_PAGINATION
 } from 'stores/types'
 import Swal from 'sweetalert2'
+import { failureAction, requestAction, successAction } from 'utils'
 
 export const getCategoryAction = () => async (dispatch) => {
   try {
@@ -20,14 +21,19 @@ export const getCategoryAction = () => async (dispatch) => {
   }
 }
 
-export const getListCourseAction = (payload = {}) => async (dispatch) => {
+export const getCoursesAction = (payload = { queries: {} }) => async (dispatch) => {
+  dispatch({ type: requestAction(GET_COURSES) })
   try {
     const result = await getCoursesService(payload)
     dispatch({
-      type: SET_LIST_COURSE,
+      type: successAction(GET_COURSES),
       payload: result.data
     })
   } catch (error) {
+    dispatch({
+      type: failureAction(GET_COURSES),
+      error
+    })
     toast.error(error.response?.data)
   }
 }
