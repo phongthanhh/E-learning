@@ -14,6 +14,7 @@ import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
 import { SIGN_OUT } from 'stores'
 import Swal from 'sweetalert2'
 import { MENU_HEADER_DATA } from 'data'
+import { LOGO } from 'assets'
 import { StyleHeader } from './styled'
 import SearchCourse from './SearchCourse'
 
@@ -68,11 +69,8 @@ function Header() {
     <StyleHeader>
       <div className="header__left">
         <NavLink to={ROUTES_NAME.HOME}>
-          {/* <img className="header__left__img" src={LOGO} alt="logo" /> */}
+          <img className="header__left__img" src={LOGO} alt="logo" />
         </NavLink>
-        {/* <form>
-          <input type="text" className="searchForm ml-4" placeholder="Tìm kiếm" />
-        </form> */}
         <SearchCourse />
       </div>
       <div className="header__right">
