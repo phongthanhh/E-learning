@@ -10,6 +10,7 @@ import { GROUP_ID, VALIDATE } from 'constant'
 import { useDispatch } from 'react-redux'
 import { signUpAction } from 'stores'
 
+// xnMatKhau: yup.string().required('Vui lòng xác nhận mật khẩu').oneOf([yup.ref('matKhau')], 'Mật khẩu không trùng khớp')
 function SignUpForm() {
   const dispatch = useDispatch()
   const schema = yup.object({

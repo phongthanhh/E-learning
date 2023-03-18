@@ -8,7 +8,8 @@ import { COLORS, FONT_SIZE } from 'themes'
 import { COURSE_FEE, ROUTES_NAME } from 'constant'
 import { Tooltip } from '@mui/material'
 import { Image } from 'components'
-import { getFeeOfCourse, transferPage } from 'utils'
+import { getFeeOfCourse } from 'utils'
+import { history } from 'App'
 import { StyledContainer } from './styled'
 import TooltipCourse from './TooltipCourse'
 
@@ -18,7 +19,7 @@ function CardCourse({ course, index }) {
       title={<TooltipCourse course={course} />}
       placement="right"
     >
-      <StyledContainer onClick={() => transferPage(`${ROUTES_NAME.DETAIL}/${course.maKhoaHoc}`)}>
+      <StyledContainer onClick={() => history.push(`${ROUTES_NAME.DETAIL}/${course.maKhoaHoc}`)}>
         <Image className="card__img" height="185px" src={course.hinhAnh} alt="courseImage" />
         <span className="card__sticker">{course.tenKhoaHoc.length > 27 ? `${course.tenKhoaHoc.substring(0, 27)}...` : course.tenKhoaHoc }</span>
         <div className="card__body">

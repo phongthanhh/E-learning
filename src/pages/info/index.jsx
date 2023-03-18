@@ -3,15 +3,20 @@ import React, { useEffect, useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getInfoUserAction } from 'stores'
 import CourseItem from './CourseItem'
+import ModalInfo from './ModalInfo'
 import { StyledInfo } from './styled'
 
 function Info() {
   const dispatch = useDispatch()
   const { userInfo } = useSelector((state) => state.userReducer)
+
   useEffect(() => {
     dispatch(getInfoUserAction())
   }, [dispatch])
 
+  const handleCloseModal = () => {
+    dispatch(getInfoUserAction())
+  }
   const renderListCourse = useMemo(() => userInfo.chiTietKhoaHocGhiDanh?.map((course) => (
     <CourseItem course={course} userName={userInfo.taiKhoan} key={course.maKhoaHoc} />
   )), [userInfo])
@@ -40,6 +45,9 @@ function Info() {
             <div className="info__item">
               <p>Đối tượng</p>
               <strong>{userInfo?.maLoaiNguoiDung === 'HV' ? 'Học viên' : 'Giáo vụ'}</strong>
+            </div>
+            <div className="info__btn">
+              <ModalInfo closeModal={handleCloseModal} userInfo={userInfo} nameBtn="Cập nhật" />
             </div>
           </div>
         </div>

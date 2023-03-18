@@ -1,6 +1,8 @@
 import { ACCESS_TOKEN, ROUTES_NAME, USER_LOGIN } from 'constant'
 import { toast } from 'react-toastify'
-import { getInfoUserService, loginService, signUpService } from 'services'
+import {
+  getInfoUserService, loginService, signUpService, updateInfoUserService
+} from 'services'
 import { ACTIVE_LOGIN_PAGE, LOG_IN, SET_INFO_USER } from 'stores/types'
 import Swal from 'sweetalert2'
 import { transferPage } from 'utils'
@@ -46,5 +48,23 @@ export const getInfoUserAction = () => async (dispatch) => {
     })
   } catch (error) {
     throw Error(error)
+  }
+}
+
+export const updateInfoUserAction = (payload) => async (dispatch) => {
+  try {
+    const data = await updateInfoUserService(payload)
+    dispatch({
+      type: SET_INFO_USER,
+      payload: data
+    })
+    Swal.fire({
+      icon: 'success',
+      title: 'Cập nhật thông tin thành công',
+      text: 'Chúc bạn một ngày tốt lành !',
+      confirmButtonText: 'OK'
+    })
+  } catch (error) {
+    toast.error(error.response?.data)
   }
 }

@@ -1,17 +1,14 @@
 import { TextField } from '@mui/material'
 import React from 'react'
 
-function InputField(props) {
-  const { form, name, label } = props
+function InputField({
+  form, name, label, defaultValue = '', disabled = false
+}) {
   const { register, formState: { errors } } = form
   return (
-  // <Controller
-  //   name={name}
-  //   label={label}
-  //   render={({ field }) => <TextField {...field} />}
-  //   control={form.control}
-  // />
     <TextField
+      disabled={disabled}
+      defaultValue={defaultValue}
       name={name}
       label={label}
       variant="outlined"
