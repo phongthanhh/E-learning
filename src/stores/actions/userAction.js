@@ -5,7 +5,7 @@ import {
 } from 'services'
 import { ACTIVE_LOGIN_PAGE, LOG_IN, SET_INFO_USER } from 'stores/types'
 import Swal from 'sweetalert2'
-import { transferPage } from 'utils'
+import { setItem, transferPage } from 'utils'
 
 export const signUpAction = (payload) => async (dispatch) => {
   try {
@@ -26,8 +26,8 @@ export const signUpAction = (payload) => async (dispatch) => {
 export const loginAction = (payload) => async (dispatch) => {
   try {
     const data = await loginService(payload)
-    window.localStorage.setItem(ACCESS_TOKEN, data.data.accessToken)
-    window.localStorage.setItem(USER_LOGIN, JSON.stringify(data.data))
+    setItem(ACCESS_TOKEN, data.accessToken)
+    setItem(USER_LOGIN, JSON.stringify(data))
     dispatch({
       type: LOG_IN,
       payload: data

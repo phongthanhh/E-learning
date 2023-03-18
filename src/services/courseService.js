@@ -9,6 +9,10 @@ export const getCoursesService = ({ queries = {} }) => {
   return axiosClient.get(`api/QuanLyKhoaHoc/LayDanhSachKhoaHoc?${QueryString.stringify(q)}`)
 }
 
+export const cancelRegistrationService = (data) => axiosClient.post('api/QuanLyKhoaHoc/HuyGhiDanh', data)
+
+export const registerCourseService = (data) => axiosClient.post('api/QuanLyKhoaHoc/DangKyKhoaHoc', data)
+
 export const getDetailCourseService = ({ query }) => {
   const q = QueryString.stringify(query)
   return axiosClient.get(`api/QuanLyKhoaHoc/LayThongTinKhoaHoc?${q}`)
@@ -23,5 +27,3 @@ export const getListCourseByCateService = ({ queries }) => {
   const q = QueryString.stringify(queries)
   return axiosClient.get(`api/QuanLyKhoaHoc/LayKhoaHocTheoDanhMuc?${q}`)
 }
-
-export const cancelRegistrationService = (data) => axiosClient.post('api/QuanLyKhoaHoc/HuyGhiDanh', data)

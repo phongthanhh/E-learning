@@ -33,7 +33,7 @@ function Detail(props) {
             <MainCourse />
           </div>
           <div className="col-lg-4 col-md-5">
-            <SidebarCourse />
+            <SidebarCourse courseCode={name} />
           </div>
         </div>
       </div>

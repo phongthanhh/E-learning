@@ -1,6 +1,6 @@
 import {
   cancelRegistrationService,
-  getCategoryService, getCoursesWithPaginationService, getDetailCourseService, getListCourseByCateService, getCoursesService
+  getCategoryService, getCoursesWithPaginationService, getDetailCourseService, getListCourseByCateService, getCoursesService, registerCourseService
 } from 'services'
 import {
   SET_CATEGORY, SET_DETAIL_COURSE, GET_COURSES, SET_LIST_COURSE_BY_CATE, SET_LIST_COURSE_PAGINATION
@@ -82,5 +82,18 @@ export const cancelRegistrationAction = (payload) => async () => {
     )
   } catch (error) {
     throw Error(error)
+  }
+}
+
+export const registerCourseAction = (data) => async () => {
+  try {
+    await registerCourseService(data)
+    Swal.fire(
+      'Đăng ký khóa học thành công',
+      'Chúc bạn học tập thật tốt!',
+      'success'
+    )
+  } catch (error) {
+    toast.error(error.response?.data)
   }
 }
