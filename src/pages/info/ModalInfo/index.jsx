@@ -13,6 +13,8 @@ import { InputField, PasswordField } from 'components'
 import { useDispatch, useSelector } from 'react-redux'
 import { updateInfoUserAction } from 'stores'
 import { history } from 'App'
+import { LoadingButton } from '@mui/lab'
+import { schema } from './schema'
 
 const style = {
   position: 'absolute',
@@ -25,39 +27,45 @@ const style = {
   boxShadow: 24,
   p: 4
 }
-function ModalInfo({ nameBtn, userInfo, closeModal }) {
-  const dispatch = useDispatch()
-  const [open, setOpen] = React.useState(false)
-  const handleOpen = () => setOpen(true)
-  const handleClose = () => setOpen(false)
-  const schema = yup.object({
-    // eslint-disable-next-line max-len
-    matKhau: yup.string().required('Vui lòng nhập mật khẩu').matches(VALIDATE.PASSWORD_REGEX, 'Mật khẩu bắt buộc tối thiểu 8 kí tự, ít nhất 1 chữ hoa, 1 chữ thường và 1 số )'),
-    hoTen: yup.string().required('Vui lòng nhập họ tên'),
-    soDT: yup.string().required('Vui lòng nhập số điện thoại').matches(VALIDATE.PHONE_REGEX, 'Số điện thoại bắt buộc bao gồm: số và tối thiểu 10 số'),
-    email: yup.string().required('Vui lòng nhập email').matches(VALIDATE.EMAIL_REGEX, 'Email không đúng định dạng. VD( hopeyouhappy@gmail.com)')
-  }).required()
 
-  const form = useForm({
+function ModalInfo({ open, onClose }) {
+  const dispatch = useDispatch()
+  const { userInfo, isUpdating } = useSelector((state) => state.userReducer)
+
+  const formMethods = useForm({
     resolver: yupResolver(schema),
     mode: 'onTouched'
   })
 
-  const handleSubmit = (data) => {
-    form.setValue('taiKhoan', userInfo.taiKhoan)
-    form.setValue('maLoaiNguoiDung', userInfo.maLoaiNguoiDung)
-    form.setValue('maNhom', GROUP_ID)
-    dispatch(updateInfoUserAction(data))
-    setOpen(false)
-    closeModal()
+  const { handleSubmit, reset, formState: { errors } } = formMethods
+
+  const setValues = React.useCallback(() => {
+    const { chiTietKhoaHocGhiDanh, ...newUserInfo } = userInfo
+    reset(newUserInfo)
+  }, [reset, userInfo])
+
+  React.useEffect(() => {
+    if (Object.keys(userInfo).length) {
+      setValues()
+    }
+  }, [userInfo, setValues])
+
+  const onSubmit = (formData) => {
+    dispatch(updateInfoUserAction({
+      data: formData,
+      callback: {
+        done: () => {
+          onClose()
+        }
+      }
+    }))
   }
 
   return (
     <div>
-      <Button variant="contained" color="primary" onClick={handleOpen}>{nameBtn}</Button>
       <Modal
         open={open}
-        onClose={handleClose}
+        onClose={onClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
@@ -65,25 +73,27 @@ function ModalInfo({ nameBtn, userInfo, closeModal }) {
           <Typography id="modal-modal-title" variant="h6" component="h2" className=" mb-3">
             Thông tin cá nhân
           </Typography>
-          <form onSubmit={form.handleSubmit(handleSubmit)}>
+          <form onSubmit={handleSubmit(onSubmit)}>
             <Grid id="modal-modal-description" container spacing={2}>
               <Grid xs={12} item>
-                <InputField defaultValue={userInfo?.taiKhoan} name="taiKhoan" disabled label="Tài khoản" form={form} />
+                <InputField name="taiKhoan" disabled label="Tài khoản" form={formMethods} />
               </Grid>
               <Grid xs={12} item>
-                <PasswordField defaultValue={userInfo?.matKhau} name="matKhau" label="Mật khẩu" form={form} />
+                <PasswordField name="matKhau" label="Mật khẩu" form={formMethods} />
               </Grid>
               <Grid xs={12} item>
-                <InputField defaultValue={userInfo?.hoTen} name="hoTen" label="Họ tên" form={form} />
+                <InputField name="hoTen" label="Họ tên" form={formMethods} />
               </Grid>
               <Grid xs={12} item>
-                <InputField defaultValue={userInfo?.soDT} name="soDT" label="Số điện thoại" form={form} />
+                <InputField name="soDT" label="Số điện thoại" form={formMethods} />
               </Grid>
               <Grid xs={12} item>
-                <InputField defaultValue={userInfo?.email} name="email" label="Email" form={form} />
+                <InputField name="email" label="Email" form={formMethods} />
               </Grid>
               <Grid xs={12} item>
-                <Button className="py-2" variant="contained" color="primary" type="submit" fullWidth>Cập nhật</Button>
+                <LoadingButton className="py-2" loading={isUpdating} type="submit" variant="contained" fullWidth>
+                  Cập nhật
+                </LoadingButton>
               </Grid>
             </Grid>
           </form>

@@ -3,9 +3,13 @@ import { toast } from 'react-toastify'
 import {
   getInfoUserService, loginService, signUpService, updateInfoUserService
 } from 'services'
-import { ACTIVE_LOGIN_PAGE, LOG_IN, SET_INFO_USER } from 'stores/types'
+import {
+  ACTIVE_LOGIN_PAGE, GET_USER_INFO, LOG_IN, UPDATE_USER_INFO
+} from 'stores/types'
 import Swal from 'sweetalert2'
-import { setItem, transferPage } from 'utils'
+import {
+  failureAction, requestAction, setItem, successAction, transferPage
+} from 'utils'
 
 export const signUpAction = (payload) => async (dispatch) => {
   try {
@@ -43,7 +47,7 @@ export const getInfoUserAction = () => async (dispatch) => {
   try {
     const data = await getInfoUserService()
     dispatch({
-      type: SET_INFO_USER,
+      type: successAction(GET_USER_INFO),
       payload: data
     })
   } catch (error) {
@@ -52,11 +56,17 @@ export const getInfoUserAction = () => async (dispatch) => {
 }
 
 export const updateInfoUserAction = (payload) => async (dispatch) => {
+  const { data, callback } = payload
+  dispatch({ type: requestAction(UPDATE_USER_INFO) })
   try {
-    const data = await updateInfoUserService(payload)
+    const response = await updateInfoUserService(data)
     dispatch({
-      type: SET_INFO_USER,
-      payload: data
+      type: successAction(GET_USER_INFO),
+      payload: response
+    })
+    dispatch({
+      type: successAction(UPDATE_USER_INFO),
+      payload: response
     })
     Swal.fire({
       icon: 'success',
@@ -65,6 +75,9 @@ export const updateInfoUserAction = (payload) => async (dispatch) => {
       confirmButtonText: 'OK'
     })
   } catch (error) {
+    dispatch({ type: failureAction(UPDATE_USER_INFO), error })
     toast.error(error.response?.data)
+  } finally {
+    callback.done()
   }
 }

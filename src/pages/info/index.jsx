@@ -1,5 +1,8 @@
+import { Button } from '@mui/material'
 import { Image } from 'components'
-import React, { useEffect, useMemo } from 'react'
+import React, {
+  useCallback, useEffect, useMemo, useState
+} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getInfoUserAction } from 'stores'
 import CourseItem from './CourseItem'
@@ -7,16 +10,29 @@ import ModalInfo from './ModalInfo'
 import { StyledInfo } from './styled'
 
 function Info() {
+  // Use hooks
   const dispatch = useDispatch()
-  const { userInfo } = useSelector((state) => state.userReducer)
+  const { userInfo, isUpdating } = useSelector((state) => state.userReducer)
+  // End use hooks
+
+  // Use states
+  const [isOpenModalInfo, setIsOpenModalInfo] = useState(false)
+  // End use states
+
+  const onOpenModalInfo = useCallback(() => {
+    setIsOpenModalInfo(true)
+  }, [])
+
+  const onCloseModalInfo = useCallback(() => {
+    setIsOpenModalInfo(false)
+  }, [])
 
   useEffect(() => {
-    dispatch(getInfoUserAction())
-  }, [dispatch])
+    if (!isUpdating) {
+      dispatch(getInfoUserAction())
+    }
+  }, [dispatch, isUpdating])
 
-  const handleCloseModal = () => {
-    dispatch(getInfoUserAction())
-  }
   const renderListCourse = useMemo(() => userInfo.chiTietKhoaHocGhiDanh?.map((course) => (
     <CourseItem course={course} userName={userInfo.taiKhoan} key={course.maKhoaHoc} />
   )), [userInfo])
@@ -47,7 +63,7 @@ function Info() {
               <strong>{userInfo?.maLoaiNguoiDung === 'HV' ? 'Học viên' : 'Giáo vụ'}</strong>
             </div>
             <div className="info__btn">
-              <ModalInfo closeModal={handleCloseModal} userInfo={userInfo} nameBtn="Cập nhật" />
+              <Button variant="contained" color="primary" onClick={onOpenModalInfo}>Cập nhật</Button>
             </div>
           </div>
         </div>
@@ -62,6 +78,11 @@ function Info() {
           </div>
         </div>
       </div>
+      <ModalInfo
+        open={isOpenModalInfo}
+        onOpen={onOpenModalInfo}
+        onClose={onCloseModalInfo}
+      />
     </StyledInfo>
   )
 }
