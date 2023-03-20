@@ -63,7 +63,6 @@ function SearchCourse() {
       onOpen={onOpen}
       onClose={onClose}
       disablePortal
-      id="combo-box-demo"
       options={coursesForSearch}
       renderOption={renderOption}
       sx={{ width: 400 }}
@@ -72,6 +71,7 @@ function SearchCourse() {
       loadingText={renderLoadingContent}
       noOptionsText={renderNoOptionsText}
       clearOnBlur={false}
+      isOptionEqualToValue={(option, val) => option.value === val.value}
     />
   )
 }
