@@ -8,15 +8,17 @@ const courses = {
   data: [],
   error: null
 }
-
+// const detailCourse = {
+//   isLoading: false,
+//   data:{},
+//   error: null
+// }
 const initialState = {
   categoryArr: [],
   courses: { ...courses },
   detailCourse: null,
   listCourseWithPagination: {},
   listCourseByCate: [],
-
-  isSearching: false,
   coursesForSearch: []
 }
 

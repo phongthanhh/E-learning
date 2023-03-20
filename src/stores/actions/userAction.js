@@ -60,13 +60,14 @@ export const updateInfoUserAction = (payload) => async (dispatch) => {
   dispatch({ type: requestAction(UPDATE_USER_INFO) })
   try {
     const response = await updateInfoUserService(data)
+    const { hoTen } = response
     dispatch({
       type: successAction(GET_USER_INFO),
       payload: response
     })
     dispatch({
       type: successAction(UPDATE_USER_INFO),
-      payload: response
+      payload: { newHoTen: hoTen }
     })
     Swal.fire({
       icon: 'success',

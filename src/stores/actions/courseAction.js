@@ -7,6 +7,7 @@ import {
 } from 'stores/types'
 import Swal from 'sweetalert2'
 import { failureAction, requestAction, successAction } from 'utils'
+import { getInfoUserAction } from './userAction'
 
 export const getCategoryAction = () => async (dispatch) => {
   try {
@@ -72,9 +73,10 @@ export const getListCourseByCateAction = (queries) => async (dispatch) => {
   }
 }
 
-export const cancelRegistrationAction = (payload) => async () => {
+export const cancelRegistrationAction = (payload) => async (dispatch) => {
   try {
     const data = await cancelRegistrationService(payload)
+    await dispatch(getInfoUserAction())
     Swal.fire(
       `${data}`,
       'Hẹn gặp lại bạn ở khóa học sau!',
@@ -94,6 +96,6 @@ export const registerCourseAction = (data) => async () => {
       'success'
     )
   } catch (error) {
-    toast.error(error.response?.data)
+    throw Error(error)
   }
 }
