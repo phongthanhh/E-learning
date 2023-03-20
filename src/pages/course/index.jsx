@@ -29,7 +29,7 @@ function Course() {
     setPage(value)
   }
 
-  const renderListCourse = useMemo(() => listCourseWithPagination.items?.map((course) => (
+  const renderListCourse = useMemo(() => listCourseWithPagination.data.items?.map((course) => (
     <div className="col-xl-3 col-lg-4 col-md-6 mt-4  courseListPage__content__item" key={course.maKhoaHoc}>
       <CardCourse course={course} />
     </div>
@@ -99,7 +99,7 @@ function Course() {
         </div>
       </div>
       <div className="paginationPage">
-        <Pagination count={listCourseWithPagination?.totalPages} variant="outlined" color="primary" onChange={handlePageChange} />
+        <Pagination count={listCourseWithPagination?.data.totalPages} variant="outlined" color="primary" onChange={handlePageChange} />
       </div>
     </StyledCourse>
   )

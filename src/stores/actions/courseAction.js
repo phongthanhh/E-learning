@@ -50,14 +50,18 @@ export const getDetailCourseAction = (courseCode) => async (dispatch) => {
 }
 
 export const getCoursesWithPaginationAction = (query) => async (dispatch) => {
+  dispatch({ type: requestAction(GET_LIST_COURSE_PAGINATION) })
   try {
     const data = await getCoursesWithPaginationService(query)
     dispatch({
-      type: GET_LIST_COURSE_PAGINATION,
+      type: successAction(GET_LIST_COURSE_PAGINATION),
       payload: data
     })
   } catch (error) {
-    throw Error(error)
+    dispatch({
+      type: failureAction(GET_LIST_COURSE_PAGINATION),
+      error
+    })
   }
 }
 
