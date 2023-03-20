@@ -3,7 +3,7 @@ import {
   getCategoryService, getCoursesWithPaginationService, getDetailCourseService, getListCourseByCateService, getCoursesService, registerCourseService
 } from 'services'
 import {
-  SET_CATEGORY, SET_DETAIL_COURSE, GET_COURSES, SET_LIST_COURSE_BY_CATE, SET_LIST_COURSE_PAGINATION
+  GET_CATEGORY, GET_COURSES, GET_DETAIL_COURSE, GET_LIST_COURSE_BY_CATE, GET_LIST_COURSE_PAGINATION
 } from 'stores/types'
 import Swal from 'sweetalert2'
 import { failureAction, requestAction, successAction } from 'utils'
@@ -13,7 +13,7 @@ export const getCategoryAction = () => async (dispatch) => {
   try {
     const data = await getCategoryService()
     dispatch({
-      type: SET_CATEGORY,
+      type: GET_CATEGORY,
       payload: data
     })
   } catch (error) {
@@ -41,7 +41,7 @@ export const getDetailCourseAction = (courseCode) => async (dispatch) => {
   try {
     const data = await getDetailCourseService(courseCode)
     dispatch({
-      type: SET_DETAIL_COURSE,
+      type: GET_DETAIL_COURSE,
       payload: data
     })
   } catch (error) {
@@ -53,7 +53,7 @@ export const getCoursesWithPaginationAction = (query) => async (dispatch) => {
   try {
     const data = await getCoursesWithPaginationService(query)
     dispatch({
-      type: SET_LIST_COURSE_PAGINATION,
+      type: GET_LIST_COURSE_PAGINATION,
       payload: data
     })
   } catch (error) {
@@ -65,7 +65,7 @@ export const getListCourseByCateAction = (queries) => async (dispatch) => {
   try {
     const data = await getListCourseByCateService(queries)
     dispatch({
-      type: SET_LIST_COURSE_BY_CATE,
+      type: GET_LIST_COURSE_BY_CATE,
       payload: data
     })
   } catch (error) {
