@@ -23,7 +23,7 @@ export const getCoursesWithPaginationService = ({ queries }) => {
   return axiosClient.get(`api/QuanLyKhoaHoc/LayDanhSachKhoaHoc_PhanTrang?${q}`)
 }
 
-export const getListCourseByCateService = ({ queries }) => {
+export const getCoursesByCateService = ({ queries }) => {
   const q = QueryString.stringify(queries)
   return axiosClient.get(`api/QuanLyKhoaHoc/LayKhoaHocTheoDanhMuc?${q}`)
 }

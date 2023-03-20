@@ -1,6 +1,6 @@
 import {
   cancelRegistrationService,
-  getCategoryService, getCoursesWithPaginationService, getDetailCourseService, getListCourseByCateService, getCoursesService, registerCourseService
+  getCategoryService, getCoursesWithPaginationService, getDetailCourseService, getCoursesService, registerCourseService, getCoursesByCateService
 } from 'services'
 import {
   GET_CATEGORY, GET_COURSES, GET_DETAIL_COURSE, GET_LIST_COURSE_BY_CATE, GET_LIST_COURSE_PAGINATION
@@ -65,10 +65,10 @@ export const getCoursesWithPaginationAction = (query) => async (dispatch) => {
   }
 }
 
-export const getListCourseByCateAction = (queries) => async (dispatch) => {
+export const getCoursesByCateAction = (queries) => async (dispatch) => {
   dispatch({ type: requestAction(GET_LIST_COURSE_BY_CATE) })
   try {
-    const data = await getListCourseByCateService(queries)
+    const data = await getCoursesByCateService(queries)
     dispatch({
       type: successAction(GET_LIST_COURSE_BY_CATE),
       payload: data
