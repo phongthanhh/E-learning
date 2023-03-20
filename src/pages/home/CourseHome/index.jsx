@@ -9,7 +9,7 @@ const LIMIT_VIEWS_POPULAR_COURSE = 99
 function CourseHome() {
   // Use hooks
   const dispatch = useDispatch()
-  const { courses: { data } } = useSelector((state) => state.courseReducer)
+  const { courses: { isLoading, data } } = useSelector((state) => state.courseReducer)
   // End use hooks
 
   const popularCourses = useMemo(() => data.filter((item) => item.luotXem > LIMIT_VIEWS_POPULAR_COURSE), [data])
@@ -20,8 +20,8 @@ function CourseHome() {
 
   return (
     <StyledCourseHome>
-      <SlideCourses title="Khóa học phổ biến" courses={popularCourses} />
-      <SlideCourses title="Khóa học tham khảo" courses={data} />
+      <SlideCourses isLoading={isLoading} title="Khóa học phổ biến" courses={popularCourses} />
+      <SlideCourses isLoading={isLoading} title="Khóa học tham khảo" courses={data} />
     </StyledCourseHome>
   )
 }
