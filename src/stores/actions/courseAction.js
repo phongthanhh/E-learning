@@ -66,14 +66,18 @@ export const getCoursesWithPaginationAction = (query) => async (dispatch) => {
 }
 
 export const getListCourseByCateAction = (queries) => async (dispatch) => {
+  dispatch({ type: requestAction(GET_LIST_COURSE_BY_CATE) })
   try {
     const data = await getListCourseByCateService(queries)
     dispatch({
-      type: GET_LIST_COURSE_BY_CATE,
+      type: successAction(GET_LIST_COURSE_BY_CATE),
       payload: data
     })
   } catch (error) {
-    throw Error(error)
+    dispatch({
+      type: failureAction(GET_LIST_COURSE_BY_CATE),
+      error
+    })
   }
 }
 

@@ -29,7 +29,7 @@ const initialState = {
   courses: { ...courses },
   detailCourse: null,
   listCourseWithPagination: { ...listCourseWithPagination },
-  listCourseByCate: [],
+  listCourseByCate: { ...listCourseByCate },
   coursesForSearch: []
 }
 
@@ -80,8 +80,21 @@ export const courseReducer = (state = initialState, { type, payload, error }) =>
       }
 
     // For get course by categories
-    case GET_LIST_COURSE_BY_CATE:
-      return { ...state, listCourseByCate: payload }
+    case requestAction(GET_LIST_COURSE_BY_CATE):
+      return {
+        ...state,
+        listCourseByCate: { ...state.listCourseByCate, isLoading: true }
+      }
+    case successAction(GET_LIST_COURSE_BY_CATE):
+      return {
+        ...state,
+        listCourseByCate: { ...state.listCourseByCate, isLoading: false, data: payload }
+      }
+    case failureAction(GET_LIST_COURSE_BY_CATE):
+      return {
+        ...state,
+        listCourseByCate: { ...state.listCourseByCate, isLoading: false, error }
+      }
 
     default:
       return state

@@ -18,7 +18,7 @@ function CategoryCourse(props) {
     }))
   }, [name, dispatch])
 
-  const renderCourseList = useMemo(() => listCourseByCate?.map((course) => (
+  const renderCourseList = useMemo(() => listCourseByCate.data?.map((course) => (
     <div className="col-xl-3 col-lg-4 col-md-6 mt-4 listCourseCate__content__item " key={course.maKhoaHoc}>
       <CardCourse course={course} />
     </div>
