@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getCoursesAction, getCoursesByCateAction } from 'stores'
+import { getCoursesAction, getCoursesByCateAction, getDetailCourseAction } from 'stores'
 import { GROUP_ID } from 'constant'
 
 export const useCourses = () => {
@@ -16,6 +16,17 @@ export const useCourses = () => {
   return {
     courses
   }
+}
+
+export const useDetailsCourse = (name) => {
+  // Use hook
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(getDetailCourseAction({
+      query: { maKhoaHoc: name }
+    }))
+  }, [name, dispatch])
 }
 
 export const useCourseByCate = (name) => {

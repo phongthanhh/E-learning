@@ -15,20 +15,23 @@ import { registerCourseAction } from 'stores'
 import { StyledSidebar } from './styled'
 
 function SidebarCourse({ courseCode }) {
+  // use hook
   const dispatch = useDispatch()
-  const { detailCourse } = useSelector((state) => state.courseReducer)
+  const { detailsCourse: { data } } = useSelector((state) => state.courseReducer)
   const { userLogin } = useSelector((state) => state.userReducer)
+  // end use hook
+
   const priceCourse = getItem(PRICE_COURSE_DETAIL)
   const handleRegisterCourse = () => {
-    const data = {
+    const value = {
       maKhoahoc: courseCode,
       taiKhoan: userLogin.taiKhoan
     }
-    dispatch(registerCourseAction(data))
+    dispatch(registerCourseAction(value))
   }
   return (
     <StyledSidebar>
-      <Image className="sidebar__img" src={detailCourse !== null ? detailCourse.hinhAnh : ''} />
+      <Image className="sidebar__img" src={data ? data.hinhAnh : ''} />
       <div className="sidebar__price">
         <p>
           <BoltIcon className="sidebar__price__icon" />
@@ -43,7 +46,7 @@ function SidebarCourse({ courseCode }) {
               Ghi danh:
               <span>
                 {' '}
-                {detailCourse !== null ? detailCourse.soLuongHocVien : ''}
+                {data ? data.soLuongHocVien : ''}
                 {' '}
                 học viên
               </span>

@@ -38,14 +38,18 @@ export const getCoursesAction = (payload = { queries: {} }) => async (dispatch) 
 }
 
 export const getDetailCourseAction = (courseCode) => async (dispatch) => {
+  dispatch({ type: requestAction(GET_DETAIL_COURSE) })
   try {
     const data = await getDetailCourseService(courseCode)
     dispatch({
-      type: GET_DETAIL_COURSE,
+      type: successAction(GET_DETAIL_COURSE),
       payload: data
     })
   } catch (error) {
-    throw Error(error)
+    dispatch({
+      type: failureAction(GET_DETAIL_COURSE),
+      error
+    })
   }
 }
 

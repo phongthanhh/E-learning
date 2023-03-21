@@ -9,7 +9,10 @@ import ContentCourse from '../ContentCourse'
 import { StyledMainCourse } from './styled'
 
 function MainCourse() {
-  const { detailCourse } = useSelector((state) => state.courseReducer)
+  // use hook
+  const { detailsCourse: { data } } = useSelector((state) => state.courseReducer)
+  // end use hook
+
   const renderCourseLearn = () => COURSE__LEARN__DATA.map((course) => (
     <div className="col-6" key={course.id}>
       <ul>
@@ -28,7 +31,7 @@ function MainCourse() {
   return (
     <StyledMainCourse>
       <h4 className="titledetail__title">
-        {detailCourse !== null ? detailCourse.tenKhoaHoc : ''}
+        {data ? data.tenKhoaHoc : ''}
       </h4>
       <div className="row detailcourse__head">
         <div className="col-lg-4">
@@ -38,7 +41,7 @@ function MainCourse() {
             </div>
             <div className="coursehead__intro__title">
               <p>Giảng viên</p>
-              <p>{detailCourse !== null ? detailCourse.nguoiTao.hoTen : ''}</p>
+              <p>{data ? data.nguoiTao?.hoTen : ''}</p>
             </div>
           </div>
         </div>
@@ -49,7 +52,7 @@ function MainCourse() {
             </div>
             <div className="coursehead__intro__title">
               <p>Lĩnh vực</p>
-              <p>{detailCourse !== null ? detailCourse.danhMucKhoaHoc.tenDanhMucKhoaHoc : ''}</p>
+              <p>{data ? data.danhMucKhoaHoc?.tenDanhMucKhoaHoc : ''}</p>
             </div>
           </div>
         </div>
@@ -67,7 +70,7 @@ function MainCourse() {
 
       <div className="detailcourse__decs">
         <p>
-          {detailCourse !== null ? detailCourse.moTa : ''}
+          {data ? data.moTa : ''}
         </p>
       </div>
 

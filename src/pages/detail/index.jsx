@@ -1,8 +1,6 @@
 import { SlideCourses } from 'components'
-import { useCourses } from 'hooks'
-import React, { memo, useEffect } from 'react'
-import { useDispatch } from 'react-redux'
-import { getDetailCourseAction } from 'stores'
+import { useCourses, useDetailsCourse } from 'hooks'
+import React, { memo } from 'react'
 import MainCourse from './MainCourse'
 import SidebarCourse from './SidebarCourse'
 import { StyledDetail } from './styled'
@@ -11,15 +9,9 @@ function Detail(props) {
   const { name } = props.match.params
 
   // Use hooks
-  const dispatch = useDispatch()
   const { courses: { data } } = useCourses()
-  // End use hooks
-
-  useEffect(() => {
-    dispatch(getDetailCourseAction({
-      query: { maKhoaHoc: name }
-    }))
-  }, [name, dispatch])
+  useDetailsCourse(name)
+  // End use hook
 
   return (
     <StyledDetail>
