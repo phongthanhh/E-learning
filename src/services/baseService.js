@@ -1,39 +1,34 @@
 import axios from 'axios'
-import { ACCESS_TOKEN, DOMAIN, TOKEN_CYBER } from 'constant'
+import { ACCESS_TOKEN, BASE_URL, TOKEN_CYBER } from 'constant'
+import { toast } from 'react-toastify'
 
-export const get = (url) => axios({
-  url: `${DOMAIN}/${url}`,
-  method: 'GET',
-  headers: {
-    TokenCybersoft: TOKEN_CYBER
-  }
+const axiosClient = axios.create({
+  baseURL: BASE_URL
 })
 
-export const put = (url, data) => axios({
-  url: `${DOMAIN}/${url}`,
-  method: 'PUT',
-  data,
-  headers: {
-    Authorization: `Bearer ${localStorage.getItem(ACCESS_TOKEN)} `,
-    TokenCybersoft: TOKEN_CYBER
-  }
-})
+axiosClient.interceptors.request.use(
+  (configure) => {
+    const accessToken = localStorage.getItem(ACCESS_TOKEN)
+    const newConfigure = {
+      ...configure,
+      headers: {
+        ...configure.headers,
+        Authorization: `Bearer ${accessToken}`,
+        TokenCybersoft: TOKEN_CYBER
+      }
 
-export const post = (url, data) => axios({
-  url: `${DOMAIN}/${url}`,
-  method: 'POST',
-  data,
-  headers: {
-    Authorization: `Bearer ${localStorage.getItem(ACCESS_TOKEN)} `,
-    TokenCybersoft: TOKEN_CYBER
-  }
-})
+    }
+    return newConfigure
+  },
+  (error) => Promise.reject(error)
+)
 
-export const del = (url) => axios({
-  url: `${DOMAIN}/${url}`,
-  method: 'DELETE',
-  headers: {
-    Authorization: `Bearer ${localStorage.getItem(ACCESS_TOKEN)} `,
-    TokenCybersoft: TOKEN_CYBER
+axiosClient.interceptors.response.use(
+  (response) => response.data, // Just get data from response
+  (error) => {
+    toast.error(error.response?.data)
+    return Promise.reject(error)
   }
-})
+)
+
+export default axiosClient

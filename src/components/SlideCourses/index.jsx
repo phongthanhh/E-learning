@@ -1,28 +1,14 @@
-import { CardCourse } from 'components'
-import { attributeSwiper } from 'constant'
-import React, { useMemo } from 'react'
-import { Autoplay, Navigation, Pagination } from 'swiper'
-import { Swiper, SwiperSlide } from 'swiper/react'
-import { StyledSwiper } from './styled'
+import { WithLoadingSkeleton } from 'components'
+import React from 'react'
+import Content from './Content'
 
-function SlideCourses({ title, courses }) {
-  const renderCourses = useMemo(() => courses?.map((course, index) => (
-    <SwiperSlide key={course.maKhoaHoc}>
-      <CardCourse course={course} index={index} />
-    </SwiperSlide>
-  )), [courses])
+const ContentWithLoadingSkeleton = WithLoadingSkeleton(Content)
 
+function SlideCourses({ title, isLoading, courses }) {
   return (
     <>
       <h6>{title}</h6>
-      <StyledSwiper>
-        <Swiper
-          modules={[Autoplay, Pagination, Navigation]}
-          {...attributeSwiper}
-        >
-          {renderCourses}
-        </Swiper>
-      </StyledSwiper>
+      <ContentWithLoadingSkeleton isLoading={isLoading} totalToRender={4} courses={courses} />
     </>
   )
 }
