@@ -2,6 +2,9 @@ export const COLORS = {
   global: '#41b294',
   primary: '#f6ba35',
   white: '#fff',
+  white2: '#ebebec',
+  whitedark: '#b4b6bb',
+  black: '#1c1d1f',
   lightRed: '#f06f68',
   lightBlue: '#65c9ff',
   lightYellow: '#ffd60a',
@@ -24,3 +27,4 @@ export const COLORS = {
   borderLightGrey: '#e4e4e4'
 
 }
+// #1c1d1f
