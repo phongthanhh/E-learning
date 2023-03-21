@@ -5,9 +5,9 @@ import { getInfoUserService, loginService, signUpService } from 'services'
 import { ACTIVE_LOGIN_PAGE, LOG_IN, SET_INFO_USER } from 'stores/types'
 import Swal from 'sweetalert2'
 
-export const signUpAction = (data) => async (dispatch) => {
+export const signUpAction = (payload) => async (dispatch) => {
   try {
-    await signUpService(data)
+    await signUpService(payload)
     Swal.fire({
       icon: 'success',
       title: 'Đăng ký thành công',
@@ -17,34 +17,34 @@ export const signUpAction = (data) => async (dispatch) => {
       dispatch({ type: ACTIVE_LOGIN_PAGE })
     })
   } catch (error) {
-    toast.error(error.response?.data)
+    throw Error(error)
   }
 }
 
-export const loginAction = (data) => async (dispatch) => {
+export const loginAction = (payload) => async (dispatch) => {
   try {
-    const result = await loginService(data)
-    window.localStorage.setItem(ACCESS_TOKEN, result.data.accessToken)
-    window.localStorage.setItem(USER_LOGIN, JSON.stringify(result.data))
+    const data = await loginService(payload)
+    window.localStorage.setItem(ACCESS_TOKEN, data.data.accessToken)
+    window.localStorage.setItem(USER_LOGIN, JSON.stringify(data.data))
     dispatch({
       type: LOG_IN,
-      payload: result.data
+      payload: data
     })
     history.push(ROUTES_NAME.HOME)
     toast.success('Đăng nhập thành công !')
   } catch (error) {
-    toast.error(error.response?.data)
+    throw Error(error)
   }
 }
 
 export const getInfoUserAction = () => async (dispatch) => {
   try {
-    const result = await getInfoUserService()
+    const data = await getInfoUserService()
     dispatch({
       type: SET_INFO_USER,
-      payload: result.data
+      payload: data
     })
   } catch (error) {
-    toast.error(error.response?.data)
+    throw Error(error)
   }
 }

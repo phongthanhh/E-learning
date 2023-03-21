@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import { Image } from 'components'
 import React, { useEffect, useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -11,7 +10,7 @@ function Info() {
   const { userInfo } = useSelector((state) => state.userReducer)
   useEffect(() => {
     dispatch(getInfoUserAction())
-  }, [userInfo, dispatch])
+  }, [dispatch])
 
   const renderListCourse = useMemo(() => userInfo.chiTietKhoaHocGhiDanh?.map((course) => (
     <CourseItem course={course} userName={userInfo.taiKhoan} key={course.maKhoaHoc} />

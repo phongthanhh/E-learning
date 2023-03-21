@@ -1,4 +1,3 @@
-import { toast } from 'react-toastify'
 import {
   cancelRegistrationService,
   getCategoryService, getCoursesWithPaginationService, getDetailCourseService, getListCourseByCateService, getCoursesService
@@ -11,78 +10,77 @@ import { failureAction, requestAction, successAction } from 'utils'
 
 export const getCategoryAction = () => async (dispatch) => {
   try {
-    const result = await getCategoryService()
+    const data = await getCategoryService()
     dispatch({
       type: SET_CATEGORY,
-      payload: result.data
+      payload: data
     })
   } catch (error) {
-    toast.error(error.response?.data)
+    throw Error(error)
   }
 }
 
 export const getCoursesAction = (payload = { queries: {} }) => async (dispatch) => {
   dispatch({ type: requestAction(GET_COURSES) })
   try {
-    const result = await getCoursesService(payload)
+    const data = await getCoursesService(payload)
     dispatch({
       type: successAction(GET_COURSES),
-      payload: result.data
+      payload: data
     })
   } catch (error) {
     dispatch({
       type: failureAction(GET_COURSES),
       error
     })
-    toast.error(error.response?.data)
   }
 }
 
 export const getDetailCourseAction = (courseCode) => async (dispatch) => {
   try {
-    const result = await getDetailCourseService(courseCode)
+    const data = await getDetailCourseService(courseCode)
     dispatch({
       type: SET_DETAIL_COURSE,
-      payload: result.data
+      payload: data
     })
   } catch (error) {
-    toast.error(error.response?.data)
+    throw Error(error)
   }
 }
 
 export const getCoursesWithPaginationAction = (query) => async (dispatch) => {
   try {
-    const result = await getCoursesWithPaginationService(query)
+    const data = await getCoursesWithPaginationService(query)
     dispatch({
       type: SET_LIST_COURSE_PAGINATION,
-      payload: result.data
+      payload: data
     })
   } catch (error) {
-    toast.error(error.response?.data)
+    throw Error(error)
   }
 }
 
 export const getListCourseByCateAction = (queries) => async (dispatch) => {
   try {
-    const result = await getListCourseByCateService(queries)
+    const data = await getListCourseByCateService(queries)
     dispatch({
       type: SET_LIST_COURSE_BY_CATE,
-      payload: result.data
+      payload: data
     })
   } catch (error) {
-    toast.error(error.response?.data)
+    throw Error(error)
   }
 }
 
-export const cancelRegistrationAction = (data) => async () => {
+export const cancelRegistrationAction = (payload) => async () => {
   try {
-    const result = await cancelRegistrationService(data)
+    const data = await cancelRegistrationService(payload)
     Swal.fire(
-      `${result.data}`,
+      `${data}`,
       'Hẹn gặp lại bạn ở khóa học sau!',
       'success'
     )
   } catch (error) {
-    toast.error(error.response?.data)
+    throw Error(error)
   }
 }
