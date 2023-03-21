@@ -65,7 +65,7 @@ function SearchCourse() {
       disablePortal
       options={coursesForSearch}
       renderOption={renderOption}
-      sx={{ width: 400 }}
+      sx={{ width: 300 }}
       renderInput={(params) => <TextField label="Tìm kiếm" {...params} />}
       loading={isLoading}
       loadingText={renderLoadingContent}

@@ -1,18 +1,13 @@
-/* eslint-disable no-unused-vars */
 import * as React from 'react'
 import Box from '@mui/material/Box'
-import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
 import Modal from '@mui/material/Modal'
-import { Grid, TextField } from '@mui/material'
+import { Grid } from '@mui/material'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
-import * as yup from 'yup'
-import { GROUP_ID, ROUTES_NAME, VALIDATE } from 'constant'
 import { InputField, PasswordField } from 'components'
 import { useDispatch, useSelector } from 'react-redux'
 import { updateInfoUserAction } from 'stores'
-import { history } from 'App'
 import { LoadingButton } from '@mui/lab'
 import { schema } from './schema'
 
@@ -31,13 +26,12 @@ const style = {
 function ModalInfo({ open, onClose }) {
   const dispatch = useDispatch()
   const { userInfo, isUpdating } = useSelector((state) => state.userReducer)
-
   const formMethods = useForm({
     resolver: yupResolver(schema),
     mode: 'onTouched'
   })
 
-  const { handleSubmit, reset, formState: { errors } } = formMethods
+  const { handleSubmit, reset } = formMethods
 
   const setValues = React.useCallback(() => {
     const { chiTietKhoaHocGhiDanh, ...newUserInfo } = userInfo

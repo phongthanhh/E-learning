@@ -10,7 +10,7 @@ export const StyleHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 50px;
+  padding: 10px 20px;
   .header__left{
     display: flex;
     align-items: center;
@@ -171,6 +171,12 @@ export const StyleHeader = styled.div`
       }
     }
     }
-   
   }
+  .header__drawer{
+    display: none;
+    @media (max-width: 739px) {
+      display:block
+    }
+  }
+ 
 `

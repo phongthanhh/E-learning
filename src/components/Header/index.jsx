@@ -16,6 +16,7 @@ import Swal from 'sweetalert2'
 import { MENU_HEADER_DATA } from 'data'
 import { LOGO } from 'assets'
 import { transferPage } from 'utils'
+import DrawerCPN from 'components/DrawerCPN'
 import { StyleHeader } from './styled'
 import SearchCourse from './SearchCourse'
 
@@ -93,9 +94,11 @@ function Header() {
         <SearchCourse />
       </div>
       <div className="header__right">
-        <ul className="header__right__menu">
-          {renderMenu}
-        </ul>
+        <div>
+          <ul className="header__right__menu">
+            {renderMenu}
+          </ul>
+        </div>
       </div>
       <div className="header__showIcon">
         {userLogin !== null ? (
@@ -158,6 +161,9 @@ function Header() {
             Đăng nhập
           </button>
         ) }
+      </div>
+      <div className="header__drawer">
+        <DrawerCPN />
       </div>
     </StyleHeader>
   )

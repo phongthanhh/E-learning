@@ -23,10 +23,15 @@ export const userReducer = (state = initialState, { type, payload, error }) => {
   switch (type) {
     case ACTIVE_LOGIN_PAGE:
       return { ...state, activeLoginPage: false }
+    // for login
     case LOG_IN:
       return { ...state, userLogin: payload }
+
+    // for sign out
     case SIGN_OUT:
       return { ...state, userLogin: null }
+
+    // for get user info
     case successAction(GET_USER_INFO):
       return { ...state, userInfo: payload }
 
@@ -39,6 +44,7 @@ export const userReducer = (state = initialState, { type, payload, error }) => {
     }
     case failureAction(UPDATE_USER_INFO):
       return { ...state, isUpdating: false, error }
+
     default:
       return state
   }
