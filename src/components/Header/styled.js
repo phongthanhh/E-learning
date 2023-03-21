@@ -1,4 +1,4 @@
-import { SEARCHICON } from 'assets'
+import { REPONSIVE } from 'constant'
 import styled from 'styled-components'
 import { COLORS } from 'themes'
 
@@ -16,21 +16,15 @@ export const StyleHeader = styled.div`
     align-items: center;
     gap: 10px;
     &__img{
-      width:250px
+      width:250px;
+      @media (max-width: ${REPONSIVE.MOBILE}) {
+        width:200px;
+      }
     }
-    .searchForm{
-      outline: none;
-      border: none;
-      width: 100%;
-      height: 40px;
-      border-radius: 8px;
-      padding-left: 10px;
-      margin-left: 15px;
-      background-image: url(${SEARCHICON});
-      background-size: 30px;
-      background-position: 100%;
-      background-repeat: no-repeat;
-      background-color: #f5f5f5;
+    &__search{
+      @media (max-width: ${REPONSIVE.LARGE_TABLET}) {
+      display: none;
+      }
     }
   }
   .header__right{
@@ -88,6 +82,9 @@ export const StyleHeader = styled.div`
           max-height: 500px;
         }
       }
+    }
+    @media (max-width: ${REPONSIVE.LARGE_TABLET}) {
+      display: none;
     }
   }
   .header__showIcon{
@@ -171,11 +168,14 @@ export const StyleHeader = styled.div`
       }
     }
     }
+    @media (max-width: ${REPONSIVE.LARGE_TABLET}) {
+      display: none;
+    }
   }
   .header__drawer{
     display: none;
-    @media (max-width: 739px) {
-      display:block
+    @media (max-width: ${REPONSIVE.LARGE_TABLET}) {
+      display: block;
     }
   }
  

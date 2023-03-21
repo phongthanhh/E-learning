@@ -82,7 +82,7 @@ function Header() {
         </li>
       )
     }
-    return <li key={menu.pathname}><NavLink className="menu__name" to={menu.pathname}>{menu.name}</NavLink></li>
+    return <li key={menu.pathname}><NavLink className="menu__name" to={menu.pathname}><span>{menu.name}</span></NavLink></li>
   }), [renderCategories])
 
   return (
@@ -91,7 +91,9 @@ function Header() {
         <NavLink to={ROUTES_NAME.HOME}>
           <img className="header__left__img" src={LOGO} alt="logo" />
         </NavLink>
-        <SearchCourse />
+        <div className="header__left__search">
+          <SearchCourse />
+        </div>
       </div>
       <div className="header__right">
         <div>
@@ -163,7 +165,7 @@ function Header() {
         ) }
       </div>
       <div className="header__drawer">
-        <DrawerCPN />
+        <DrawerCPN userLogin={userLogin} />
       </div>
     </StyleHeader>
   )

@@ -1,4 +1,5 @@
 import { NEXT_ICON, PREV_ICON } from 'assets'
+import { REPONSIVE } from 'constant'
 import styled from 'styled-components'
 import { COLORS } from 'themes'
 
@@ -34,6 +35,9 @@ export const StyledSwiper = styled.div`
       &:hover{
         background: ${COLORS.white2};
       }
+      @media (max-width: ${REPONSIVE.MOBILE}) {
+       display:none
+      }
     }
     .swiper-button-next{
       cursor: pointer;
@@ -59,6 +63,9 @@ export const StyledSwiper = styled.div`
       }
       &:hover{
         background: ${COLORS.white2};
+      }
+      @media (max-width: ${REPONSIVE.MOBILE}) {
+       display:none
       }
     }
   }
