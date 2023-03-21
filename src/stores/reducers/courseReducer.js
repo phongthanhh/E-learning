@@ -9,7 +9,7 @@ const courses = {
   data: [],
   error: null
 }
-const detailCourse = {
+const detailsCourse = {
   isLoading: false,
   data: {},
   error: null
@@ -27,7 +27,7 @@ const coursesByCate = {
 const initialState = {
   categoryArr: [],
   courses: { ...courses },
-  detailCourse: null,
+  detailsCourse: { ...detailsCourse },
   listCourseWithPagination: { ...listCourseWithPagination },
   coursesByCate: { ...coursesByCate },
   coursesForSearch: []
@@ -59,8 +59,21 @@ export const courseReducer = (state = initialState, { type, payload, error }) =>
       }
 
     // For get course detail
-    case GET_DETAIL_COURSE:
-      return { ...state, detailCourse: payload }
+    case requestAction(GET_DETAIL_COURSE):
+      return {
+        ...state,
+        detailsCourse: { ...state.detailsCourse, isLoading: true }
+      }
+    case successAction(GET_DETAIL_COURSE):
+      return {
+        ...state,
+        detailsCourse: { ...state.detailsCourse, isLoading: false, data: payload }
+      }
+    case failureAction(GET_DETAIL_COURSE):
+      return {
+        ...state,
+        detailsCourse: { ...state.detailsCourse, isLoading: false, error }
+      }
 
     // For get course with pag
     case requestAction(GET_LIST_COURSE_PAGINATION):
