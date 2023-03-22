@@ -173,9 +173,37 @@ function Header() {
             </div>
           </div>
         ) : (
-          <button onClick={() => history.push(ROUTES_NAME.LOGIN)} type="button" className="btn__global">
-            Đăng nhập
-          </button>
+          <div className="user__info">
+            <button onClick={() => history.push(ROUTES_NAME.LOGIN)} type="button" className="btn__global">
+              Đăng nhập
+            </button>
+            <div className="dropdown" ref={reShow}>
+              <div
+                aria-hidden="true"
+                className="dropdown__select"
+                title="Cá nhân"
+                onClick={() => {
+                  setShowDrop(!showDrop)
+                }}
+              >
+                <ArrowDropDownIcon
+                  className="dropdown__select__icon"
+                  style={{ transform: `${showDrop ? 'rotate(-180deg)' : 'rotate(0deg)'}` }}
+                />
+              </div>
+              <div className="dropdown__list" style={showDrop ? { opacity: 1, visibility: 'visible' } : { opacity: 0, visibility: 'hidden' }}>
+                <ul>
+                  <li>
+                    <span>
+                      <Brightness6OutlinedIcon className="dropdown__list__icon" />
+                      Chế độ tối
+                    </span>
+                    <SwitchThemeButton />
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
         ) }
       </div>
       <div className="header__drawer">
