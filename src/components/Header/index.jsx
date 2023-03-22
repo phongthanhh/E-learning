@@ -16,7 +16,8 @@ import Swal from 'sweetalert2'
 import { MENU_HEADER_DATA } from 'data'
 import { LOGO } from 'assets'
 import { transferPage } from 'utils'
-import { DrawerCPN } from 'components'
+import { DrawerCPN, SwitchThemeButton } from 'components'
+import Brightness6OutlinedIcon from '@mui/icons-material/Brightness6Outlined'
 import { StyleHeader } from './styled'
 import SearchCourse from './SearchCourse'
 
@@ -41,6 +42,12 @@ function Header() {
         localStorage.removeItem(USER_LOGIN)
         dispatch({ type: SIGN_OUT })
         transferPage(ROUTES_NAME.HOME)
+        Swal.fire({
+          title: 'Đăng xuất thành công',
+          icon: 'success',
+          text: 'Cảm ơn bạn đã sử dụng dịch vụ!',
+          confirmButtonText: 'Ok'
+        })
       }
     })
   }
@@ -138,6 +145,13 @@ function Header() {
                       <InfoIcon className="dropdown__list__icon" />
                       Thông tin tài khoản
                     </span>
+                  </li>
+                  <li>
+                    <span>
+                      <Brightness6OutlinedIcon className="dropdown__list__icon" />
+                      Chế độ tối
+                    </span>
+                    <SwitchThemeButton />
                   </li>
                   <li aria-hidden="true" onClick={() => transferPage('/admin')}>
                     <span>

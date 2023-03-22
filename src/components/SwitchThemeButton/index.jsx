@@ -7,7 +7,7 @@ import { StyledSwitchButton } from './styled'
 function SwitchThemeButton() {
   return (
     <StyledSwitchButton>
-      <input type="checkbox" className="checkbox" id="checkbox" />
+      <input type="checkbox" onChange={(e) => console.log(e.target.checked)} className="checkbox" id="checkbox" />
       <label htmlFor="checkbox" className="label">
         <DarkModeOutlinedIcon className="moon" />
         <LightModeOutlinedIcon className="sun" />

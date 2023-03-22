@@ -30,7 +30,7 @@ export const StyledSwitchButton = styled.div`
     top:0;
     left: 1px;
     border-radius: 50%;
-    transition: transform 0.2s linear;
+    transition: transform 0.3s linear;
   }
 
   .checkbox:checked + .label .ball{
@@ -47,6 +47,5 @@ export const StyledSwitchButton = styled.div`
     color: ${COLORS.lightgrey};
     width: .5em;
     height: .5em;
-
   }
 `
