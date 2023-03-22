@@ -16,7 +16,7 @@ import Swal from 'sweetalert2'
 import { MENU_HEADER_DATA } from 'data'
 import { LOGO } from 'assets'
 import { transferPage } from 'utils'
-import DrawerCPN from 'components/DrawerCPN'
+import { DrawerCPN } from 'components'
 import { StyleHeader } from './styled'
 import SearchCourse from './SearchCourse'
 
