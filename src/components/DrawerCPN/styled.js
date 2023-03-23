@@ -20,7 +20,7 @@ export const StyledContent = styled.div`
   .drawer__icon{
     color: ${COLORS.global};
   }
-  .darkmod__btn{
+  .darkMode__btn{
     .MuiListItemText-primary{
       display: flex;
       justify-content: space-between;
