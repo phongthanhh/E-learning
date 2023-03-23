@@ -12,11 +12,12 @@ import SlideCourses from './SlideCourses'
 import Image from './Image'
 import SwitchThemeButton from './SwitchThemeButton'
 import DrawerCPN from './DrawerCPN'
+import ColorContextProvider from './ColorContextProvider'
 
 export {
   WithLoadingSkeleton,
   Header, Footer, Toast, CardCourse,
-  ErrorBoundary, Loading, SlideCourses, Image, SwitchThemeButton, DrawerCPN
+  ErrorBoundary, Loading, SlideCourses, Image, SwitchThemeButton, DrawerCPN, ColorContextProvider
 }
 
 export * from './FormControl'

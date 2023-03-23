@@ -2,11 +2,12 @@ import {
   combineReducers, createStore, applyMiddleware, compose
 } from 'redux'
 import thunk from 'redux-thunk'
-import { courseReducer, userReducer } from './reducers'
+import { courseReducer, themeReducer, userReducer } from './reducers'
 
 const rootReducer = combineReducers({
   courseReducer,
-  userReducer
+  userReducer,
+  themeReducer
 })
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
