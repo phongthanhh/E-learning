@@ -19,7 +19,7 @@ function Home() {
   }, [dispatch])
 
   return (
-    <div className="">
+    <div>
       <StyledHome>
         <div className="row homeSlider">
           <div className="col-lg-6 homeSlider__slogan">
