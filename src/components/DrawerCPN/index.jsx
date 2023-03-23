@@ -93,7 +93,7 @@ export default function DrawerCPN({ userLogin }) {
                 <ListItemIcon>
                   <Brightness6OutlinedIcon className="drawer__icon" />
                 </ListItemIcon>
-                <ListItemText className="darkmod__btn">
+                <ListItemText className="darkMode__btn">
                   <div>Chế độ tối </div>
                   <SwitchThemeButton />
                 </ListItemText>

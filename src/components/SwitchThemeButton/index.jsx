@@ -1,19 +1,17 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react'
-import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined'
-import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined'
-import { StyledSwitchButton } from './styled'
+import { FormControlLabel } from '@mui/material'
+import { MaterialUISwitch } from './styled'
 
 function SwitchThemeButton() {
+  const handleChangeChecked = (event) => {
+    const { checked } = event.target
+    console.log(checked)
+  }
   return (
-    <StyledSwitchButton>
-      <input type="checkbox" onChange={(e) => console.log(e.target.checked)} className="checkbox" id="checkbox" />
-      <label htmlFor="checkbox" className="label">
-        <DarkModeOutlinedIcon className="moon" />
-        <LightModeOutlinedIcon className="sun" />
-        <div className="ball" />
-      </label>
-    </StyledSwitchButton>
+    <FormControlLabel
+      className="m-0"
+      control={<MaterialUISwitch onChange={handleChangeChecked} sx={{ m: 0 }} defaultChecked />}
+    />
   )
 }
 
