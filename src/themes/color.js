@@ -21,6 +21,7 @@ export const COLORS = {
   bgButtonSL: '#ebebec',
   bgCourseDetail: 'hsla(0,0%,86.3%,0.1411764705882353)',
   boxShadowCard: '0 0 10px 6px rgb(0 0 0 / 13%)',
+  darkModeBoxShadowCard: '0 0 10px 6px rgb(196 204 212 / 60%)',
   boxShadowSidebar: '1px 1px 10px 4px #dadada',
   bodergrey: '#f2f1f1',
   borderGray: '#d0d0d0',

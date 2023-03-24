@@ -2,9 +2,9 @@ import styled from 'styled-components'
 import { COLORS } from 'themes'
 
 export const StyledCardIns = styled.div`
-    .intstructor__item__content{
+    .instructor__item__content{
       display: flex;
-      height: 100%;
+      height: 228px;
       justify-content: space-between;
       flex-direction: column;
       align-items: center;
@@ -25,6 +25,11 @@ export const StyledCardIns = styled.div`
       }
       &:hover{
       box-shadow: ${COLORS.boxShadowCard}
+     }
     }
+    .dark{
+      &:hover{
+      box-shadow: ${COLORS.darkModeBoxShadowCard}
+     }
     }
 `

@@ -15,7 +15,7 @@ function Instrutor() {
   return (
     <StyledInstrutor className="mt-5">
       <h6>Giảng viên hàng đầu</h6>
-      <div className="intstructor__item">
+      <div className="instructor__item">
         <div className="row mt-4">
           <Swiper
             modules={[Autoplay, Pagination, Navigation]}
