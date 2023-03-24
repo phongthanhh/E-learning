@@ -5,3 +5,4 @@ export const ACCESS_TOKEN = 'ACCESS_TOKEN'
 export const USER_LOGIN = 'USER_LOGIN'
 export const GROUP_ID = 'GP01'
 export const PAGE_SIZE = 12
+export const THEME = 'THEME'

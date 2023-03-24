@@ -1,16 +1,27 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import { FormControlLabel } from '@mui/material'
+import { ColorModeContext, setItem } from 'utils'
+import { useDispatch } from 'react-redux'
+import { SWITCH_THEME } from 'stores'
+import { THEME } from 'constant'
 import { MaterialUISwitch } from './styled'
 
 function SwitchThemeButton() {
-  const handleChangeChecked = (event) => {
-    const { checked } = event.target
-    console.log(checked)
-  }
+  const dispatch = useDispatch()
+  const { mode, toggleColorMode } = useContext(ColorModeContext)
+
+  useEffect(() => {
+    setItem(THEME, mode)
+    dispatch({
+      type: SWITCH_THEME,
+      payload: mode
+    })
+  }, [mode, dispatch])
+
   return (
     <FormControlLabel
       className="m-0"
-      control={<MaterialUISwitch onChange={handleChangeChecked} sx={{ m: 0 }} defaultChecked />}
+      control={<MaterialUISwitch onChange={toggleColorMode} sx={{ m: 0 }} defaultChecked />}
     />
   )
 }
