@@ -87,7 +87,6 @@ export const StyleHeader = styled.div`
     }
   }
   .header__showIcon{
-    
     .user__info{
       display: flex;
       align-items: center;
@@ -166,11 +165,21 @@ export const StyleHeader = styled.div`
         }
       }
     }
+  
     }
     @media (max-width: ${REPONSIVE.LARGE_TABLET}) {
       display: none;
     }
   }
+
+  .themeDark{
+    .user__info{
+      .dropdown__list{
+        background: ${COLORS.darkModePaper};
+      }
+    }
+  }
+
   .header__drawer{
     display: none;
     @media (max-width: ${REPONSIVE.LARGE_TABLET}) {

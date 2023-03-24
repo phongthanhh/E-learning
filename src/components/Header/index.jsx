@@ -24,6 +24,8 @@ import SearchCourse from './SearchCourse'
 function Header() {
   const dispatch = useDispatch()
   const { categoryArr } = useSelector((state) => state.courseReducer)
+  const { themeMode } = useSelector((state) => state.themeReducer)
+  console.log(themeMode)
   const { userLogin } = useSelector((state) => state.userReducer)
   const [showDrop, setShowDrop] = useState(false)
   const reShow = useRef()
@@ -109,7 +111,7 @@ function Header() {
           </ul>
         </div>
       </div>
-      <div className="header__showIcon">
+      <div className={`header__showIcon ${themeMode === 'dark' ? 'themeDark' : ''}`}>
         {userLogin !== null ? (
           <div className="user__info">
             <div className="user__logged">
