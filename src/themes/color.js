@@ -24,7 +24,8 @@ export const COLORS = {
   boxShadowSidebar: '1px 1px 10px 4px #dadada',
   bodergrey: '#f2f1f1',
   borderGray: '#d0d0d0',
-  borderLightGrey: '#e4e4e4'
+  borderLightGrey: '#e4e4e4',
+  darkModeBg: '#101a2e'
 
 }
 // #1c1d1f

@@ -40,7 +40,6 @@ export const StyleHeader = styled.div`
         a{
           font-size: 15px;
           font-weight: 600;
-          color: ${COLORS.text};
           text-transform: uppercase;
           transition: all .3s;
         }
