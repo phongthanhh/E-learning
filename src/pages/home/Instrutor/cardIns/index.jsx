@@ -5,7 +5,6 @@ import { StyledCardIns } from './styled'
 
 function CardIns({ data }) {
   const { themeMode } = useSelector((state) => state.themeReducer)
-  console.log(themeMode)
   return (
     <StyledCardIns>
       <div className={themeMode === 'dark' ? 'instructor__item__content dark ' : 'instructor__item__content'}>

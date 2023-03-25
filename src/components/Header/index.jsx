@@ -25,7 +25,6 @@ function Header() {
   const dispatch = useDispatch()
   const { categoryArr } = useSelector((state) => state.courseReducer)
   const { themeMode } = useSelector((state) => state.themeReducer)
-  console.log(themeMode)
   const { userLogin } = useSelector((state) => state.userReducer)
   const [showDrop, setShowDrop] = useState(false)
   const reShow = useRef()
