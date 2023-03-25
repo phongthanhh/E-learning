@@ -1,4 +1,3 @@
-/* eslint-disable no-magic-numbers */
 import React, { memo } from 'react'
 import SignalCellularAltIcon from '@mui/icons-material/SignalCellularAlt'
 import CalendarMonthOutlinedIcon from '@mui/icons-material/CalendarMonthOutlined'
@@ -13,6 +12,11 @@ import { history } from 'App'
 import { StyledContainer } from './styled'
 import TooltipCourse from './TooltipCourse'
 
+const LIMITED_DECS = 55
+const CHECK_LENGTH_DECS = 70
+
+const LIMITED_NAME = 27
+const CHECK_LENGTH_NAME = 27
 function CardCourse({ course, index }) {
   return (
     <Tooltip
@@ -25,9 +29,13 @@ function CardCourse({ course, index }) {
       }}
       >
         <Image className="card__img" height="185px" src={course.hinhAnh} alt="courseImage" />
-        <span className="card__sticker">{course.tenKhoaHoc.length > 27 ? `${course.tenKhoaHoc.substring(0, 27)}...` : course.tenKhoaHoc }</span>
+        <span className="card__sticker">
+          {course.tenKhoaHoc.length > CHECK_LENGTH_NAME ? `${course.tenKhoaHoc.substring(0, LIMITED_NAME)}...` : course.tenKhoaHoc }
+        </span>
         <div className="card__body">
-          <h6 className="card__body__title">{course.moTa.length > 70 ? `${course.moTa.substring(0, 55)}...` : course.moTa}</h6>
+          <h6 className="card__body__title">
+            {course.moTa.length > CHECK_LENGTH_DECS ? `${course.moTa.substring(0, LIMITED_DECS)}...` : course.moTa}
+          </h6>
           <div className="card__icon">
             <span>
               <AccessTimeOutlinedIcon className="card__icon__span" style={{ color: COLORS.primary }} />
