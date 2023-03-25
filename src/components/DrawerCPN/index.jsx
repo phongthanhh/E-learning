@@ -1,4 +1,3 @@
-/* eslint-disable no-magic-numbers */
 import * as React from 'react'
 import Drawer from '@mui/material/Drawer'
 import {
