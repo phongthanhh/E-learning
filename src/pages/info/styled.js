@@ -60,6 +60,16 @@ export const StyledInfo = styled.div`
       overflow-y: auto;
     }
   }
+
+  .themeDark{
+    .info{
+      background: ${COLORS.darkModePaper};
+    }
+    .course{
+      background: ${COLORS.darkModePaper};
+    }
+  }
+  
   @media (max-width: 576px) {
     padding: 10px;
     .course{

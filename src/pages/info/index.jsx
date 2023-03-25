@@ -1,5 +1,6 @@
 import { Button } from '@mui/material'
 import { Image } from 'components'
+import { DARK } from 'constant'
 import React, {
   useCallback, useEffect, useMemo, useState
 } from 'react'
@@ -10,6 +11,8 @@ import ModalInfo from './ModalInfo'
 import { StyledInfo } from './styled'
 
 function Info() {
+  const { themeMode } = useSelector((state) => state.themeReducer)
+  console.log(themeMode)
   // Use hooks
   const dispatch = useDispatch()
   const { userInfo, isUpdating } = useSelector((state) => state.userReducer)
@@ -39,7 +42,7 @@ function Info() {
 
   return (
     <StyledInfo>
-      <div className="row">
+      <div className={`row ${themeMode === DARK ? 'themeDark' : null}`}>
         <div className="col-lg-3 col-12 mb-4 mb-lg-0">
           <div className="info">
             <h5>Thông tin cá nhân</h5>
