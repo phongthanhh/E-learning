@@ -44,6 +44,7 @@ export const loginAction = (payload) => async (dispatch) => {
 }
 
 export const getInfoUserAction = () => async (dispatch) => {
+  dispatch({ type: requestAction(GET_USER_INFO) })
   try {
     const data = await getInfoUserService()
     dispatch({
@@ -51,7 +52,7 @@ export const getInfoUserAction = () => async (dispatch) => {
       payload: data
     })
   } catch (error) {
-    throw Error(error)
+    dispatch({ type: failureAction(GET_USER_INFO), error })
   }
 }
 
@@ -77,7 +78,6 @@ export const updateInfoUserAction = (payload) => async (dispatch) => {
     })
   } catch (error) {
     dispatch({ type: failureAction(UPDATE_USER_INFO), error })
-    toast.error(error.response?.data)
   } finally {
     callback.done()
   }

@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import {
   GET_CATEGORY, GET_COURSES, GET_DETAIL_COURSE, GET_LIST_COURSE_BY_CATE, GET_LIST_COURSE_PAGINATION
 } from 'stores/types'
