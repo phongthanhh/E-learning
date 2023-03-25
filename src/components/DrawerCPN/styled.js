@@ -3,6 +3,7 @@ import { COLORS } from 'themes'
 
 export const StyledContent = styled.div`
   a{
+    width: 100%;
     &:hover{
       color: unset;
     }

@@ -101,7 +101,7 @@ export default function DrawerCPN({ userLogin }) {
 
             {userLogin ? (
               <ListItem>
-                <NavLink to={ROUTES_NAME.INFO} style={{ width: '100%' }}>
+                <NavLink to={ROUTES_NAME.INFO}>
                   <ListItemButton>
                     <ListItemIcon>
                       <AdminPanelSettingsIcon className="drawer__icon" />
@@ -114,7 +114,7 @@ export default function DrawerCPN({ userLogin }) {
 
             {userLogin ? (
               <ListItem>
-                <NavLink to={ROUTES_NAME.INFO} onClick={onCloseDrawer} style={{ width: '100%' }}>
+                <NavLink to={ROUTES_NAME.INFO} onClick={onCloseDrawer}>
                   <ListItemButton>
                     <ListItemIcon>
                       <AccountCircleIcon className="drawer__icon" />
@@ -126,7 +126,7 @@ export default function DrawerCPN({ userLogin }) {
             ) : null }
 
             <ListItem>
-              <NavLink to={ROUTES_NAME.COURSE} onClick={onCloseDrawer} style={{ width: '100%' }}>
+              <NavLink to={ROUTES_NAME.COURSE} onClick={onCloseDrawer}>
                 <ListItemButton>
                   <ListItemIcon>
                     <LibraryBooksIcon className="drawer__icon" />
@@ -137,7 +137,7 @@ export default function DrawerCPN({ userLogin }) {
             </ListItem>
 
             <ListItem>
-              <NavLink to={ROUTES_NAME.INFO} onClick={onCloseDrawer} style={{ width: '100%' }}>
+              <NavLink to={ROUTES_NAME.INFO} onClick={onCloseDrawer}>
                 <ListItemButton>
                   <ListItemIcon>
                     <InfoIcon className="drawer__icon" />
