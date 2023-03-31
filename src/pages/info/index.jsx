@@ -12,7 +12,6 @@ import { StyledInfo } from './styled'
 
 function Info() {
   const { themeMode } = useSelector((state) => state.themeReducer)
-  console.log(themeMode)
   // Use hooks
   const dispatch = useDispatch()
   const { userInfo, isUpdating } = useSelector((state) => state.userReducer)

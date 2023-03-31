@@ -1,5 +1,7 @@
 export const COLORS = {
   global: '#41b294',
+  globalLight: '#B1DED3',
+  globalDark: '#00765A',
   primary: '#f6ba35',
   white: '#fff',
   white2: '#ebebec',
@@ -26,7 +28,8 @@ export const COLORS = {
   bodergrey: '#f2f1f1',
   borderGray: '#d0d0d0',
   borderLightGrey: '#e4e4e4',
-  darkModeBg: '#101a2e'
+  darkModeBg: '#101a2e',
+  darkModePaper: '#1f2937'
 
 }
 // #1c1d1f

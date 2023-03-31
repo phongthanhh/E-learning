@@ -44,7 +44,6 @@ export const loginAction = (payload) => async (dispatch) => {
 }
 
 export const getInfoUserAction = () => async (dispatch) => {
-  dispatch({ type: requestAction(GET_USER_INFO) })
   try {
     const data = await getInfoUserService()
     dispatch({
@@ -52,7 +51,7 @@ export const getInfoUserAction = () => async (dispatch) => {
       payload: data
     })
   } catch (error) {
-    dispatch({ type: failureAction(GET_USER_INFO), error })
+    throw Error(error)
   }
 }
 

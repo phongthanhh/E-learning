@@ -32,12 +32,8 @@ export const userReducer = (state = initialState, { type, payload, error }) => {
       return { ...state, userLogin: null }
 
     // for get user info
-    case requestAction(GET_USER_INFO):
-      return { ...state, isUpdating: true }
     case successAction(GET_USER_INFO):
       return { ...state, userInfo: payload }
-    case failureAction(GET_USER_INFO):
-      return { ...state, isUpdating: false, error }
 
     // For update user info
     case requestAction(UPDATE_USER_INFO):
