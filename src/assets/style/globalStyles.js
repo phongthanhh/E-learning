@@ -43,7 +43,7 @@ export const GlobalStyles = createGlobalStyle`
 }
 a{
   text-decoration: none !important;
-  color: ${COLORS.text};
+  color: unset;
 }
 body{
   color: ${COLORS.text};

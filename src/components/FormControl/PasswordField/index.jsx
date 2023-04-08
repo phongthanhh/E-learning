@@ -2,8 +2,9 @@ import { Visibility, VisibilityOff } from '@mui/icons-material'
 import { IconButton, InputAdornment, TextField } from '@mui/material'
 import React, { useState } from 'react'
 
-function PasswordField(props) {
-  const { name, label, form } = props
+function PasswordField({
+  name, label, form, defaultValue = ''
+}) {
   const {
     register,
     formState: { errors }
@@ -15,6 +16,7 @@ function PasswordField(props) {
   return (
     <TextField
       label={label}
+      defaultValue={defaultValue}
       variant="outlined"
       name={name}
       type={showPassword ? 'text' : 'password'}

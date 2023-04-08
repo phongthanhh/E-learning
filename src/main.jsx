@@ -15,12 +15,18 @@ import 'bootstrap/dist/css/bootstrap.css'
 // Toastify
 import 'react-toastify/dist/ReactToastify.css'
 
-import { ErrorBoundary } from 'components'
-import App from './App'
+import 'slick-carousel/slick/slick.css'
+import 'slick-carousel/slick/slick-theme.css'
+
+import { ColorContextProvider, ErrorBoundary } from 'components'
 import './index.css'
+
+import App from './App'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <Provider store={store}>
-    <ErrorBoundary><App /></ErrorBoundary>
+    <ColorContextProvider>
+      <ErrorBoundary><App /></ErrorBoundary>
+    </ColorContextProvider>
   </Provider>
 )

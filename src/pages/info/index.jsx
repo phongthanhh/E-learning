@@ -1,16 +1,39 @@
+import { Button } from '@mui/material'
 import { Image } from 'components'
-import React, { useEffect, useMemo } from 'react'
+import { DARK } from 'constant'
+import React, {
+  useCallback, useEffect, useMemo, useState
+} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getInfoUserAction } from 'stores'
 import CourseItem from './CourseItem'
+import ModalInfo from './ModalInfo'
 import { StyledInfo } from './styled'
 
 function Info() {
+  const { themeMode } = useSelector((state) => state.themeReducer)
+  // Use hooks
   const dispatch = useDispatch()
-  const { userInfo } = useSelector((state) => state.userReducer)
+  const { userInfo, isUpdating } = useSelector((state) => state.userReducer)
+  // End use hooks
+
+  // Use states
+  const [isOpenModalInfo, setIsOpenModalInfo] = useState(false)
+  // End use states
+
+  const onOpenModalInfo = useCallback(() => {
+    setIsOpenModalInfo(true)
+  }, [])
+
+  const onCloseModalInfo = useCallback(() => {
+    setIsOpenModalInfo(false)
+  }, [])
+
   useEffect(() => {
-    dispatch(getInfoUserAction())
-  }, [dispatch])
+    if (!isUpdating) {
+      dispatch(getInfoUserAction())
+    }
+  }, [dispatch, isUpdating])
 
   const renderListCourse = useMemo(() => userInfo.chiTietKhoaHocGhiDanh?.map((course) => (
     <CourseItem course={course} userName={userInfo.taiKhoan} key={course.maKhoaHoc} />
@@ -18,7 +41,7 @@ function Info() {
 
   return (
     <StyledInfo>
-      <div className="row">
+      <div className={`row ${themeMode === DARK ? 'themeDark' : null}`}>
         <div className="col-lg-3 col-12 mb-4 mb-lg-0">
           <div className="info">
             <h5>Thông tin cá nhân</h5>
@@ -41,6 +64,9 @@ function Info() {
               <p>Đối tượng</p>
               <strong>{userInfo?.maLoaiNguoiDung === 'HV' ? 'Học viên' : 'Giáo vụ'}</strong>
             </div>
+            <div className="info__btn">
+              <Button variant="contained" color="primary" onClick={onOpenModalInfo}>Cập nhật</Button>
+            </div>
           </div>
         </div>
         <div className="col-lg-9 col-12">
@@ -54,6 +80,11 @@ function Info() {
           </div>
         </div>
       </div>
+      <ModalInfo
+        open={isOpenModalInfo}
+        onOpen={onOpenModalInfo}
+        onClose={onCloseModalInfo}
+      />
     </StyledInfo>
   )
 }

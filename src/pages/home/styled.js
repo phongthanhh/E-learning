@@ -1,3 +1,4 @@
+import { REPONSIVE } from 'constant'
 import styled, { keyframes } from 'styled-components'
 
 const aniCode = keyframes`
@@ -101,5 +102,8 @@ export const StyledHome = styled.div`
         animation: ${aniCloud} 7s linear 2s infinite;
       }
     }
+  }
+  @media (max-width: ${REPONSIVE.MOBILE}) {
+    padding: 0 20px;
   }
 `

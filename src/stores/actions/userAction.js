@@ -1,9 +1,15 @@
-import { history } from 'App'
 import { ACCESS_TOKEN, ROUTES_NAME, USER_LOGIN } from 'constant'
 import { toast } from 'react-toastify'
-import { getInfoUserService, loginService, signUpService } from 'services'
-import { ACTIVE_LOGIN_PAGE, LOG_IN, SET_INFO_USER } from 'stores/types'
+import {
+  getInfoUserService, loginService, signUpService, updateInfoUserService
+} from 'services'
+import {
+  ACTIVE_LOGIN_PAGE, GET_USER_INFO, LOG_IN, UPDATE_USER_INFO
+} from 'stores/types'
 import Swal from 'sweetalert2'
+import {
+  failureAction, requestAction, setItem, successAction, transferPage
+} from 'utils'
 
 export const signUpAction = (payload) => async (dispatch) => {
   try {
@@ -24,13 +30,13 @@ export const signUpAction = (payload) => async (dispatch) => {
 export const loginAction = (payload) => async (dispatch) => {
   try {
     const data = await loginService(payload)
-    window.localStorage.setItem(ACCESS_TOKEN, data.data.accessToken)
-    window.localStorage.setItem(USER_LOGIN, JSON.stringify(data.data))
+    setItem(ACCESS_TOKEN, data.accessToken)
+    setItem(USER_LOGIN, JSON.stringify(data))
     dispatch({
       type: LOG_IN,
       payload: data
     })
-    history.push(ROUTES_NAME.HOME)
+    transferPage(ROUTES_NAME.HOME)
     toast.success('Đăng nhập thành công !')
   } catch (error) {
     throw Error(error)
@@ -41,10 +47,37 @@ export const getInfoUserAction = () => async (dispatch) => {
   try {
     const data = await getInfoUserService()
     dispatch({
-      type: SET_INFO_USER,
+      type: successAction(GET_USER_INFO),
       payload: data
     })
   } catch (error) {
     throw Error(error)
+  }
+}
+
+export const updateInfoUserAction = (payload) => async (dispatch) => {
+  const { data, callback } = payload
+  dispatch({ type: requestAction(UPDATE_USER_INFO) })
+  try {
+    const response = await updateInfoUserService(data)
+    const { hoTen } = response
+    dispatch({
+      type: successAction(GET_USER_INFO),
+      payload: response
+    })
+    dispatch({
+      type: successAction(UPDATE_USER_INFO),
+      payload: { newHoTen: hoTen }
+    })
+    Swal.fire({
+      icon: 'success',
+      title: 'Cập nhật thông tin thành công',
+      text: 'Chúc bạn một ngày tốt lành !',
+      confirmButtonText: 'OK'
+    })
+  } catch (error) {
+    dispatch({ type: failureAction(UPDATE_USER_INFO), error })
+  } finally {
+    callback.done()
   }
 }

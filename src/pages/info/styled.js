@@ -28,8 +28,13 @@ export const StyledInfo = styled.div`
         color: ${COLORS.textCard};
       }
     }
+    &__btn{
+      text-align: center;
+      padding: 10px 0;
+    }
     &__img{
       padding: 10px 0;
+      padding-bottom: 0;
       text-align: center;
       img{
         border-radius: 50%;
@@ -55,6 +60,16 @@ export const StyledInfo = styled.div`
       overflow-y: auto;
     }
   }
+
+  .themeDark{
+    .info{
+      background: ${COLORS.darkModePaper};
+    }
+    .course{
+      background: ${COLORS.darkModePaper};
+    }
+  }
+  
   @media (max-width: 576px) {
     padding: 10px;
     .course{

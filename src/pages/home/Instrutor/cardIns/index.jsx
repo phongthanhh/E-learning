@@ -1,13 +1,15 @@
 import { Rating } from '@mui/material'
 import React from 'react'
+import { useSelector } from 'react-redux'
 import { StyledCardIns } from './styled'
 
 function CardIns({ data }) {
+  const { themeMode } = useSelector((state) => state.themeReducer)
   return (
     <StyledCardIns>
-      <div className="intstructor__item__content">
+      <div className={themeMode === 'dark' ? 'instructor__item__content dark ' : 'instructor__item__content'}>
         <img src={data.img} alt="" />
-        <h6 style={{ fontWeight: '600' }}>{data.name}</h6>
+        <h6>{data.name}</h6>
         <div className="textReviewRole">
           <p>{data.textReview}</p>
         </div>

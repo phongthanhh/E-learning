@@ -4,17 +4,13 @@ import {
 import React from 'react'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
-import * as yup from 'yup'
 import { InputField, PasswordField } from 'components'
 import { loginAction } from 'stores'
 import { useDispatch } from 'react-redux'
+import { schema } from './schema'
 
 function SignInForm() {
   const dispatch = useDispatch()
-  const schema = yup.object({
-    taiKhoan: yup.string().required('Vui lòng nhập tài khoản'),
-    matKhau: yup.string().required('Vui lòng nhập mật khẩu')
-  }).required()
 
   const form = useForm({
     defaultValues: {

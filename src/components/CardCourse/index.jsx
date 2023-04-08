@@ -1,30 +1,41 @@
-/* eslint-disable no-magic-numbers */
 import React, { memo } from 'react'
-import LocalOfferIcon from '@mui/icons-material/LocalOffer'
 import SignalCellularAltIcon from '@mui/icons-material/SignalCellularAlt'
 import CalendarMonthOutlinedIcon from '@mui/icons-material/CalendarMonthOutlined'
 import AccessTimeOutlinedIcon from '@mui/icons-material/AccessTimeOutlined'
 import { AVATAR_CARD } from 'assets'
 import { COLORS, FONT_SIZE } from 'themes'
-import { history } from 'App'
-import { COURSE_FEE, ROUTES_NAME } from 'constant'
+import { COURSE_FEE, PRICE_COURSE_DETAIL, ROUTES_NAME } from 'constant'
 import { Tooltip } from '@mui/material'
 import { Image } from 'components'
-import { getFeeOfCourse } from 'utils'
+import { getFeeOfCourse, getFeeOfCourseDefault, setItem } from 'utils'
+import { history } from 'App'
 import { StyledContainer } from './styled'
 import TooltipCourse from './TooltipCourse'
 
+const LIMITED_DECS = 55
+const CHECK_LENGTH_DECS = 70
+
+const LIMITED_NAME = 27
+const CHECK_LENGTH_NAME = 27
 function CardCourse({ course, index }) {
   return (
     <Tooltip
       title={<TooltipCourse course={course} />}
       placement="right"
     >
-      <StyledContainer onClick={() => history.push(`${ROUTES_NAME.DETAIL}/${course.maKhoaHoc}`)}>
+      <StyledContainer onClick={() => {
+        setItem(PRICE_COURSE_DETAIL, getFeeOfCourseDefault(index + 1, COURSE_FEE.DISCOUNT))
+        history.push(`${ROUTES_NAME.DETAIL}/${course.maKhoaHoc}`)
+      }}
+      >
         <Image className="card__img" height="185px" src={course.hinhAnh} alt="courseImage" />
-        <span className="card__sticker">{course.tenKhoaHoc.length > 27 ? `${course.tenKhoaHoc.substring(0, 27)}...` : course.tenKhoaHoc }</span>
+        <span className="card__sticker">
+          {course.tenKhoaHoc.length > CHECK_LENGTH_NAME ? `${course.tenKhoaHoc.substring(0, LIMITED_NAME)}...` : course.tenKhoaHoc }
+        </span>
         <div className="card__body">
-          <h6 className="card__body__title">{course.moTa.length > 70 ? `${course.moTa.substring(0, 70)}...` : course.moTa}</h6>
+          <h6 className="card__body__title">
+            {course.moTa.length > CHECK_LENGTH_DECS ? `${course.moTa.substring(0, LIMITED_DECS)}...` : course.moTa}
+          </h6>
           <div className="card__icon">
             <span>
               <AccessTimeOutlinedIcon className="card__icon__span" style={{ color: COLORS.primary }} />
@@ -58,10 +69,10 @@ function CardCourse({ course, index }) {
             </p>
             <p style={{ color: COLORS.global, fontSize: FONT_SIZE.md }}>
               {getFeeOfCourse(index + 1, COURSE_FEE.DISCOUNT)}
-              <LocalOfferIcon style={{
+              {/* <LocalOfferIcon style={{
                 color: 'red', width: '.8em', height: '.8em', verticalAlign: '-2px'
               }}
-              />
+              /> */}
             </p>
           </div>
         </div>

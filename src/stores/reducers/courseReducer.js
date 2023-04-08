@@ -1,5 +1,5 @@
 import {
-  SET_CATEGORY, SET_DETAIL_COURSE, GET_COURSES, SET_LIST_COURSE_BY_CATE, SET_LIST_COURSE_PAGINATION
+  GET_CATEGORY, GET_COURSES, GET_DETAIL_COURSE, GET_LIST_COURSE_BY_CATE, GET_LIST_COURSE_PAGINATION
 } from 'stores/types'
 import { failureAction, requestAction, successAction } from 'utils'
 
@@ -8,21 +8,34 @@ const courses = {
   data: [],
   error: null
 }
-
+const detailsCourse = {
+  isLoading: false,
+  data: {},
+  error: null
+}
+const listCourseWithPagination = {
+  isLoading: false,
+  data: {},
+  error: null
+}
+const coursesByCate = {
+  isLoading: false,
+  data: [],
+  error: null
+}
 const initialState = {
   categoryArr: [],
   courses: { ...courses },
-  detailCourse: null,
-  listCourseWithPagination: {},
-  listCourseByCate: [],
-
-  isSearching: false,
+  detailsCourse: { ...detailsCourse },
+  listCourseWithPagination: { ...listCourseWithPagination },
+  coursesByCate: { ...coursesByCate },
   coursesForSearch: []
 }
 
 export const courseReducer = (state = initialState, { type, payload, error }) => {
   switch (type) {
-    case SET_CATEGORY:
+    // For get category
+    case GET_CATEGORY:
       return { ...state, categoryArr: payload }
 
     // For get courses
@@ -43,15 +56,57 @@ export const courseReducer = (state = initialState, { type, payload, error }) =>
         ...state,
         courses: { ...state.courses, isLoading: false, error }
       }
+
     // For get course detail
-    case SET_DETAIL_COURSE:
-      return { ...state, detailCourse: payload }
+    case requestAction(GET_DETAIL_COURSE):
+      return {
+        ...state,
+        detailsCourse: { ...state.detailsCourse, isLoading: true }
+      }
+    case successAction(GET_DETAIL_COURSE):
+      return {
+        ...state,
+        detailsCourse: { ...state.detailsCourse, isLoading: false, data: payload }
+      }
+    case failureAction(GET_DETAIL_COURSE):
+      return {
+        ...state,
+        detailsCourse: { ...state.detailsCourse, isLoading: false, error }
+      }
+
     // For get course with pag
-    case SET_LIST_COURSE_PAGINATION:
-      return { ...state, listCourseWithPagination: payload }
+    case requestAction(GET_LIST_COURSE_PAGINATION):
+      return {
+        ...state,
+        listCourseWithPagination: { ...state.listCourseWithPagination, isLoading: true }
+      }
+    case successAction(GET_LIST_COURSE_PAGINATION):
+      return {
+        ...state,
+        listCourseWithPagination: { ...state.listCourseWithPagination, isLoading: false, data: payload }
+      }
+    case failureAction(GET_LIST_COURSE_PAGINATION):
+      return {
+        ...state,
+        listCourseWithPagination: { ...state.listCourseWithPagination, isLoading: false, error }
+      }
+
     // For get course by categories
-    case SET_LIST_COURSE_BY_CATE:
-      return { ...state, listCourseByCate: payload }
+    case requestAction(GET_LIST_COURSE_BY_CATE):
+      return {
+        ...state,
+        coursesByCate: { ...state.coursesByCate, isLoading: true }
+      }
+    case successAction(GET_LIST_COURSE_BY_CATE):
+      return {
+        ...state,
+        coursesByCate: { ...state.coursesByCate, isLoading: false, data: payload }
+      }
+    case failureAction(GET_LIST_COURSE_BY_CATE):
+      return {
+        ...state,
+        coursesByCate: { ...state.coursesByCate, isLoading: false, error }
+      }
 
     default:
       return state

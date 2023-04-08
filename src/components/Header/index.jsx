@@ -15,16 +15,44 @@ import { SIGN_OUT } from 'stores'
 import Swal from 'sweetalert2'
 import { MENU_HEADER_DATA } from 'data'
 import { LOGO } from 'assets'
+import { transferPage } from 'utils'
+import { DrawerCPN, SwitchThemeButton } from 'components'
+import Brightness6OutlinedIcon from '@mui/icons-material/Brightness6Outlined'
 import { StyleHeader } from './styled'
 import SearchCourse from './SearchCourse'
 
 function Header() {
   const dispatch = useDispatch()
   const { categoryArr } = useSelector((state) => state.courseReducer)
+  const { themeMode } = useSelector((state) => state.themeReducer)
   const { userLogin } = useSelector((state) => state.userReducer)
   const [showDrop, setShowDrop] = useState(false)
-
   const reShow = useRef()
+
+  const handleSignOut = () => {
+    Swal.fire({
+      title: 'Bạn có muốn đăng xuất?',
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Đăng xuất',
+      cancelButtonText: 'Hủy'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        localStorage.removeItem(USER_LOGIN)
+        dispatch({ type: SIGN_OUT })
+        transferPage(ROUTES_NAME.HOME)
+        Swal.fire({
+          title: 'Đăng xuất thành công',
+          icon: 'success',
+          text: 'Cảm ơn bạn đã sử dụng dịch vụ!',
+          confirmButtonText: 'Ok'
+        })
+      }
+    })
+  }
+
   const useOnClickOutside = (ref, handler) => {
     useEffect(() => {
       const listener = (event) => {
@@ -62,7 +90,7 @@ function Header() {
         </li>
       )
     }
-    return <li key={menu.pathname}><NavLink className="menu__name" to={menu.pathname}>{menu.name}</NavLink></li>
+    return <li key={menu.pathname}><NavLink className="menu__name" to={menu.pathname}><span>{menu.name}</span></NavLink></li>
   }), [renderCategories])
 
   return (
@@ -71,14 +99,18 @@ function Header() {
         <NavLink to={ROUTES_NAME.HOME}>
           <img className="header__left__img" src={LOGO} alt="logo" />
         </NavLink>
-        <SearchCourse />
+        <div className="header__left__search">
+          <SearchCourse />
+        </div>
       </div>
       <div className="header__right">
-        <ul className="header__right__menu">
-          {renderMenu}
-        </ul>
+        <div>
+          <ul className="header__right__menu">
+            {renderMenu}
+          </ul>
+        </div>
       </div>
-      <div className="header__showIcon">
+      <div className={`header__showIcon ${themeMode === 'dark' ? 'themeDark' : ''}`}>
         {userLogin !== null ? (
           <div className="user__info">
             <div className="user__logged">
@@ -115,7 +147,14 @@ function Header() {
                       Thông tin tài khoản
                     </span>
                   </li>
-                  <li aria-hidden="true" onClick={() => history.push('/admin')}>
+                  <li>
+                    <span>
+                      <Brightness6OutlinedIcon className="dropdown__list__icon" />
+                      Chế độ tối
+                    </span>
+                    <SwitchThemeButton />
+                  </li>
+                  <li aria-hidden="true" onClick={() => transferPage('/admin')}>
                     <span>
                       <AdminPanelSettingsIcon className="dropdown__list__icon" />
                       Admin
@@ -123,22 +162,7 @@ function Header() {
                   </li>
                   <li
                     aria-hidden="true"
-                    onClick={() => {
-                      Swal.fire({
-                        title: 'Bạn có muốn đăng xuất?',
-                        icon: 'question',
-                        showCancelButton: true,
-                        confirmButtonColor: '#3085d6',
-                        cancelButtonColor: '#d33',
-                        confirmButtonText: 'Đăng xuất',
-                        cancelButtonText: 'Hủy'
-                      }).then((result) => {
-                        if (result.isConfirmed) {
-                          localStorage.removeItem(USER_LOGIN)
-                          dispatch({ type: SIGN_OUT })
-                        }
-                      })
-                    }}
+                    onClick={handleSignOut}
                   >
                     <span>
                       <ExitToAppIcon className="dropdown__list__icon" />
@@ -150,10 +174,41 @@ function Header() {
             </div>
           </div>
         ) : (
-          <button onClick={() => history.push(ROUTES_NAME.LOGIN)} type="button" className="btn__global">
-            Đăng nhập
-          </button>
+          <div className="user__info">
+            <button onClick={() => history.push(ROUTES_NAME.LOGIN)} type="button" className="btn__global">
+              Đăng nhập
+            </button>
+            <div className="dropdown" ref={reShow}>
+              <div
+                aria-hidden="true"
+                className="dropdown__select"
+                title="Cá nhân"
+                onClick={() => {
+                  setShowDrop(!showDrop)
+                }}
+              >
+                <ArrowDropDownIcon
+                  className="dropdown__select__icon"
+                  style={{ transform: `${showDrop ? 'rotate(-180deg)' : 'rotate(0deg)'}` }}
+                />
+              </div>
+              <div className="dropdown__list" style={showDrop ? { opacity: 1, visibility: 'visible' } : { opacity: 0, visibility: 'hidden' }}>
+                <ul>
+                  <li>
+                    <span>
+                      <Brightness6OutlinedIcon className="dropdown__list__icon" />
+                      Chế độ tối
+                    </span>
+                    <SwitchThemeButton />
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
         ) }
+      </div>
+      <div className="header__drawer">
+        <DrawerCPN userLogin={userLogin} />
       </div>
     </StyleHeader>
   )
