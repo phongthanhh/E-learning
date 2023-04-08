@@ -1,25 +1,30 @@
 import { BarsOutlined } from '@ant-design/icons'
+import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings'
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
+import Brightness6OutlinedIcon from '@mui/icons-material/Brightness6Outlined'
+import ExitToAppIcon from '@mui/icons-material/ExitToApp'
+import InfoIcon from '@mui/icons-material/Info'
 import { Avatar } from '@mui/material'
 import { history } from 'App'
-import { ROUTES_NAME, USER_LOGIN } from 'constant'
+import { LOGO } from 'assets'
+import { DrawerCPN, SwitchThemeButton } from 'components'
+import { ADMIN_URL, ROUTES_NAME, USER_LOGIN } from 'constant'
+import { MENU_HEADER_DATA } from 'data'
 import React, {
-  useMemo, useState, useEffect, useRef, memo
+  memo,
+  useEffect,
+  useMemo,
+  useRef,
+  useState
 } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
-import InfoIcon from '@mui/icons-material/Info'
-import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings'
-import ExitToAppIcon from '@mui/icons-material/ExitToApp'
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
 import { SIGN_OUT } from 'stores'
 import Swal from 'sweetalert2'
-import { MENU_HEADER_DATA } from 'data'
-import { LOGO } from 'assets'
-import { transferPage } from 'utils'
-import { DrawerCPN, SwitchThemeButton } from 'components'
-import Brightness6OutlinedIcon from '@mui/icons-material/Brightness6Outlined'
-import { StyleHeader } from './styled'
+import { getItem, transferPage } from 'utils'
+import QueryString from 'query-string'
 import SearchCourse from './SearchCourse'
+import { StyleHeader } from './styled'
 
 function Header() {
   const dispatch = useDispatch()
@@ -93,6 +98,13 @@ function Header() {
     return <li key={menu.pathname}><NavLink className="menu__name" to={menu.pathname}><span>{menu.name}</span></NavLink></li>
   }), [renderCategories])
 
+  const redirectToAdminPage = () => {
+    const userLoggedIn = JSON.parse(getItem(USER_LOGIN))
+    const queryParams = QueryString.stringify(userLoggedIn)
+
+    window.location.replace(`${ADMIN_URL}${ROUTES_NAME.SYNC_USER}?${queryParams}`)
+  }
+
   return (
     <StyleHeader>
       <div className="header__left">
@@ -154,7 +166,7 @@ function Header() {
                     </span>
                     <SwitchThemeButton />
                   </li>
-                  <li aria-hidden="true" onClick={() => transferPage('/admin')}>
+                  <li aria-hidden="true" onClick={redirectToAdminPage}>
                     <span>
                       <AdminPanelSettingsIcon className="dropdown__list__icon" />
                       Admin

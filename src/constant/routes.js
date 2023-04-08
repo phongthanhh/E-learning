@@ -7,5 +7,6 @@ export const ROUTES_NAME = {
   EVENT: '/event',
   INFO: '/info',
   DETAIL: '/detail',
-  LOGIN: '/login'
+  LOGIN: '/login',
+  SYNC_USER: '/sync-user'
 }
