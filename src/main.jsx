@@ -1,5 +1,5 @@
-import React from 'react'
 import ReactDOM from 'react-dom/client'
+import React from 'react'
 
 // Setup Redux
 import { Provider } from 'react-redux'
@@ -15,8 +15,8 @@ import 'bootstrap/dist/css/bootstrap.css'
 // Toastify
 import 'react-toastify/dist/ReactToastify.css'
 
-import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
+import 'slick-carousel/slick/slick.css'
 
 import { ColorContextProvider, ErrorBoundary } from 'components'
 import './index.css'
@@ -26,7 +26,9 @@ import App from './App'
 ReactDOM.createRoot(document.getElementById('root')).render(
   <Provider store={store}>
     <ColorContextProvider>
-      <ErrorBoundary><App /></ErrorBoundary>
+      <ErrorBoundary>
+        <App />
+      </ErrorBoundary>
     </ColorContextProvider>
   </Provider>
 )
