@@ -1,10 +1,9 @@
+import { CssBaseline, ThemeProvider, createTheme } from '@mui/material'
+import { DARK, LIGHT } from 'constant'
 import React, { useMemo, useState } from 'react'
-import { ThemeProvider, createTheme } from '@mui/material/styles'
-import CssBaseline from '@mui/material/CssBaseline'
-import { ColorModeContext } from 'utils'
 import { useSelector } from 'react-redux'
 import { getDesignTokens } from 'themes'
-import { DARK, LIGHT } from 'constant'
+import { ColorModeContext } from 'utils'
 
 function ColorContextProvider({ children }) {
   const { themeMode } = useSelector((state) => state.themeReducer)
