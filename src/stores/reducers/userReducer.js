@@ -1,46 +1,42 @@
-import { USER_LOGIN } from 'constant'
+import { ACCESS_TOKEN, USER_LOGIN } from 'constant'
 import {
-  ACTIVE_LOGIN_PAGE, GET_USER_INFO, LOG_IN, SIGN_OUT, UPDATE_USER_INFO
+  ACTIVE_LOGIN_PAGE, GET_USER_INFO, SIGN_OUT, UPDATE_USER_INFO
 } from 'stores/types'
 import {
-  failureAction, requestAction, successAction, setItem
+  failureAction, requestAction, successAction, setItem, getItem
 } from 'utils'
-// Check LocalStorage
-let userLogin = null // Chưa có localStorage
-if (localStorage.getItem(USER_LOGIN)) {
-  // Có local => đã login
-  userLogin = JSON.parse(localStorage.getItem(USER_LOGIN))
-}
 
 const initialState = {
   activeLoginPage: null,
-  userLogin,
   userInfo: {},
-  isUpdating: false
+  isUpdating: false,
+  authenticated: false
 }
 
 export const userReducer = (state = initialState, { type, payload, error }) => {
   switch (type) {
     case ACTIVE_LOGIN_PAGE:
       return { ...state, activeLoginPage: false }
-    // for login
-    case LOG_IN:
-      return { ...state, userLogin: payload }
-
     // for sign out
-    case SIGN_OUT:
-      return { ...state, userLogin: null }
+    case SIGN_OUT: {
+      localStorage.removeItem(USER_LOGIN)
+      localStorage.removeItem(ACCESS_TOKEN)
+      return { ...state }
+    }
 
     // for get user info
     case successAction(GET_USER_INFO):
-      return { ...state, userInfo: payload }
+      return { ...state, userInfo: payload, authenticated: true }
+    case failureAction(GET_USER_INFO):
+      return { ...state, authenticated: false, error }
 
     // For update user info
     case requestAction(UPDATE_USER_INFO):
       return { ...state, isUpdating: true }
     case successAction(UPDATE_USER_INFO): {
-      setItem(USER_LOGIN, JSON.stringify({ ...state.userLogin, hoTen: payload.newHoTen }))
-      return { ...state, isUpdating: false, userLogin: { ...state.userLogin, hoTen: payload.newHoTen } }
+      const userLoginLocal = JSON.parse(getItem(USER_LOGIN))
+      setItem(USER_LOGIN, JSON.stringify({ ...userLoginLocal, hoTen: payload.newHoTen }))
+      return { ...state, isUpdating: false }
     }
     case failureAction(UPDATE_USER_INFO):
       return { ...state, isUpdating: false, error }

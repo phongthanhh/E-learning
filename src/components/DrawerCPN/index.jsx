@@ -22,14 +22,15 @@ import Brightness6OutlinedIcon from '@mui/icons-material/Brightness6Outlined'
 import LoginOutlinedIcon from '@mui/icons-material/LoginOutlined'
 import { history } from 'App'
 import Swal from 'sweetalert2'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { SIGN_OUT } from 'stores'
 import { SwitchThemeButton } from 'components'
 import { StyledContent, StyledDrawer } from './styled'
 
-export default function DrawerCPN({ userLogin }) {
+export default function DrawerCPN() {
   const dispatch = useDispatch()
   const [openDrawer, setOpenDrawer] = React.useState(false)
+  const { userInfo, authenticated } = useSelector(((state) => state.userReducer))
 
   const handleSignOut = () => {
     Swal.fire({
@@ -65,12 +66,12 @@ export default function DrawerCPN({ userLogin }) {
       >
         <StyledContent>
           <List>
-            {userLogin ? (
+            {authenticated ? (
               <ListItem>
                 <ListItemIcon>
                   <Avatar alt="Remy Sharp" src="https://i.pravatar.cc/150?u=63453463" />
                 </ListItemIcon>
-                <ListItemText className="user__name" primary={userLogin.hoTen} />
+                <ListItemText className="user__name" primary={userInfo.hoTen} />
               </ListItem>
             ) : (
               <ListItem className="signOut">
@@ -99,7 +100,7 @@ export default function DrawerCPN({ userLogin }) {
               </ListItemButton>
             </ListItem>
 
-            {userLogin ? (
+            {authenticated ? (
               <ListItem>
                 <NavLink to={ROUTES_NAME.INFO}>
                   <ListItemButton>
@@ -112,7 +113,7 @@ export default function DrawerCPN({ userLogin }) {
               </ListItem>
             ) : null}
 
-            {userLogin ? (
+            {authenticated ? (
               <ListItem>
                 <NavLink to={ROUTES_NAME.INFO} onClick={onCloseDrawer}>
                   <ListItemButton>
@@ -147,7 +148,7 @@ export default function DrawerCPN({ userLogin }) {
               </NavLink>
             </ListItem>
 
-            {userLogin ? (
+            {authenticated ? (
               <ListItem className="signOut">
                 <ListItemButton onClick={handleSignOut} className="signOut__btn">
                   <ListItemIcon>

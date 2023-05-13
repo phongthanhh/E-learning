@@ -1,14 +1,14 @@
-import { ACCESS_TOKEN, ROUTES_NAME, USER_LOGIN } from 'constant'
+import { ACCESS_TOKEN, USER_LOGIN } from 'constant'
 import { toast } from 'react-toastify'
 import {
   getInfoUserService, loginService, signUpService, updateInfoUserService
 } from 'services'
 import {
-  ACTIVE_LOGIN_PAGE, GET_USER_INFO, LOG_IN, UPDATE_USER_INFO
+  ACTIVE_LOGIN_PAGE, GET_USER_INFO, UPDATE_USER_INFO
 } from 'stores/types'
 import Swal from 'sweetalert2'
 import {
-  failureAction, requestAction, setItem, successAction, transferPage
+  failureAction, requestAction, setItem, successAction
 } from 'utils'
 
 export const signUpAction = (payload) => async (dispatch) => {
@@ -27,22 +27,6 @@ export const signUpAction = (payload) => async (dispatch) => {
   }
 }
 
-export const loginAction = (payload) => async (dispatch) => {
-  try {
-    const data = await loginService(payload)
-    setItem(ACCESS_TOKEN, data.accessToken)
-    setItem(USER_LOGIN, JSON.stringify(data))
-    dispatch({
-      type: LOG_IN,
-      payload: data
-    })
-    transferPage(ROUTES_NAME.HOME)
-    toast.success('Đăng nhập thành công !')
-  } catch (error) {
-    throw Error(error)
-  }
-}
-
 export const getInfoUserAction = () => async (dispatch) => {
   try {
     const data = await getInfoUserService()
@@ -50,6 +34,18 @@ export const getInfoUserAction = () => async (dispatch) => {
       type: successAction(GET_USER_INFO),
       payload: data
     })
+  } catch (error) {
+    dispatch({ type: failureAction(GET_USER_INFO), error })
+  }
+}
+
+export const loginAction = (payload) => async (dispatch) => {
+  try {
+    const data = await loginService(payload)
+    setItem(ACCESS_TOKEN, data.accessToken)
+    setItem(USER_LOGIN, JSON.stringify(data))
+    dispatch(getInfoUserAction())
+    toast.success('Đăng nhập thành công !')
   } catch (error) {
     throw Error(error)
   }
