@@ -1,19 +1,13 @@
 import { Footer, Header } from 'components'
 import React from 'react'
-import { Route } from 'react-router'
 
-function HomeLayout(props) {
+function HomeLayout({ children }) {
   return (
-    <Route
-      path={props.path}
-      render={(propsRoute) => (
-        <>
-          <Header />
-          <props.component {...propsRoute} />
-          <Footer />
-        </>
-      )}
-    />
+    <>
+      <Header />
+      {children}
+      <Footer />
+    </>
   )
 }
 

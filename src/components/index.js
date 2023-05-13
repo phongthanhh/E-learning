@@ -21,3 +21,4 @@ export {
 }
 
 export * from './FormControl'
+export * from './RoutesControl'
