@@ -21,7 +21,7 @@ export const userReducer = (state = initialState, { type, payload, error }) => {
     case SIGN_OUT: {
       localStorage.removeItem(USER_LOGIN)
       localStorage.removeItem(ACCESS_TOKEN)
-      return { ...state }
+      return { ...state, userInfo: {}, authenticated: false }
     }
 
     // for get user info
