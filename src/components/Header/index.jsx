@@ -45,13 +45,11 @@ function Header() {
       cancelButtonText: 'Hủy'
     }).then((result) => {
       if (result.isConfirmed) {
-        dispatch({ type: SIGN_OUT })
-        Swal.fire({
-          title: 'Đăng xuất thành công',
-          icon: 'success',
-          text: 'Cảm ơn bạn đã sử dụng dịch vụ!',
-          confirmButtonText: 'Ok'
-        })
+        if (userInfo.maLoaiNguoiDung === 'GV') {
+          window.location.replace(`${ADMIN_URL}${ROUTES_NAME.REQUEST_SIGN_OUT}`)
+        } else {
+          dispatch({ type: SIGN_OUT })
+        }
       }
     })
   }
@@ -164,12 +162,14 @@ function Header() {
                     </span>
                     <SwitchThemeButton />
                   </li>
-                  <li aria-hidden="true" onClick={redirectToAdminPage}>
-                    <span>
-                      <AdminPanelSettingsIcon className="dropdown__list__icon" />
-                      Admin
-                    </span>
-                  </li>
+                  {userInfo.maLoaiNguoiDung === 'GV' ? (
+                    <li aria-hidden="true" onClick={redirectToAdminPage}>
+                      <span>
+                        <AdminPanelSettingsIcon className="dropdown__list__icon" />
+                        Admin
+                      </span>
+                    </li>
+                  ) : ''}
                   <li
                     aria-hidden="true"
                     onClick={handleSignOut}

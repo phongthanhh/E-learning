@@ -2,6 +2,7 @@ import { ACCESS_TOKEN, USER_LOGIN } from 'constant'
 import {
   ACTIVE_LOGIN_PAGE, GET_USER_INFO, SIGN_OUT, UPDATE_USER_INFO
 } from 'stores/types'
+import Swal from 'sweetalert2'
 import {
   failureAction, requestAction, successAction, setItem, getItem
 } from 'utils'
@@ -21,6 +22,12 @@ export const userReducer = (state = initialState, { type, payload, error }) => {
     case SIGN_OUT: {
       localStorage.removeItem(USER_LOGIN)
       localStorage.removeItem(ACCESS_TOKEN)
+      Swal.fire({
+        title: 'Đăng xuất thành công',
+        icon: 'success',
+        text: 'Cảm ơn bạn đã sử dụng dịch vụ!',
+        confirmButtonText: 'Ok'
+      })
       return { ...state, userInfo: {}, authenticated: false }
     }
 

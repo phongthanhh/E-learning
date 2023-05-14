@@ -7,5 +7,6 @@ export const ROUTES_NAME = {
   INFO: '/info',
   DETAIL: '/detail',
   LOGIN: '/login',
-  SYNC_USER: '/sync-user'
+  SYNC_USER: '/sync-user',
+  REQUEST_SIGN_OUT: '/request-sign-out'
 }

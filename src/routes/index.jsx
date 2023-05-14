@@ -2,8 +2,9 @@ import React, { lazy, useEffect } from 'react'
 import { Switch } from 'react-router'
 import { ROUTES_NAME } from 'constant'
 import { useLocation } from 'react-router-dom'
-import { PublicRoute } from 'components'
+import { ProtectedRoute, PublicRoute } from 'components'
 import { HomeLayout, HomeLayoutProtected } from 'layouts'
+import { RequestSignOut } from 'pages'
 
 const Home = lazy(() => import('../pages/home'))
 const CategoryCourse = lazy(() => import('../pages/categoryCourse'))
@@ -31,7 +32,7 @@ function AppRoutes() {
       <HomeLayout path={ROUTES_NAME.EVENT} exact component={Event} />
       <HomeLayoutProtected path={ROUTES_NAME.INFO} exact component={Info} />
       <HomeLayout path="/" exact component={Home} />
-
+      <ProtectedRoute path={ROUTES_NAME.REQUEST_SIGN_OUT} exact component={RequestSignOut} />
     </Switch>
   )
 }
