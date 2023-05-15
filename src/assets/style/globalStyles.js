@@ -46,7 +46,6 @@ a{
   color: unset;
 }
 body{
-  color: ${COLORS.text};
   @media (max-width: 768px) {
     font-size: ${FONT_SIZE.sub};
   }
