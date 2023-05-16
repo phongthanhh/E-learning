@@ -1,5 +1,5 @@
-import { Box, CircularProgress } from '@mui/material'
 import React, { useEffect, useState } from 'react'
+import { StyledContainer } from './styled'
 
 function WithLoading(WrappedComponent) {
   return function LoadingComponent({ isLoading, ...props }) {
@@ -11,15 +11,27 @@ function WithLoading(WrappedComponent) {
 
     if (loading) {
       return (
-        <Box
-          display="flex"
-          justifyContent="center"
-          alignItems="center"
-          minHeight="100vh"
-        >
-          <CircularProgress />
-        </Box>
-
+        <StyledContainer>
+          <div>
+            <div className="body">
+              <span>
+                <span />
+                <span />
+                <span />
+                <span />
+              </span>
+              <div className="base" />
+              <div className="face" />
+            </div>
+            <div className="longfazers">
+              <span />
+              <span />
+              <span />
+              <span />
+            </div>
+            <h1>Redirecting</h1>
+          </div>
+        </StyledContainer>
       )
     }
     return <WrappedComponent {...props} />
