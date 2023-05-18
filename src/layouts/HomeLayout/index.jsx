@@ -2,14 +2,15 @@ import { Footer, Header } from 'components'
 import React from 'react'
 import { Route } from 'react-router'
 
-function HomeLayout(props) {
+function HomeLayout({ path, component: Component, ...rest }) {
   return (
     <Route
-      path={props.path}
+      {...rest}
+      path={path}
       render={(propsRoute) => (
         <>
           <Header />
-          <props.component {...propsRoute} />
+          <Component {...propsRoute} />
           <Footer />
         </>
       )}

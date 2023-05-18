@@ -18,14 +18,14 @@ function SidebarCourse({ courseCode }) {
   // use hook
   const dispatch = useDispatch()
   const { detailsCourse: { data } } = useSelector((state) => state.courseReducer)
-  const { userLogin } = useSelector((state) => state.userReducer)
+  const { userInfo } = useSelector((state) => state.userReducer)
   // end use hook
 
   const priceCourse = getItem(PRICE_COURSE_DETAIL)
   const handleRegisterCourse = () => {
     const value = {
       maKhoahoc: courseCode,
-      taiKhoan: userLogin.taiKhoan
+      taiKhoan: userInfo.taiKhoan
     }
     dispatch(registerCourseAction(value))
   }

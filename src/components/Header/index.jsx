@@ -21,7 +21,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import { SIGN_OUT } from 'stores'
 import Swal from 'sweetalert2'
-import { getItem, transferPage } from 'utils'
+import { getItem } from 'utils'
 import QueryString from 'query-string'
 import SearchCourse from './SearchCourse'
 import { StyleHeader } from './styled'
@@ -30,7 +30,7 @@ function Header() {
   const dispatch = useDispatch()
   const { categoryArr } = useSelector((state) => state.courseReducer)
   const { themeMode } = useSelector((state) => state.themeReducer)
-  const { userLogin } = useSelector((state) => state.userReducer)
+  const { userInfo, authenticated } = useSelector((state) => state.userReducer)
   const [showDrop, setShowDrop] = useState(false)
   const reShow = useRef()
 
@@ -45,15 +45,11 @@ function Header() {
       cancelButtonText: 'Hủy'
     }).then((result) => {
       if (result.isConfirmed) {
-        localStorage.removeItem(USER_LOGIN)
-        dispatch({ type: SIGN_OUT })
-        transferPage(ROUTES_NAME.HOME)
-        Swal.fire({
-          title: 'Đăng xuất thành công',
-          icon: 'success',
-          text: 'Cảm ơn bạn đã sử dụng dịch vụ!',
-          confirmButtonText: 'Ok'
-        })
+        if (userInfo.maLoaiNguoiDung === 'GV') {
+          window.location.replace(`${ADMIN_URL}${ROUTES_NAME.REQUEST_SIGN_OUT}`)
+        } else {
+          dispatch({ type: SIGN_OUT })
+        }
       }
     })
   }
@@ -84,7 +80,7 @@ function Header() {
   ))), [categoryArr])
 
   const renderMenu = useMemo(() => MENU_HEADER_DATA.map((menu) => {
-    if (menu.pathname === ROUTES_NAME.ROOT) {
+    if (menu.pathname === ROUTES_NAME.HOME) {
       return (
         <li className="courseCate" key={menu.pathname}>
           <BarsOutlined className="mr-1" />
@@ -123,13 +119,13 @@ function Header() {
         </div>
       </div>
       <div className={`header__showIcon ${themeMode === 'dark' ? 'themeDark' : ''}`}>
-        {userLogin !== null ? (
+        {authenticated ? (
           <div className="user__info">
             <div className="user__logged">
               <div className="user__logged__img">
                 <Avatar alt="Remy Sharp" src="https://i.pravatar.cc/150?u=63453463" />
               </div>
-              <span className="user__logged__name">{userLogin?.hoTen}</span>
+              <span className="user__logged__name">{userInfo.hoTen}</span>
             </div>
             <div className="dropdown" ref={reShow}>
               <div
@@ -166,12 +162,14 @@ function Header() {
                     </span>
                     <SwitchThemeButton />
                   </li>
-                  <li aria-hidden="true" onClick={redirectToAdminPage}>
-                    <span>
-                      <AdminPanelSettingsIcon className="dropdown__list__icon" />
-                      Admin
-                    </span>
-                  </li>
+                  {userInfo.maLoaiNguoiDung === 'GV' ? (
+                    <li aria-hidden="true" onClick={redirectToAdminPage}>
+                      <span>
+                        <AdminPanelSettingsIcon className="dropdown__list__icon" />
+                        Admin
+                      </span>
+                    </li>
+                  ) : ''}
                   <li
                     aria-hidden="true"
                     onClick={handleSignOut}
@@ -220,7 +218,7 @@ function Header() {
         ) }
       </div>
       <div className="header__drawer">
-        <DrawerCPN userLogin={userLogin} />
+        <DrawerCPN />
       </div>
     </StyleHeader>
   )

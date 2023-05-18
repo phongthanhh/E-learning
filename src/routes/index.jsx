@@ -1,8 +1,10 @@
 import React, { lazy, useEffect } from 'react'
 import { Switch } from 'react-router'
-import { HomeLayout } from 'layouts'
 import { ROUTES_NAME } from 'constant'
 import { useLocation } from 'react-router-dom'
+import { ProtectedRoute, PublicRoute } from 'components'
+import { HomeLayout, HomeLayoutProtected } from 'layouts'
+import { RequestSignOut } from 'pages'
 
 const Home = lazy(() => import('../pages/home'))
 const CategoryCourse = lazy(() => import('../pages/categoryCourse'))
@@ -22,17 +24,15 @@ function AppRoutes() {
 
   return (
     <Switch>
-      <HomeLayout path={ROUTES_NAME.HOME} exact component={Home} />
+      <PublicRoute path={ROUTES_NAME.LOGIN} exact component={Login} />
       <HomeLayout path={`${ROUTES_NAME.CATEGORY}/:name`} exact component={CategoryCourse} />
       <HomeLayout path={`${ROUTES_NAME.DETAIL}/:name`} exact component={Detail} />
       <HomeLayout path={ROUTES_NAME.COURSE} exact component={Course} />
       <HomeLayout path={ROUTES_NAME.BLOG} exact component={Blog} />
       <HomeLayout path={ROUTES_NAME.EVENT} exact component={Event} />
-      <HomeLayout path={ROUTES_NAME.INFO} exact component={Info} />
-
-      <Login path={ROUTES_NAME.LOGIN} exact component={Login} />
-
+      <HomeLayoutProtected path={ROUTES_NAME.INFO} exact component={Info} />
       <HomeLayout path="/" exact component={Home} />
+      <ProtectedRoute path={ROUTES_NAME.REQUEST_SIGN_OUT} exact component={RequestSignOut} />
     </Switch>
   )
 }

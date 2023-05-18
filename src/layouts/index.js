@@ -1,3 +1,4 @@
-import HomeLayout from './homeLayout'
+import HomeLayout from './HomeLayout'
+import HomeLayoutProtected from './HomeLayoutProtected'
 
-export { HomeLayout }
+export { HomeLayoutProtected, HomeLayout }
